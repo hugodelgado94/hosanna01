@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapas Mentales — Theologia.net</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep:    #0d0c0a;
+    --bg-card:    #141210;
+    --bg-overlay: #0a0908ee;
+    --bg3:        #1c1a16;
+    --gold:       #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim:   #8a6f30;
+    --cream:      #f0e6cc;
+    --cream-dim:  #b8a88a;
+    --text-muted: #9a9080;
+    --border:     #2a2520;
+    --border-nav: rgba(201,168,76,0.15);
+    --border-gold:#3a2e18;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans:  'Figtree', system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg-deep);
+    color: var(--cream);
+    font-family: 'EB Garamond', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding-top: 60px;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.35;
+  }
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(12,11,9,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-nav);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 60px;
+  }
+  .nav-logo {
+    font-family: var(--font-serif); font-size: 1.35rem; font-weight: 300;
+    letter-spacing: 0.12em; color: var(--gold-light); text-decoration: none;
+  }
+  .nav-logo span { color: var(--text-muted); font-style: italic; font-size: 1rem; margin-left: 6px; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--text-muted); text-decoration: none; font-family: var(--font-sans);
+    font-size: 0.83rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.nav-active { color: var(--gold-light); }
+  .nav-search {
+    display: flex; align-items: center; gap: 8px; background: var(--bg3);
+    border: 1px solid var(--border-nav); border-radius: 30px;
+    padding: 6px 14px; cursor: pointer; transition: border-color 0.2s;
+  }
+  .nav-search:hover { border-color: var(--gold-dim); }
+  .nav-search svg { width: 14px; height: 14px; stroke: var(--text-muted); fill: none; stroke-width: 2; }
+  .nav-search span { font-family: var(--font-sans); font-size: 0.8rem; color: var(--text-muted); }
+  /* HEADER */
+  header {
+    text-align: center; padding: 3.5rem 1.5rem 2rem;
+    position: relative; border-bottom: 1px solid var(--border-gold);
+  }
+  header::after {
+    content: ''; display: block; width: 80px; height: 1px;
+    background: var(--gold); margin: 1.2rem auto 0; box-shadow: 0 0 12px var(--gold-dim);
+  }
+  .site-label { font-family: 'EB Garamond', serif; font-size: 0.8rem; letter-spacing: 0.35em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 0.6rem; }
+  h1 { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 600; color: var(--gold-light); letter-spacing: 0.05em; text-shadow: 0 0 40px #c9a84c33; }
+  .subtitle { font-size: 1.05rem; color: var(--cream-dim); font-style: italic; margin-top: 0.5rem; }
+  /* FILTERS */
+  .filters-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; padding: 1.8rem 1.5rem 1rem; position: relative; z-index: 1; }
+  .filter-btn { background: transparent; border: 1px solid var(--border-gold); color: var(--cream-dim); font-family: 'EB Garamond', serif; font-size: 0.9rem; letter-spacing: 0.08em; padding: 0.4rem 1.1rem; cursor: pointer; transition: all 0.25s; border-radius: 2px; }
+  .filter-btn:hover { border-color: var(--gold-dim); color: var(--cream); }
+  .filter-btn.active { background: var(--gold); border-color: var(--gold); color: #0d0c0a; font-weight: 600; box-shadow: 0 0 18px #c9a84c44; }
+  /* GRID */
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.4rem; padding: 1.5rem 2rem 4rem; position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; }
+  /* CARD */
+  .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; cursor: pointer; transition: transform 0.3s ease, border-color 0.3s, box-shadow 0.3s; animation: fadeUp 0.5s ease both; position: relative; }
+  .card:hover { transform: translateY(-4px); border-color: var(--gold-dim); box-shadow: 0 8px 40px #c9a84c22; }
+  .card.hidden { display: none; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .card-thumb { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; filter: brightness(0.9) saturate(0.85); transition: filter 0.3s; }
+  .card:hover .card-thumb { filter: brightness(1) saturate(1); }
+  .card-thumb-placeholder { width: 100%; aspect-ratio: 4/3; background: linear-gradient(135deg, #1a1710 0%, #0f0e0c 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--gold-dim); }
+  .card-body { padding: 1rem 1.1rem 1.2rem; }
+  .card-tag { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.35rem; }
+  .card-title { font-family: 'Cinzel', serif; font-size: 0.95rem; font-weight: 600; color: var(--cream); line-height: 1.35; margin-bottom: 0.4rem; }
+  .card-desc { font-size: 0.85rem; color: var(--cream-dim); font-style: italic; line-height: 1.5; }
+  .card-audio-badge { display: inline-flex; align-items: center; gap: 0.3rem; margin-top: 0.6rem; font-size: 0.75rem; color: var(--gold-dim); letter-spacing: 0.05em; }
+  .card-audio-badge svg { width:13px; height:13px; }
+  /* LIGHTBOX */
+  .lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: var(--bg-overlay); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 1rem; }
+  .lightbox.open { display: flex; }
+  .lb-inner { background: #111009; border: 1px solid var(--border-gold); border-radius: 4px; max-width: 950px; width: 100%; max-height: 92vh; overflow-y: auto; position: relative; box-shadow: 0 0 80px #00000088, 0 0 30px #c9a84c18; animation: lbIn 0.3s ease; }
+  @keyframes lbIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+  .lb-close { position: absolute; top: 0.9rem; right: 1rem; background: none; border: none; color: var(--gold-dim); font-size: 1.6rem; cursor: pointer; z-index: 10; line-height: 1; transition: color 0.2s; }
+  .lb-close:hover { color: var(--gold-light); }
+  .lb-img-wrap { width: 100%; overflow: hidden; background: #0a0908; position: relative; cursor: zoom-in; }
+  .lb-img-wrap.zoomed { cursor: grab; }
+  .lb-img-wrap.zoomed:active { cursor: grabbing; }
+  #lb-image { width: 100%; display: block; transform-origin: 0 0; transition: transform 0.1s ease; user-select: none; -webkit-user-drag: none; }
+  .lb-zoom-controls { position: absolute; bottom: 0.7rem; right: 0.7rem; display: flex; gap: 0.4rem; }
+  .lb-zoom-btn { background: #0d0c0acc; border: 1px solid var(--border-gold); color: var(--gold); font-size: 1.1rem; width: 32px; height: 32px; border-radius: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+  .lb-zoom-btn:hover { background: var(--gold); color: #0d0c0a; }
+  .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); background: #0d0c0acc; border: 1px solid var(--border-gold); color: var(--gold); font-size: 1.3rem; width: 38px; height: 50px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: background 0.2s; border-radius: 2px; }
+  .lb-nav:hover { background: var(--gold); color: #0d0c0a; }
+  .lb-prev { left: 0.5rem; }
+  .lb-next { right: 0.5rem; }
+  .lb-meta { padding: 1.2rem 1.5rem 0.5rem; }
+  .lb-tag { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+  .lb-title { font-family: 'Cinzel', serif; font-size: 1.25rem; color: var(--gold-light); margin-bottom: 0.4rem; }
+  .lb-desc { font-size: 0.95rem; color: var(--cream-dim); font-style: italic; line-height: 1.6; margin-bottom: 1rem; }
+  .lb-audio-wrap { padding: 0 1.5rem 1.5rem; }
+  .audio-player { background: #0d0c0a; border: 1px solid var(--border-gold); border-radius: 3px; padding: 0.9rem 1.1rem; display: flex; align-items: center; gap: 1rem; }
+  .ap-play-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--gold); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.2s, box-shadow 0.2s; }
+  .ap-play-btn:hover { background: var(--gold-light); box-shadow: 0 0 14px #c9a84c55; }
+  .ap-play-btn svg { width:16px; height:16px; fill: #0d0c0a; }
+  .ap-right { flex: 1; min-width: 0; }
+  .ap-label { font-size: 0.78rem; color: var(--gold-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .ap-progress-wrap { width: 100%; height: 4px; background: var(--border); border-radius: 2px; cursor: pointer; position: relative; }
+  .ap-progress-fill { height: 100%; background: var(--gold); border-radius: 2px; width: 0%; transition: width 0.1s linear; }
+  .ap-time { font-size: 0.75rem; color: var(--cream-dim); margin-top: 0.35rem; font-variant-numeric: tabular-nums; }
+  .lb-swipe-hint { text-align: center; font-size: 0.72rem; color: var(--gold-dim); letter-spacing: 0.12em; padding: 0 0 1rem; opacity: 0.7; }
+  .no-results { text-align: center; padding: 4rem 2rem; color: var(--cream-dim); font-style: italic; font-size: 1.05rem; display: none; width: 100%; grid-column: 1/-1; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg-deep); }
+  ::-webkit-scrollbar-thumb { background: var(--border-gold); border-radius: 3px; }
+  @media (max-width: 700px) { nav { padding: 0 1.25rem; } .nav-links { display: none; } }
+  @media (max-width: 600px) { .gallery { padding: 1rem 1rem 3rem; gap: 1rem; } header { padding: 2.5rem 1rem 1.5rem; } .lb-nav { display: none; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Theologia <span>Perennis</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#topics">Temas</a></li>
+    <li><a href="index.html#videos">Enseñanzas</a></li>
+    <li><a href="mapas-mentales.html" class="nav-active">Mapas Mentales</a></li>
+    <li><a href="index.html#about">Acerca de</a></li>
+  </ul>
+  <div class="nav-search">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+    <span>Buscar enseñanzas…</span>
+  </div>
+</nav>
+
+<header>
+  <div class="site-label">Theologia.net</div>
+  <h1>Mapas Mentales</h1>
+  <p class="subtitle">Visualizaciones teológicas para el estudio de la fe</p>
+</header>
+
+<div class="filters-bar" id="filtersBar">
+  <button class="filter-btn active" data-cat="all">Todos</button>
+  <button class="filter-btn" data-cat="teologia-biblica">Teología Bíblica</button>
+  <button class="filter-btn" data-cat="apologetica">Apologética</button>
+  <button class="filter-btn" data-cat="cristologia">Cristología</button>
+  <button class="filter-btn" data-cat="soteriologia">Soteriología</button>
+  <button class="filter-btn" data-cat="eclesiologia">Eclesiología</button>
+</div>
+
+<div class="gallery" id="gallery">
+  <div class="no-results" id="noResults">No hay mapas en esta categoría aún.</div>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <div class="lb-inner" id="lbInner">
+    <button class="lb-close" id="lbClose" aria-label="Cerrar">&#x2715;</button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Anterior">&#8249;</button>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Siguiente">&#8250;</button>
+    <div class="lb-img-wrap" id="lbImgWrap">
+      <img id="lb-image" src="" alt="">
+      <div class="lb-zoom-controls">
+        <button class="lb-zoom-btn" id="zoomIn" title="Acercar">+</button>
+        <button class="lb-zoom-btn" id="zoomOut" title="Alejar">−</button>
+        <button class="lb-zoom-btn" id="zoomReset" title="Restablecer">⊙</button>
+      </div>
+    </div>
+    <div class="lb-meta">
+      <div class="lb-tag" id="lbTag"></div>
+      <div class="lb-title" id="lbTitle"></div>
+      <div class="lb-desc" id="lbDesc"></div>
+    </div>
+    <div class="lb-audio-wrap" id="lbAudioWrap">
+      <div class="audio-player">
+        <button class="ap-play-btn" id="apPlayBtn" aria-label="Reproducir">
+          <svg id="apIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <div class="ap-right">
+          <div class="ap-label" id="apLabel">Audio explicativo</div>
+          <div class="ap-progress-wrap" id="apProgressWrap">
+            <div class="ap-progress-fill" id="apProgressFill"></div>
+          </div>
+          <div class="ap-time" id="apTime">0:00 / 0:00</div>
+        </div>
+      </div>
+    </div>
+    <div class="lb-swipe-hint" id="lbSwipeHint">← desliza para navegar →</div>
+  </div>
+</div>
+
+<audio id="audioEl"></audio>
+
+<script>
+const maps = [
+  { id:1, title:"La Alianza en el Antiguo Testamento", category:"teologia-biblica", categoryLabel:"Teología Bíblica", desc:"Recorrido por los pactos abrahámico, mosaico y davídico y su unidad temática.", img:null, audio:null, audioLabel:"Explicación: 8 min" },
+  { id:2, title:"Justificación y Obras en Pablo", category:"apologetica", categoryLabel:"Apologética", desc:"Análisis de Filipenses 3 y la respuesta católica a los argumentos calvinistas.", img:null, audio:null, audioLabel:"Explicación: 11 min" },
+  { id:3, title:"Las Naturalezas de Cristo", category:"cristologia", categoryLabel:"Cristología", desc:"Definición calcedónica: verdadero Dios y verdadero hombre, unión hipostática.", img:null, audio:null, audioLabel:"Explicación: 9 min" },
+  { id:4, title:"La Gracia y el Libre Albedrío", category:"soteriologia", categoryLabel:"Soteriología", desc:"Perspectiva tomista: la gracia perfecciona la naturaleza, no la destruye.", img:null, audio:null, audioLabel:"Explicación: 14 min" },
+  { id:5, title:"La Iglesia en el Nuevo Testamento", category:"eclesiologia", categoryLabel:"Eclesiología", desc:"Fundación, estructura y misión de la Iglesia según los escritos apostólicos.", img:null, audio:null, audioLabel:"Explicación: 10 min" },
+  { id:6, title:"El Shemá y el Mandamiento del Amor", category:"teologia-biblica", categoryLabel:"Teología Bíblica", desc:"Análisis de Mt 22:37 y la fuente hebrea: διάνοια como traducción de מְאֹד.", img:null, audio:null, audioLabel:"Explicación: 7 min" }
+];
+
+const gallery = document.getElementById('gallery');
+const noResults = document.getElementById('noResults');
+
+function iconSVG() {
+  return `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+    <circle cx="24" cy="24" r="2" fill="#8a6f30"/><circle cx="14" cy="18" r="2" fill="#8a6f30"/>
+    <circle cx="34" cy="18" r="2" fill="#8a6f30"/><circle cx="10" cy="30" r="2" fill="#8a6f30"/>
+    <circle cx="38" cy="30" r="2" fill="#8a6f30"/>
+    <line x1="24" y1="24" x2="14" y2="18" stroke="#3a2e18" stroke-width="1.5"/>
+    <line x1="24" y1="24" x2="34" y2="18" stroke="#3a2e18" stroke-width="1.5"/>
+    <line x1="14" y1="18" x2="10" y2="30" stroke="#3a2e18" stroke-width="1.5"/>
+    <line x1="34" y1="18" x2="38" y2="30" stroke="#3a2e18" stroke-width="1.5"/>
+  </svg>`;
+}
+
+function buildCards(filter) {
+  gallery.querySelectorAll('.card').forEach(c => c.remove());
+  const filtered = filter === 'all' ? maps : maps.filter(m => m.category === filter);
+  noResults.style.display = filtered.length === 0 ? 'block' : 'none';
+  filtered.forEach((m, i) => {
+    const card = document.createElement('div');
+    card.className = 'card'; card.dataset.id = m.id; card.style.animationDelay = `${i * 0.07}s`;
+    const thumb = m.img ? `<img class="card-thumb" src="${m.img}" alt="${m.title}" loading="lazy">` : `<div class="card-thumb-placeholder">${iconSVG()}</div>`;
+    const audioBadge = m.audio ? `<div class="card-audio-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>${m.audioLabel}</div>` : '';
+    card.innerHTML = `${thumb}<div class="card-body"><div class="card-tag">${m.categoryLabel}</div><div class="card-title">${m.title}</div><div class="card-desc">${m.desc}</div>${audioBadge}</div>`;
+    card.addEventListener('click', () => openLightbox(m.id));
+    gallery.appendChild(card);
+  });
+}
+buildCards('all');
+
+document.getElementById('filtersBar').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  buildCards(btn.dataset.cat);
+});
+
+const lightbox = document.getElementById('lightbox');
+const lbImage = document.getElementById('lb-image');
+const lbImgWrap = document.getElementById('lbImgWrap');
+const lbTag = document.getElementById('lbTag');
+const lbTitle = document.getElementById('lbTitle');
+const lbDesc = document.getElementById('lbDesc');
+const lbAudioWrap = document.getElementById('lbAudioWrap');
+const audioEl = document.getElementById('audioEl');
+const apPlayBtn = document.getElementById('apPlayBtn');
+const apIcon = document.getElementById('apIcon');
+const apLabel = document.getElementById('apLabel');
+const apProgressFill = document.getElementById('apProgressFill');
+const apTime = document.getElementById('apTime');
+const apProgressWrap = document.getElementById('apProgressWrap');
+let currentId = null, currentFilteredIds = [];
+
+function getFilteredIds() {
+  const active = document.querySelector('.filter-btn.active').dataset.cat;
+  return (active === 'all' ? maps : maps.filter(m => m.category === active)).map(m => m.id);
+}
+
+function openLightbox(id) {
+  const m = maps.find(x => x.id === id);
+  if (!m) return;
+  currentId = id; currentFilteredIds = getFilteredIds();
+  if (m.img) { lbImage.src = m.img; lbImage.alt = m.title; lbImgWrap.style.display = 'block'; }
+  else { lbImage.src = ''; lbImgWrap.style.display = 'none'; }
+  resetZoom();
+  lbTag.textContent = m.categoryLabel; lbTitle.textContent = m.title; lbDesc.textContent = m.desc;
+  audioEl.pause();
+  if (m.audio) {
+    audioEl.src = m.audio; lbAudioWrap.style.display = 'block';
+    apLabel.textContent = m.audioLabel || 'Audio explicativo';
+    apProgressFill.style.width = '0%'; apTime.textContent = '0:00 / 0:00';
+    setPlayIcon(false); audioEl.play().catch(() => {}); setPlayIcon(true);
+  } else { lbAudioWrap.style.display = 'none'; audioEl.src = ''; }
+  lightbox.classList.add('open'); document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() { lightbox.classList.remove('open'); document.body.style.overflow = ''; audioEl.pause(); currentId = null; }
+document.getElementById('lbClose').addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => {
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') navigateLb(1);
+  if (e.key === 'ArrowLeft') navigateLb(-1);
+});
+function navigateLb(dir) { const idx = currentFilteredIds.indexOf(currentId); const next = currentFilteredIds[idx + dir]; if (next !== undefined) openLightbox(next); }
+document.getElementById('lbPrev').addEventListener('click', () => navigateLb(-1));
+document.getElementById('lbNext').addEventListener('click', () => navigateLb(1));
+
+function setPlayIcon(playing) { apIcon.innerHTML = playing ? '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>' : '<path d="M8 5v14l11-7z"/>'; }
+apPlayBtn.addEventListener('click', () => { if (audioEl.paused) { audioEl.play(); setPlayIcon(true); } else { audioEl.pause(); setPlayIcon(false); } });
+audioEl.addEventListener('timeupdate', () => { if (!audioEl.duration) return; const pct = (audioEl.currentTime / audioEl.duration) * 100; apProgressFill.style.width = pct + '%'; apTime.textContent = `${fmt(audioEl.currentTime)} / ${fmt(audioEl.duration)}`; });
+audioEl.addEventListener('ended', () => setPlayIcon(false));
+apProgressWrap.addEventListener('click', e => { const rect = apProgressWrap.getBoundingClientRect(); audioEl.currentTime = ((e.clientX - rect.left) / rect.width) * audioEl.duration; });
+function fmt(s) { const m = Math.floor(s / 60), sec = Math.floor(s % 60); return `${m}:${sec.toString().padStart(2,'0')}`; }
+
+let scale = 1, translateX = 0, translateY = 0;
+let isDragging = false, dragStartX, dragStartY, dragTX, dragTY;
+let pinchStartDist = null, pinchStartScale = 1;
+function applyTransform() { lbImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`; lbImgWrap.classList.toggle('zoomed', scale > 1); }
+function resetZoom() { scale = 1; translateX = 0; translateY = 0; applyTransform(); }
+function clampTranslate() {
+  const ww = lbImgWrap.clientWidth, wh = lbImgWrap.clientHeight;
+  const iw = lbImage.naturalWidth || ww, ih = lbImage.naturalHeight || wh;
+  const rw = ww * scale, rh = (ih / iw) * ww * scale;
+  const maxX = Math.max(0, (rw - ww) / 2), maxY = Math.max(0, (rh - wh) / 2);
+  translateX = Math.max(-maxX, Math.min(maxX, translateX));
+  translateY = Math.max(-maxY, Math.min(maxY, translateY));
+}
+document.getElementById('zoomIn').addEventListener('click', () => { scale = Math.min(scale * 1.4, 5); clampTranslate(); applyTransform(); });
+document.getElementById('zoomOut').addEventListener('click', () => { scale = Math.max(scale / 1.4, 1); clampTranslate(); applyTransform(); });
+document.getElementById('zoomReset').addEventListener('click', resetZoom);
+lbImgWrap.addEventListener('mousedown', e => { if (scale <= 1) return; isDragging = true; dragStartX = e.clientX; dragStartY = e.clientY; dragTX = translateX; dragTY = translateY; e.preventDefault(); });
+window.addEventListener('mousemove', e => { if (!isDragging) return; translateX = dragTX + (e.clientX - dragStartX); translateY = dragTY + (e.clientY - dragStartY); clampTranslate(); applyTransform(); });
+window.addEventListener('mouseup', () => { isDragging = false; });
+lbImgWrap.addEventListener('touchstart', e => {
+  if (e.touches.length === 2) { pinchStartDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY); pinchStartScale = scale; }
+  else if (e.touches.length === 1 && scale > 1) { isDragging = true; dragStartX = e.touches[0].clientX; dragStartY = e.touches[0].clientY; dragTX = translateX; dragTY = translateY; }
+}, { passive: true });
+lbImgWrap.addEventListener('touchmove', e => {
+  if (e.touches.length === 2 && pinchStartDist) { const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY); scale = Math.max(1, Math.min(5, pinchStartScale * (d / pinchStartDist))); clampTranslate(); applyTransform(); e.preventDefault(); }
+  else if (isDragging && e.touches.length === 1) { translateX = dragTX + (e.touches[0].clientX - dragStartX); translateY = dragTY + (e.touches[0].clientY - dragStartY); clampTranslate(); applyTransform(); e.preventDefault(); }
+}, { passive: false });
+lbImgWrap.addEventListener('touchend', () => { isDragging = false; pinchStartDist = null; });
+let swipeStartX = null;
+document.getElementById('lbInner').addEventListener('touchstart', e => { if (scale > 1) return; swipeStartX = e.touches[0].clientX; }, { passive: true });
+document.getElementById('lbInner').addEventListener('touchend', e => { if (swipeStartX === null || scale > 1) return; const dx = e.changedTouches[0].clientX - swipeStartX; if (Math.abs(dx) > 60) navigateLb(dx < 0 ? 1 : -1); swipeStartX = null; }, { passive: true });
+</script>
+</body>
+</html>
