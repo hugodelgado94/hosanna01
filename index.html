@@ -1,383 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Theologia — A Hub for Sacred Knowledge</title>
+<title>Theologia — Un Centro de Conocimiento Sagrado</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0b09; --bg2: #141210; --bg3: #1c1a16;
+  --gold: #c9a84c; --gold-light: #e8c97e; --gold-dim: #7a6030;
+  --text: #f0ead8; --text-muted: #9a9080; --text-dim: #5c554a;
+  --border: rgba(201,168,76,0.15); --border-soft: rgba(240,234,216,0.07);
+  --radius: 6px;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Figtree', system-ui, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 16px; line-height: 1.6; min-height: 100vh; }
 
-  :root {
-    --bg: #0c0b09;
-    --bg2: #141210;
-    --bg3: #1c1a16;
-    --gold: #c9a84c;
-    --gold-light: #e8c97e;
-    --gold-dim: #7a6030;
-    --text: #f0ead8;
-    --text-muted: #9a9080;
-    --text-dim: #5c554a;
-    --border: rgba(201,168,76,0.15);
-    --border-soft: rgba(240,234,216,0.07);
-    --radius: 6px;
-    --font-serif: 'Cormorant Garamond', Georgia, serif;
-    --font-sans: 'Figtree', system-ui, sans-serif;
-  }
+/* ── NAV ── */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(12,11,9,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 60px; }
+.nav-logo { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 300; letter-spacing: 0.12em; color: var(--gold-light); text-decoration: none; }
+.nav-logo span { color: var(--text-muted); font-style: italic; font-size: 1rem; margin-left: 6px; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.83rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: var(--gold-light); }
+.nav-search { display: flex; align-items: center; gap: 8px; background: var(--bg3); border: 1px solid var(--border); border-radius: 30px; padding: 6px 14px; cursor: pointer; transition: border-color 0.2s; }
+.nav-search:hover { border-color: var(--gold-dim); }
+.nav-search svg { width: 14px; height: 14px; stroke: var(--text-muted); fill: none; stroke-width: 2; }
+.nav-search span { font-size: 0.8rem; color: var(--text-muted); }
 
-  html { scroll-behavior: smooth; }
+/* ── HERO ── */
+.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 6rem 2rem 4rem; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(201,168,76,0.08) 0%, transparent 70%); pointer-events: none; }
+.hero-eyebrow { font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; font-weight: 500; }
+.hero h1 { font-family: var(--font-serif); font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.01em; color: var(--text); margin-bottom: 1rem; }
+.hero h1 em { font-style: italic; color: var(--gold-light); }
+.hero-sub { font-family: var(--font-serif); font-size: clamp(1rem, 2vw, 1.3rem); color: var(--text-muted); font-weight: 300; font-style: italic; max-width: 520px; margin: 0 auto 3rem; line-height: 1.7; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-sans);
-    font-size: 16px;
-    line-height: 1.6;
-    min-height: 100vh;
-  }
+/* Search bar */
+.search-bar { display: flex; align-items: center; background: var(--bg2); border: 1px solid var(--border); border-radius: 50px; padding: 12px 20px; gap: 12px; width: 100%; max-width: 540px; margin: 0 auto 1.5rem; transition: border-color 0.3s, box-shadow 0.3s; }
+.search-bar:focus-within { border-color: var(--gold-dim); box-shadow: 0 0 0 3px rgba(201,168,76,0.08); }
+.search-bar svg { width: 16px; height: 16px; stroke: var(--gold-dim); fill: none; stroke-width: 2; flex-shrink: 0; }
+.search-bar input { background: none; border: none; outline: none; color: var(--text); font-family: var(--font-sans); font-size: 0.95rem; flex: 1; }
+.search-bar input::placeholder { color: var(--text-dim); }
+.search-btn { background: var(--gold); color: #1a1500; border: none; cursor: pointer; font-family: var(--font-sans); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 7px 18px; border-radius: 30px; transition: background 0.2s; flex-shrink: 0; }
+.search-btn:hover { background: var(--gold-light); }
+.search-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 3rem; }
+.tag { font-size: 0.75rem; border: 1px solid var(--border); border-radius: 30px; padding: 4px 14px; color: var(--text-muted); cursor: pointer; transition: all 0.2s; background: none; font-family: var(--font-sans); }
+.tag:hover { border-color: var(--gold-dim); color: var(--gold-light); }
 
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(12,11,9,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 2.5rem;
-    height: 60px;
-  }
-  .nav-logo {
-    font-family: var(--font-serif);
-    font-size: 1.35rem;
-    font-weight: 300;
-    letter-spacing: 0.12em;
-    color: var(--gold-light);
-    text-decoration: none;
-  }
-  .nav-logo span { color: var(--text-muted); font-style: italic; font-size: 1rem; margin-left: 6px; }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.83rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--gold-light); }
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--border-soft); margin: 0; }
 
-  .nav-search {
-    display: flex; align-items: center; gap: 8px;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 30px;
-    padding: 6px 14px;
-    cursor: pointer;
-    transition: border-color 0.2s;
-  }
-  .nav-search:hover { border-color: var(--gold-dim); }
-  .nav-search svg { width: 14px; height: 14px; stroke: var(--text-muted); fill: none; stroke-width: 2; }
-  .nav-search span { font-size: 0.8rem; color: var(--text-muted); }
+/* ── SECTION ── */
+section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+.section-label { font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-dim); font-weight: 500; margin-bottom: 3rem; display: flex; align-items: center; gap: 12px; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center;
-    padding: 6rem 2rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(201,168,76,0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-eyebrow {
-    font-size: 0.75rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.5rem;
-    font-weight: 500;
-  }
-  .hero h1 {
-    font-family: var(--font-serif);
-    font-size: clamp(3rem, 8vw, 6.5rem);
-    font-weight: 300;
-    line-height: 1.05;
-    letter-spacing: -0.01em;
-    color: var(--text);
-    margin-bottom: 1rem;
-  }
-  .hero h1 em { font-style: italic; color: var(--gold-light); }
-  .hero-sub {
-    font-family: var(--font-serif);
-    font-size: clamp(1rem, 2vw, 1.3rem);
-    color: var(--text-muted);
-    font-weight: 300;
-    font-style: italic;
-    max-width: 520px;
-    margin: 0 auto 3rem;
-    line-height: 1.7;
-  }
+/* ── TOPICS GRID ── */
+.topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5px; background: var(--border-soft); border: 1px solid var(--border-soft); border-radius: 12px; overflow: hidden; }
+.topic-card { background: var(--bg2); padding: 2rem 1.75rem; cursor: pointer; transition: background 0.25s; text-decoration: none; display: block; }
+.topic-card:hover { background: var(--bg3); }
+.topic-icon { font-family: var(--font-serif); font-size: 2rem; color: var(--gold); margin-bottom: 1rem; line-height: 1; }
+.topic-card h3 { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 400; color: var(--text); margin-bottom: 0.5rem; }
+.topic-card p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.25rem; }
+.topic-count { font-size: 0.72rem; letter-spacing: 0.1em; color: var(--gold-dim); text-transform: uppercase; }
 
-  /* Search bar */
-  .search-bar {
-    display: flex; align-items: center;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 50px;
-    padding: 12px 20px;
-    gap: 12px;
-    width: 100%;
-    max-width: 540px;
-    margin: 0 auto 1.5rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  .search-bar:focus-within {
-    border-color: var(--gold-dim);
-    box-shadow: 0 0 0 3px rgba(201,168,76,0.08);
-  }
-  .search-bar svg { width: 16px; height: 16px; stroke: var(--gold-dim); fill: none; stroke-width: 2; flex-shrink: 0; }
-  .search-bar input {
-    background: none; border: none; outline: none;
-    color: var(--text); font-family: var(--font-sans);
-    font-size: 0.95rem; flex: 1;
-  }
-  .search-bar input::placeholder { color: var(--text-dim); }
-  .search-btn {
-    background: var(--gold);
-    color: #1a1500;
-    border: none; cursor: pointer;
-    font-family: var(--font-sans);
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 7px 18px;
-    border-radius: 30px;
-    transition: background 0.2s;
-    flex-shrink: 0;
-  }
-  .search-btn:hover { background: var(--gold-light); }
+/* ── FEATURED CONTENT ── */
+.content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border-soft); border: 1px solid var(--border-soft); border-radius: 12px; overflow: hidden; margin-bottom: 1.5px; }
+.content-card { background: var(--bg2); padding: 1.75rem; cursor: pointer; transition: background 0.2s; }
+.content-card:hover { background: var(--bg3); }
+.content-card-full { grid-column: 1 / -1; }
+.content-type { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem; display: inline-flex; align-items: center; gap: 6px; }
+.pill { border-radius: 30px; padding: 2px 10px; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+.pill-video { background: rgba(201,168,76,0.12); color: var(--gold); }
+.pill-mindmap { background: rgba(78,130,100,0.15); color: #5fb584; }
+.pill-text { background: rgba(100,130,200,0.12); color: #8aaade; }
+.content-card h4 { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 400; color: var(--text); margin-bottom: 0.5rem; line-height: 1.3; }
+.content-card p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.6; }
+.content-meta { margin-top: 1rem; display: flex; align-items: center; gap: 12px; font-size: 0.75rem; color: var(--text-dim); }
 
-  .search-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 3rem; }
-  .tag {
-    font-size: 0.75rem;
-    border: 1px solid var(--border);
-    border-radius: 30px;
-    padding: 4px 14px;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: all 0.2s;
-    background: none;
-    font-family: var(--font-sans);
-  }
-  .tag:hover { border-color: var(--gold-dim); color: var(--gold-light); }
+/* ── VIDEO EMBED ── */
+.video-wrapper { border-radius: 10px; overflow: hidden; position: relative; padding-top: 56.25%; background: var(--bg3); margin-top: 0.75rem; }
+.video-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+.video-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; cursor: pointer; background: var(--bg3); transition: background 0.2s; }
+.video-placeholder:hover { background: #21201a; }
+.play-btn { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; }
+.play-btn svg { width: 20px; height: 20px; fill: var(--gold); margin-left: 3px; }
+.video-placeholder span { font-size: 0.8rem; color: var(--text-muted); }
 
-  /* ── DIVIDER ── */
-  .divider { border: none; border-top: 1px solid var(--border-soft); margin: 0; }
+/* ── MIND MAP PREVIEW ── */
+.mindmap-preview { background: var(--bg3); border-radius: 10px; padding: 1.5rem; margin-top: 0.75rem; overflow-x: auto; }
+.mindmap-preview svg { display: block; max-width: 100%; height: auto; }
 
-  /* ── SECTION ── */
-  section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
-  .section-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold-dim);
-    font-weight: 500;
-    margin-bottom: 3rem;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+/* ── QUOTE ── */
+.quote-block { border-left: 3px solid var(--gold-dim); padding: 1.5rem 2rem; margin: 0; background: var(--bg2); border-radius: 0 8px 8px 0; }
+.quote-block blockquote { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 300; font-style: italic; color: var(--text); line-height: 1.65; margin-bottom: 0.75rem; }
+.quote-block cite { font-size: 0.8rem; color: var(--gold-dim); letter-spacing: 0.08em; }
 
-  /* ── TOPICS GRID ── */
-  .topics-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5px;
-    background: var(--border-soft);
-    border: 1px solid var(--border-soft);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  .topic-card {
-    background: var(--bg2);
-    padding: 2rem 1.75rem;
-    cursor: pointer;
-    transition: background 0.25s;
-    text-decoration: none;
-    display: block;
-  }
-  .topic-card:hover { background: var(--bg3); }
-  .topic-icon {
-    font-family: var(--font-serif);
-    font-size: 2rem;
-    color: var(--gold);
-    margin-bottom: 1rem;
-    line-height: 1;
-  }
-  .topic-card h3 {
-    font-family: var(--font-serif);
-    font-size: 1.35rem;
-    font-weight: 400;
-    color: var(--text);
-    margin-bottom: 0.5rem;
-  }
-  .topic-card p {
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 1.25rem;
-  }
-  .topic-count {
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    color: var(--gold-dim);
-    text-transform: uppercase;
-  }
-
-  /* ── FEATURED CONTENT ── */
-  .content-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--border-soft);
-    border: 1px solid var(--border-soft);
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 1.5px;
-  }
-  .content-card {
-    background: var(--bg2);
-    padding: 1.75rem;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  .content-card:hover { background: var(--bg3); }
-  .content-card-full { grid-column: 1 / -1; }
-  .content-type {
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-    display: inline-flex; align-items: center; gap: 6px;
-  }
-  .pill {
-    border-radius: 30px;
-    padding: 2px 10px;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  .pill-video { background: rgba(201,168,76,0.12); color: var(--gold); }
-  .pill-mindmap { background: rgba(78,130,100,0.15); color: #5fb584; }
-  .pill-text { background: rgba(100,130,200,0.12); color: #8aaade; }
-  .content-card h4 {
-    font-family: var(--font-serif);
-    font-size: 1.25rem;
-    font-weight: 400;
-    color: var(--text);
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-  }
-  .content-card p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.6; }
-  .content-meta {
-    margin-top: 1rem;
-    display: flex; align-items: center; gap: 12px;
-    font-size: 0.75rem; color: var(--text-dim);
-  }
-
-  /* ── VIDEO EMBED ── */
-  .video-wrapper {
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    padding-top: 56.25%;
-    background: var(--bg3);
-    margin-top: 0.75rem;
-  }
-  .video-wrapper iframe {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    border: none;
-  }
-  .video-placeholder {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 12px; cursor: pointer;
-    background: var(--bg3);
-    transition: background 0.2s;
-  }
-  .video-placeholder:hover { background: #21201a; }
-  .play-btn {
-    width: 56px; height: 56px;
-    border-radius: 50%;
-    border: 2px solid var(--gold);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .play-btn svg { width: 20px; height: 20px; fill: var(--gold); margin-left: 3px; }
-  .video-placeholder span { font-size: 0.8rem; color: var(--text-muted); }
-
-  /* ── MIND MAP PREVIEW ── */
-  .mindmap-preview {
-    background: var(--bg3);
-    border-radius: 10px;
-    padding: 1.5rem;
-    margin-top: 0.75rem;
-    overflow-x: auto;
-  }
-  .mindmap-preview svg { display: block; max-width: 100%; height: auto; }
-
-  /* ── QUOTE ── */
-  .quote-block {
-    border-left: 3px solid var(--gold-dim);
-    padding: 1.5rem 2rem;
-    margin: 0;
-    background: var(--bg2);
-    border-radius: 0 8px 8px 0;
-  }
-  .quote-block blockquote {
-    font-family: var(--font-serif);
-    font-size: 1.4rem;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--text);
-    line-height: 1.65;
-    margin-bottom: 0.75rem;
-  }
-  .quote-block cite { font-size: 0.8rem; color: var(--gold-dim); letter-spacing: 0.08em; }
-
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--border-soft);
-    padding: 3rem 2.5rem;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 1rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  .footer-logo {
-    font-family: var(--font-serif);
-    font-size: 1.1rem;
-    color: var(--gold-dim);
-    font-weight: 300;
-    letter-spacing: 0.1em;
-  }
-  .footer-links { display: flex; gap: 2rem; list-style: none; }
-  .footer-links a { font-size: 0.78rem; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--gold); }
-
-  @media (max-width: 700px) {
-    nav { padding: 0 1.25rem; }
-    .nav-links { display: none; }
-    .content-grid { grid-template-columns: 1fr; }
-    .content-card-full { grid-column: 1; }
-  }
+/* ── FOOTER ── */
+footer { border-top: 1px solid var(--border-soft); padding: 3rem 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; max-width: 1100px; margin: 0 auto; }
+.footer-logo { font-family: var(--font-serif); font-size: 1.1rem; color: var(--gold-dim); font-weight: 300; letter-spacing: 0.1em; }
+.footer-links { display: flex; gap: 2rem; list-style: none; }
+.footer-links a { font-size: 0.78rem; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--gold); }
+@media (max-width: 700px) {
+  nav { padding: 0 1.25rem; }
+  .nav-links { display: none; }
+  .content-grid { grid-template-columns: 1fr; }
+  .content-card-full { grid-column: 1; }
+}
 </style>
 </head>
 <body>
@@ -386,37 +120,35 @@
 <nav>
   <a class="nav-logo" href="#">Theologia <span>Perennis</span></a>
   <ul class="nav-links">
-    <li><a href="#topics">Topics</a></li>
-    <li><a href="#videos">Teachings</a></li>
-    <li><a href="#mindmaps">Mind Maps</a></li>
-    <li><a href="#about">About</a></li>
+    <li><a href="#topics">Temas</a></li>
+    <li><a href="#videos">Enseñanzas</a></li>
+    <li><a href="#mindmaps">Mapas Mentales</a></li>
+    <li><a href="#about">Acerca de</a></li>
   </ul>
   <div class="nav-search" onclick="document.getElementById('main-search').focus()">
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
-    <span>Search teachings…</span>
+    <span>Buscar enseñanzas…</span>
   </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <p class="hero-eyebrow">Sacred Knowledge · Sacred Tradition</p>
-  <h1>In the Light of<br><em>Eternal Truth</em></h1>
-  <p class="hero-sub">A living library of theological teachings spanning the great tradition — from Thomistic metaphysics to mystical encounter, from apologetics to the depths of Holy Scripture.</p>
-
+  <p class="hero-eyebrow">Conocimiento Sagrado · Sagrada Tradición</p>
+  <h1>A la Luz de<br><em>La Verdad Eterna</em></h1>
+  <p class="hero-sub">Una biblioteca viva de enseñanzas teológicas que abarca la gran tradición — desde la metafísica tomista hasta el encuentro místico, desde la apologética hasta las profundidades de la Sagrada Escritura.</p>
   <div class="search-bar">
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
-    <input id="main-search" type="text" placeholder="Search for a teaching, topic, or question…" />
-    <button class="search-btn">Search</button>
+    <input id="main-search" type="text" placeholder="Buscar una enseñanza, tema o pregunta…" />
+    <button class="search-btn">Buscar</button>
   </div>
-
   <div class="search-tags">
     <button class="tag">Esse &amp; Essentia</button>
-    <button class="tag">Dark Night of the Soul</button>
-    <button class="tag">The Five Ways</button>
-    <button class="tag">Resurrection apologetics</button>
-    <button class="tag">Logos in John 1</button>
-    <button class="tag">Participation</button>
-    <button class="tag">Mystical union</button>
+    <button class="tag">Noche Oscura del Alma</button>
+    <button class="tag">Las Cinco Vías</button>
+    <button class="tag">Apologética de la Resurrección</button>
+    <button class="tag">El Logos en Juan 1</button>
+    <button class="tag">Participación</button>
+    <button class="tag">Unión mística</button>
   </div>
 </div>
 
@@ -424,37 +156,37 @@
 
 <!-- TOPICS -->
 <section id="topics">
-  <div class="section-label">Five pillars of study</div>
+  <div class="section-label">Cinco pilares de estudio</div>
   <div class="topics-grid">
     <a class="topic-card" href="#">
       <div class="topic-icon">Τ</div>
-      <h3>Thomism</h3>
-      <p>The metaphysics and theology of St. Thomas Aquinas — act and potency, the real distinction, and the analogy of being.</p>
-      <div class="topic-count">24 teachings</div>
+      <h3>Tomismo</h3>
+      <p>La metafísica y teología de Santo Tomás de Aquino — acto y potencia, la distinción real y la analogía del ser.</p>
+      <div class="topic-count">24 enseñanzas</div>
     </a>
     <a class="topic-card" href="#">
       <div class="topic-icon">✦</div>
-      <h3>Mystical Theology</h3>
-      <p>The interior life, contemplation, and union with God through the writings of the great mystics and Doctors of the Church.</p>
-      <div class="topic-count">18 teachings</div>
+      <h3>Teología Mística</h3>
+      <p>La vida interior, la contemplación y la unión con Dios a través de los escritos de los grandes místicos y Doctores de la Iglesia.</p>
+      <div class="topic-count">18 enseñanzas</div>
     </a>
     <a class="topic-card" href="#">
       <div class="topic-icon">⚖</div>
-      <h3>Apologetics</h3>
-      <p>A reasoned defense of the Faith — addressing objections, engaging philosophy, and demonstrating the credibility of Christianity.</p>
-      <div class="topic-count">31 teachings</div>
+      <h3>Apologética</h3>
+      <p>Una defensa razonada de la Fe — respondiendo objeciones, dialogando con la filosofía y demostrando la credibilidad del cristianismo.</p>
+      <div class="topic-count">31 enseñanzas</div>
     </a>
     <a class="topic-card" href="#">
       <div class="topic-icon">✝</div>
-      <h3>Bible Exegesis</h3>
-      <p>Sacred Scripture read through the fourfold sense — literal, allegorical, moral, and anagogical — in the tradition of the Fathers.</p>
-      <div class="topic-count">27 teachings</div>
+      <h3>Exégesis Bíblica</h3>
+      <p>La Sagrada Escritura leída a través del cuádruple sentido — literal, alegórico, moral y anagógico — en la tradición de los Padres.</p>
+      <div class="topic-count">27 enseñanzas</div>
     </a>
     <a class="topic-card" href="#">
       <div class="topic-icon">☩</div>
-      <h3>Patristics</h3>
-      <p>The theology of the Church Fathers — Augustine, Origen, Basil, and others who shaped the living tradition of doctrinal thought.</p>
-      <div class="topic-count">15 teachings</div>
+      <h3>Patrística</h3>
+      <p>La teología de los Padres de la Iglesia — Agustín, Orígenes, Basilio y otros que dieron forma a la tradición viva del pensamiento doctrinal.</p>
+      <div class="topic-count">15 enseñanzas</div>
     </a>
   </div>
 </section>
@@ -463,85 +195,76 @@
 
 <!-- FEATURED -->
 <section id="videos">
-  <div class="section-label">Featured teachings</div>
-
+  <div class="section-label">Enseñanzas destacadas</div>
   <div class="content-grid">
+
     <!-- Featured video -->
     <div class="content-card content-card-full">
-      <div class="content-type"><span class="pill pill-video">Video</span> <span style="color:var(--text-dim);font-size:0.75rem;">Featured Lecture</span></div>
-      <h4>The Real Distinction between Esse and Essentia in Aquinas</h4>
-      <p>An exploration of Cornelio Fabro's reading of Thomistic metaphysics — why <em>esse</em> as the act of acts is the cornerstone of all participatory ontology.</p>
+      <div class="content-type"><span class="pill pill-video">Video</span> <span style="color:var(--text-dim);font-size:0.75rem;">Conferencia Destacada</span></div>
+      <h4>La Distinción Real entre Esse y Essentia en Aquino</h4>
+      <p>Una exploración de la lectura de Cornelio Fabro sobre la metafísica tomista — por qué el <em>esse</em> como acto de los actos es la piedra angular de toda ontología participativa.</p>
       <div class="video-wrapper">
         <!-- Replace VIDEO_ID below with your actual YouTube video ID -->
         <div class="video-placeholder" id="vp1" onclick="loadVideo('vp1','dQw4w9WgXcQ')">
           <div class="play-btn">
             <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
           </div>
-          <span>Click to play · YouTube</span>
+          <span>Haz clic para reproducir · YouTube</span>
         </div>
       </div>
       <div class="content-meta">
-        <span>Thomism · 58 min</span>
+        <span>Tomismo · 58 min</span>
         <span>·</span>
-        <span>Advanced</span>
+        <span>Avanzado</span>
       </div>
     </div>
 
     <!-- Mind map preview -->
     <div class="content-card">
-      <div class="content-type"><span class="pill pill-mindmap">Mind Map</span></div>
-      <h4>Thomistic Metaphysics — Overview</h4>
-      <p>A visual map of the key concepts: act, potency, essence, existence, participation, and their relations.</p>
+      <div class="content-type"><span class="pill pill-mindmap">Mapa Mental</span></div>
+      <h4>Metafísica Tomista — Visión General</h4>
+      <p>Un mapa visual de los conceptos clave: acto, potencia, esencia, existencia, participación y sus relaciones.</p>
       <div class="mindmap-preview">
         <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" font-family="'Cormorant Garamond', Georgia, serif">
-          <!-- Central node -->
           <rect x="155" y="100" width="90" height="38" rx="5" fill="#c9a84c" opacity="0.9"/>
           <text x="200" y="122" text-anchor="middle" fill="#1a1200" font-size="13" font-weight="600">Esse</text>
-
-          <!-- Branch nodes -->
           <line x1="155" y1="119" x2="95" y2="60" stroke="#7a6030" stroke-width="1" stroke-dasharray="4,3"/>
           <rect x="30" y="38" width="70" height="30" rx="4" fill="#1c1a16" stroke="#7a6030" stroke-width="1"/>
-          <text x="65" y="57" text-anchor="middle" fill="#c9a84c" font-size="11">Act / Potency</text>
-
+          <text x="65" y="57" text-anchor="middle" fill="#c9a84c" font-size="11">Acto / Potencia</text>
           <line x1="200" y1="100" x2="200" y2="50" stroke="#7a6030" stroke-width="1" stroke-dasharray="4,3"/>
           <rect x="145" y="28" width="110" height="30" rx="4" fill="#1c1a16" stroke="#7a6030" stroke-width="1"/>
           <text x="200" y="47" text-anchor="middle" fill="#c9a84c" font-size="11">Essentia</text>
-
           <line x1="245" y1="119" x2="310" y2="60" stroke="#7a6030" stroke-width="1" stroke-dasharray="4,3"/>
           <rect x="290" y="38" width="90" height="30" rx="4" fill="#1c1a16" stroke="#7a6030" stroke-width="1"/>
-          <text x="335" y="57" text-anchor="middle" fill="#c9a84c" font-size="11">Participation</text>
-
+          <text x="335" y="57" text-anchor="middle" fill="#c9a84c" font-size="11">Participación</text>
           <line x1="200" y1="138" x2="200" y2="188" stroke="#7a6030" stroke-width="1" stroke-dasharray="4,3"/>
           <rect x="140" y="188" width="120" height="30" rx="4" fill="#1c1a16" stroke="#7a6030" stroke-width="1"/>
-          <text x="200" y="207" text-anchor="middle" fill="#c9a84c" font-size="11">Analogy of Being</text>
-
+          <text x="200" y="207" text-anchor="middle" fill="#c9a84c" font-size="11">Analogía del Ser</text>
           <line x1="155" y1="133" x2="80" y2="175" stroke="#7a6030" stroke-width="1" stroke-dasharray="4,3"/>
           <rect x="10" y="160" width="80" height="30" rx="4" fill="#1c1a16" stroke="#7a6030" stroke-width="1"/>
-          <text x="50" y="179" text-anchor="middle" fill="#c9a84c" font-size="11">Subsistence</text>
-
+          <text x="50" y="179" text-anchor="middle" fill="#c9a84c" font-size="11">Subsistencia</text>
           <line x1="245" y1="133" x2="320" y2="175" stroke="#7a6030" stroke-width="1" stroke-dasharray="4,3"/>
           <rect x="305" y="160" width="80" height="30" rx="4" fill="#1c1a16" stroke="#7a6030" stroke-width="1"/>
-          <text x="345" y="179" text-anchor="middle" fill="#c9a84c" font-size="11">Causality</text>
+          <text x="345" y="179" text-anchor="middle" fill="#c9a84c" font-size="11">Causalidad</text>
         </svg>
       </div>
-      <div class="content-meta"><span>Thomism · Interactive</span></div>
+      <div class="content-meta"><span>Tomismo · Interactivo</span></div>
     </div>
 
-    <!-- Text teaching -->
     <div class="content-card">
-      <div class="content-type"><span class="pill pill-text">Article</span></div>
-      <h4>The Dark Night of the Soul — St. John of the Cross</h4>
-      <p>An exposition of the two nights — of the senses and of the spirit — as paths of purification toward transforming union.</p>
-      <div class="content-meta"><span>Mystical Theology · 12 min read</span></div>
+      <div class="content-type"><span class="pill pill-text">Artículo</span></div>
+      <h4>La Noche Oscura del Alma — San Juan de la Cruz</h4>
+      <p>Una exposición de las dos noches — de los sentidos y del espíritu — como caminos de purificación hacia la unión transformante.</p>
+      <div class="content-meta"><span>Teología Mística · 12 min de lectura</span></div>
     </div>
 
-    <!-- Quote -->
     <div class="content-card content-card-full">
       <div class="quote-block">
-        <blockquote>"Being is the most intimate element in each thing and the most profoundly present in all things, since it is the form of all existing things."</blockquote>
-        <cite>— St. Thomas Aquinas, Summa Theologiae I, q. 8, a. 1</cite>
+        <blockquote>«El ser es el elemento más íntimo de cada cosa y lo más profundamente presente en todas ellas, pues es la forma de todos los seres existentes.»</blockquote>
+        <cite>— Santo Tomás de Aquino, Suma Teológica I, q. 8, a. 1</cite>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -549,31 +272,31 @@
 
 <!-- MIND MAPS -->
 <section id="mindmaps">
-  <div class="section-label">Mind maps</div>
+  <div class="section-label">Mapas mentales</div>
   <div class="content-grid">
     <div class="content-card">
-      <div class="content-type"><span class="pill pill-mindmap">Mind Map</span></div>
-      <h4>The Five Ways of Aquinas</h4>
-      <p>Visual overview of Aquinas' cosmological arguments — motion, causation, contingency, degrees of perfection, and teleology.</p>
-      <div class="content-meta"><span>Thomism · Apologetics</span></div>
+      <div class="content-type"><span class="pill pill-mindmap">Mapa Mental</span></div>
+      <h4>Las Cinco Vías de Aquino</h4>
+      <p>Visión general de los argumentos cosmológicos de Aquino — movimiento, causalidad, contingencia, grados de perfección y teleología.</p>
+      <div class="content-meta"><span>Tomismo · Apologética</span></div>
     </div>
     <div class="content-card">
-      <div class="content-type"><span class="pill pill-mindmap">Mind Map</span></div>
-      <h4>Mystical Theology — Stages of Prayer</h4>
-      <p>From vocal prayer through infused contemplation — the ascent of the soul in the tradition of Teresa of Ávila and John of the Cross.</p>
-      <div class="content-meta"><span>Mystical Theology</span></div>
+      <div class="content-type"><span class="pill pill-mindmap">Mapa Mental</span></div>
+      <h4>Teología Mística — Etapas de la Oración</h4>
+      <p>Desde la oración vocal hasta la contemplación infusa — el ascenso del alma en la tradición de Teresa de Ávila y Juan de la Cruz.</p>
+      <div class="content-meta"><span>Teología Mística</span></div>
     </div>
     <div class="content-card">
-      <div class="content-type"><span class="pill pill-mindmap">Mind Map</span></div>
-      <h4>The Johannine Prologue — Exegesis</h4>
-      <p>Mapping the Logos theology in John 1:1–18, tracing Hebraic and Hellenistic roots and patristic interpretation.</p>
-      <div class="content-meta"><span>Bible Exegesis</span></div>
+      <div class="content-type"><span class="pill pill-mindmap">Mapa Mental</span></div>
+      <h4>El Prólogo Joánico — Exégesis</h4>
+      <p>Mapeando la teología del Logos en Juan 1:1–18, rastreando las raíces hebreas y helenísticas e interpretación patrística.</p>
+      <div class="content-meta"><span>Exégesis Bíblica</span></div>
     </div>
     <div class="content-card">
-      <div class="content-type"><span class="pill pill-mindmap">Mind Map</span></div>
-      <h4>Classical Apologetics — Arguments for God</h4>
-      <p>A structured map of cosmological, ontological, teleological, and moral arguments with key thinkers and objections.</p>
-      <div class="content-meta"><span>Apologetics</span></div>
+      <div class="content-type"><span class="pill pill-mindmap">Mapa Mental</span></div>
+      <h4>Apologética Clásica — Argumentos por Dios</h4>
+      <p>Un mapa estructurado de argumentos cosmológicos, ontológicos, teleológicos y morales con pensadores clave y objeciones.</p>
+      <div class="content-meta"><span>Apologética</span></div>
     </div>
   </div>
 </section>
@@ -584,11 +307,11 @@
 <footer>
   <div class="footer-logo">Theologia Perennis</div>
   <ul class="footer-links">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">All Topics</a></li>
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#">Todos los Temas</a></li>
     <li><a href="#">Videos</a></li>
-    <li><a href="#">Mind Maps</a></li>
-    <li><a href="#">About</a></li>
+    <li><a href="#">Mapas Mentales</a></li>
+    <li><a href="#">Acerca de</a></li>
   </ul>
   <p style="font-size:0.75rem;color:var(--text-dim);">Fides quaerens intellectum</p>
 </footer>
@@ -604,8 +327,6 @@ function loadVideo(placeholderId, videoId) {
   el.remove();
   wrapper.appendChild(iframe);
 }
-
-// Search tag click
 document.querySelectorAll('.tag').forEach(t => {
   t.addEventListener('click', () => {
     document.getElementById('main-search').value = t.textContent;
@@ -613,6 +334,5 @@ document.querySelectorAll('.tag').forEach(t => {
   });
 });
 </script>
-
 </body>
 </html>
