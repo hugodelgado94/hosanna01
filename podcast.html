@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Podcast — Theologia Perennis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0c0b09; --bg2: #141210; --bg3: #1c1a16;
+      --gold: #c9a84c; --gold-light: #e8c97e; --gold-dim: #7a6030;
+      --text: #f0ead8; --text-muted: #9a9080; --text-dim: #5c554a;
+      --border: rgba(201,168,76,0.15); --border-soft: rgba(240,234,216,0.07);
+      --radius: 6px;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Figtree', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 16px; line-height: 1.6; min-height: 100vh; }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(12,11,9,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 60px; }
+    .nav-logo { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 300; letter-spacing: 0.12em; color: var(--gold-light); text-decoration: none; }
+    .nav-logo span { color: var(--text-muted); font-style: italic; font-size: 1rem; margin-left: 6px; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.83rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+    .nav-search { display: flex; align-items: center; gap: 8px; background: var(--bg3); border: 1px solid var(--border); border-radius: 30px; padding: 6px 14px; cursor: pointer; transition: border-color 0.2s; }
+    .nav-search:hover { border-color: var(--gold-dim); }
+    .nav-search svg { width: 14px; height: 14px; stroke: var(--text-muted); fill: none; stroke-width: 2; stroke-linecap: round; }
+    .nav-search span { font-size: 0.8rem; color: var(--text-dim); }
+
+    /* ── PAGE HEADER ── */
+    .page-header { padding: 9rem 2rem 4rem; text-align: center; position: relative; }
+    .page-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 60% at 50% 30%, rgba(201,168,76,0.07) 0%, transparent 70%); pointer-events: none; }
+    .page-eyebrow { font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; font-weight: 500; }
+    .page-header h1 { font-family: var(--font-serif); font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 300; line-height: 1.1; color: var(--text); margin-bottom: 1rem; }
+    .page-header h1 em { font-style: italic; color: var(--gold-light); }
+    .page-sub { font-family: var(--font-serif); font-size: clamp(1rem, 2vw, 1.2rem); color: var(--text-muted); font-weight: 300; font-style: italic; max-width: 480px; margin: 0 auto; line-height: 1.7; }
+
+    /* ── ORNAMENT ── */
+    .ornament { text-align: center; color: var(--gold-dim); font-size: 1.1rem; letter-spacing: 0.4em; margin: 1.5rem 0; opacity: 0.7; }
+
+    /* ── DIVIDER ── */
+    .divider { border: none; border-top: 1px solid var(--border-soft); margin: 0; }
+
+    /* ── SECTION ── */
+    .section { padding: 4rem 2rem 5rem; max-width: 860px; margin: 0 auto; }
+    .section-label { font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-dim); font-weight: 500; margin-bottom: 3rem; display: flex; align-items: center; gap: 12px; }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* ── PLAYER CARD ── */
+    .player-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+
+    /* Visualizer */
+    .visualizer-wrap { background: var(--bg); border-bottom: 1px solid var(--border-soft); position: relative; height: 90px; }
+    #visualizer { display: block; width: 100%; height: 100%; }
+
+    /* Track info */
+    .track-info { padding: 1.5rem 2rem 1rem; }
+    .track-number { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 0.35rem; }
+    .track-title { font-family: var(--font-serif); font-size: 1.45rem; font-weight: 400; color: var(--text); line-height: 1.25; }
+    .track-subtitle { font-family: var(--font-serif); font-size: 0.95rem; color: var(--text-muted); font-style: italic; margin-top: 0.2rem; }
+
+    /* Progress */
+    .progress-wrap { padding: 0.75rem 2rem; }
+    .progress-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .time-label { font-size: 0.75rem; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+    .progress-bar { width: 100%; height: 3px; background: var(--bg3); border-radius: 2px; cursor: pointer; position: relative; appearance: none; -webkit-appearance: none; outline: none; border: none; }
+    .progress-bar::-webkit-slider-runnable-track { height: 3px; background: transparent; border-radius: 2px; }
+    .progress-bar::-webkit-slider-thumb { -webkit-appearance: none; width: 13px; height: 13px; background: var(--gold); border-radius: 50%; margin-top: -5px; cursor: pointer; transition: transform 0.15s; }
+    .progress-bar::-webkit-slider-thumb:hover { transform: scale(1.3); }
+    .progress-bar::-moz-range-track { height: 3px; background: var(--bg3); border-radius: 2px; }
+    .progress-bar::-moz-range-thumb { width: 13px; height: 13px; background: var(--gold); border-radius: 50%; border: none; cursor: pointer; }
+    .progress-track { position: absolute; height: 3px; background: var(--gold-dim); border-radius: 2px; pointer-events: none; top: 0; left: 0; }
+
+    /* Controls */
+    .controls { display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 0.5rem 2rem 1.5rem; }
+    .ctrl-btn { background: none; border: none; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; justify-content: center; transition: color 0.2s, transform 0.15s; padding: 6px; border-radius: 50%; }
+    .ctrl-btn:hover { color: var(--gold-light); transform: scale(1.1); }
+    .ctrl-btn svg { width: 20px; height: 20px; fill: currentColor; }
+    .ctrl-btn.skip svg { width: 18px; height: 18px; }
+    .play-btn { background: var(--gold); color: var(--bg); width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, transform 0.15s; flex-shrink: 0; }
+    .play-btn:hover { background: var(--gold-light); transform: scale(1.06); }
+    .play-btn svg { width: 20px; height: 20px; fill: currentColor; margin-left: 2px; }
+    .play-btn.playing svg { margin-left: 0; }
+
+    /* Volume */
+    .volume-row { display: flex; align-items: center; justify-content: flex-end; gap: 10px; padding: 0 2rem 1.25rem; }
+    .vol-icon { color: var(--text-dim); flex-shrink: 0; }
+    .vol-icon svg { width: 16px; height: 16px; fill: currentColor; display: block; }
+    .vol-slider { -webkit-appearance: none; appearance: none; width: 90px; height: 3px; background: var(--bg3); border-radius: 2px; outline: none; cursor: pointer; }
+    .vol-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 11px; height: 11px; background: var(--gold-dim); border-radius: 50%; cursor: pointer; transition: background 0.2s; }
+    .vol-slider::-webkit-slider-thumb:hover { background: var(--gold); }
+
+    /* ── TRACK LIST ── */
+    .tracklist { border-top: 1px solid var(--border-soft); }
+    .track-item { display: flex; align-items: center; gap: 1.25rem; padding: 1rem 2rem; cursor: pointer; transition: background 0.15s; border-bottom: 1px solid var(--border-soft); }
+    .track-item:last-child { border-bottom: none; }
+    .track-item:hover { background: rgba(201,168,76,0.04); }
+    .track-item.active { background: rgba(201,168,76,0.06); }
+    .track-item.active .tl-title { color: var(--gold-light); }
+    .tl-num { font-size: 0.8rem; color: var(--text-dim); width: 20px; text-align: center; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+    .tl-num .tl-play-icon { display: none; }
+    .track-item.active .tl-num .tl-num-text { display: none; }
+    .track-item.active .tl-num .tl-play-icon { display: block; color: var(--gold); }
+    .tl-text { flex: 1; min-width: 0; }
+    .tl-title { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 400; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .tl-sub { font-size: 0.78rem; color: var(--text-dim); margin-top: 1px; font-style: italic; }
+    .tl-duration { font-size: 0.78rem; color: var(--text-dim); flex-shrink: 0; font-variant-numeric: tabular-nums; }
+
+    /* ── QUOTE ── */
+    .quote-wrap { margin-top: 4rem; }
+    .quote-block { border-left: 3px solid var(--gold-dim); padding: 1.5rem 2rem; background: var(--bg2); border-radius: 0 8px 8px 0; }
+    .quote-block blockquote { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 300; font-style: italic; color: var(--text); line-height: 1.65; margin-bottom: 0.75rem; }
+    .quote-block cite { font-size: 0.8rem; color: var(--gold-dim); letter-spacing: 0.08em; }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border-soft); padding: 3rem 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; max-width: 1100px; margin: 0 auto; }
+    .footer-logo { font-family: var(--font-serif); font-size: 1.1rem; color: var(--gold-dim); font-weight: 300; letter-spacing: 0.1em; }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a { font-size: 0.78rem; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-tagline { font-size: 0.75rem; color: var(--text-dim); font-style: italic; width: 100%; text-align: center; margin-top: 0.5rem; }
+
+    @media (max-width: 700px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      .track-info { padding: 1.25rem 1.25rem 0.75rem; }
+      .progress-wrap { padding: 0.75rem 1.25rem; }
+      .controls { padding: 0.5rem 1.25rem 1.25rem; }
+      .volume-row { padding: 0 1.25rem 1rem; }
+      .track-item { padding: 0.9rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="index.html">Theologia <span>Perennis</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#topics">Temas</a></li>
+      <li><a href="index.html#videos">Enseñanzas</a></li>
+      <li><a href="mapas-mentales.html">Mapas Mentales</a></li>
+      <li><a href="#" class="active">Podcast</a></li>
+      <li><a href="index.html#about">Acerca de</a></li>
+    </ul>
+    <div class="nav-search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+      <span>Buscar enseñanzas…</span>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <p class="page-eyebrow">Theologia Perennis · Audio</p>
+    <h1>Podcast <em>Teológico</em></h1>
+    <p class="page-sub">Conferencias y reflexiones sobre la gran tradición — tomismo, exégesis, mística y apologética.</p>
+    <div class="ornament">✦ · ✦ · ✦</div>
+  </header>
+
+  <hr class="divider">
+
+  <!-- PLAYER SECTION -->
+  <main class="section">
+    <p class="section-label">Episodios</p>
+
+    <div class="player-card">
+
+      <!-- Visualizer -->
+      <div class="visualizer-wrap">
+        <canvas id="visualizer"></canvas>
+      </div>
+
+      <!-- Track Info -->
+      <div class="track-info">
+        <p class="track-number" id="track-number">Episodio 1 de 5</p>
+        <p class="track-title" id="track-title">La Gracia y la Justificación</p>
+        <p class="track-subtitle" id="track-subtitle">Capítulo I</p>
+      </div>
+
+      <!-- Progress -->
+      <div class="progress-wrap">
+        <div class="progress-row">
+          <span class="time-label" id="time-current">0:00</span>
+          <span class="time-label" id="time-duration">—</span>
+        </div>
+        <input type="range" class="progress-bar" id="progress" value="0" min="0" max="100" step="0.1">
+      </div>
+
+      <!-- Controls -->
+      <div class="controls">
+        <!-- Prev -->
+        <button class="ctrl-btn" id="btn-prev" title="Episodio anterior">
+          <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+        </button>
+        <!-- −15s -->
+        <button class="ctrl-btn skip" id="btn-back" title="Retroceder 15s">
+          <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/><text x="12" y="14.5" text-anchor="middle" font-size="5.5" fill="currentColor" font-family="sans-serif" font-weight="600">15</text></svg>
+        </button>
+        <!-- Play/Pause -->
+        <button class="play-btn" id="btn-play" title="Reproducir">
+          <svg id="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <svg id="icon-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <!-- +15s -->
+        <button class="ctrl-btn skip" id="btn-fwd" title="Avanzar 15s">
+          <svg viewBox="0 0 24 24"><path d="M12 5V1l5 5-5 5V7c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6h2c0 4.42-3.58 8-8 8s-8-3.58-8-8 3.58-8 8-8z"/><text x="12" y="14.5" text-anchor="middle" font-size="5.5" fill="currentColor" font-family="sans-serif" font-weight="600">15</text></svg>
+        </button>
+        <!-- Next -->
+        <button class="ctrl-btn" id="btn-next" title="Siguiente episodio">
+          <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zm2.5-6 5.5 3.9V8.1L8.5 12zM16 6h2v12h-2z"/></svg>
+        </button>
+      </div>
+
+      <!-- Volume -->
+      <div class="volume-row">
+        <span class="vol-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+        </span>
+        <input type="range" class="vol-slider" id="volume" min="0" max="1" step="0.01" value="0.8">
+      </div>
+
+      <!-- Track List -->
+      <div class="tracklist" id="tracklist"></div>
+
+    </div><!-- /player-card -->
+
+    <!-- Quote -->
+    <div class="quote-wrap">
+      <div class="quote-block">
+        <blockquote>«La gracia no destruye la naturaleza, sino que la perfecciona.»</blockquote>
+        <cite>— Santo Tomás de Aquino, Suma Teológica I, q. 1, a. 8</cite>
+      </div>
+    </div>
+
+  </main>
+
+  <hr class="divider">
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Theologia Perennis</div>
+    <ul class="footer-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="index.html#videos">Enseñanzas</a></li>
+      <li><a href="mapas-mentales.html">Mapas Mentales</a></li>
+      <li><a href="#">Podcast</a></li>
+      <li><a href="index.html#about">Acerca de</a></li>
+    </ul>
+    <p class="footer-tagline">Fides quaerens intellectum</p>
+  </footer>
+
+  <!-- Hidden audio element -->
+  <audio id="audio" crossorigin="anonymous"></audio>
+
+  <script>
+    const TRACKS = [
+      { title: "La Gracia y la Justificación",    subtitle: "Capítulo I",    src: "" },
+      { title: "Kecharitōmenē: Llena de Gracia",  subtitle: "Lucas 1:28",    src: "" },
+      { title: "Fe y Obras en Santiago y Pablo",   subtitle: "",              src: "" },
+      { title: "El Esse como Acto de Ser",         subtitle: "",              src: "" },
+      { title: "Los Padres y la Tradición",        subtitle: "",              src: "" },
+    ];
+
+    // ── State ──
+    let current = 0;
+    let isPlaying = false;
+    let audioCtx, analyser, source, rafId;
+
+    // ── Elements ──
+    const audio       = document.getElementById('audio');
+    const btnPlay     = document.getElementById('btn-play');
+    const iconPlay    = document.getElementById('icon-play');
+    const iconPause   = document.getElementById('icon-pause');
+    const btnPrev     = document.getElementById('btn-prev');
+    const btnNext     = document.getElementById('btn-next');
+    const btnBack     = document.getElementById('btn-back');
+    const btnFwd      = document.getElementById('btn-fwd');
+    const progress    = document.getElementById('progress');
+    const timeCurrent = document.getElementById('time-current');
+    const timeDuration= document.getElementById('time-duration');
+    const volSlider   = document.getElementById('volume');
+    const tracklist   = document.getElementById('tracklist');
+    const canvas      = document.getElementById('visualizer');
+    const ctx2d       = canvas.getContext('2d');
+
+    // ── Build tracklist ──
+    function buildTracklist() {
+      tracklist.innerHTML = '';
+      TRACKS.forEach((t, i) => {
+        const el = document.createElement('div');
+        el.className = 'track-item' + (i === current ? ' active' : '');
+        el.dataset.index = i;
+        el.innerHTML = `
+          <span class="tl-num">
+            <span class="tl-num-text">${i + 1}</span>
+            <span class="tl-play-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+          </span>
+          <span class="tl-text">
+            <span class="tl-title">${t.title}</span>
+            ${t.subtitle ? `<span class="tl-sub">${t.subtitle}</span>` : ''}
+          </span>
+          <span class="tl-duration">—</span>
+        `;
+        el.addEventListener('click', () => loadTrack(i, true));
+        tracklist.appendChild(el);
+      });
+    }
+
+    // ── Load track ──
+    function loadTrack(index, autoplay = false) {
+      current = index;
+      const t = TRACKS[current];
+
+      document.getElementById('track-number').textContent = `Episodio ${current + 1} de ${TRACKS.length}`;
+      document.getElementById('track-title').textContent  = t.title;
+      document.getElementById('track-subtitle').textContent = t.subtitle || '';
+      document.getElementById('track-subtitle').style.display = t.subtitle ? '' : 'none';
+
+      audio.src = t.src || '';
+      progress.value = 0;
+      timeCurrent.textContent = '0:00';
+      timeDuration.textContent = '—';
+
+      buildTracklist();
+      setPlayState(false);
+
+      if (autoplay && t.src) {
+        audio.load();
+        audio.play().then(() => {
+          initAudioContext();
+          setPlayState(true);
+        }).catch(() => {});
+      } else {
+        drawIdle();
+      }
+    }
+
+    // ── Play state ──
+    function setPlayState(playing) {
+      isPlaying = playing;
+      iconPlay.style.display  = playing ? 'none' : '';
+      iconPause.style.display = playing ? '' : 'none';
+      btnPlay.classList.toggle('playing', playing);
+    }
+
+    // ── Play / Pause ──
+    btnPlay.addEventListener('click', () => {
+      const t = TRACKS[current];
+      if (!t.src) return;
+      if (!audioCtx) initAudioContext();
+
+      if (isPlaying) {
+        audio.pause();
+        setPlayState(false);
+        cancelAnimationFrame(rafId);
+        drawIdle();
+      } else {
+        audio.play().then(() => setPlayState(true)).catch(() => {});
+      }
+    });
+
+    // ── Prev / Next ──
+    btnPrev.addEventListener('click', () => {
+      if (audio.currentTime > 3) { audio.currentTime = 0; return; }
+      loadTrack((current - 1 + TRACKS.length) % TRACKS.length, isPlaying);
+    });
+    btnNext.addEventListener('click', () => {
+      loadTrack((current + 1) % TRACKS.length, isPlaying);
+    });
+
+    // ── Skip ──
+    btnBack.addEventListener('click', () => { audio.currentTime = Math.max(0, audio.currentTime - 15); });
+    btnFwd.addEventListener('click',  () => { audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 15); });
+
+    // ── Progress ──
+    audio.addEventListener('timeupdate', () => {
+      if (!audio.duration) return;
+      const pct = (audio.currentTime / audio.duration) * 100;
+      progress.value = pct;
+      timeCurrent.textContent = fmtTime(audio.currentTime);
+    });
+    audio.addEventListener('loadedmetadata', () => {
+      timeDuration.textContent = fmtTime(audio.duration);
+    });
+    progress.addEventListener('input', () => {
+      if (audio.duration) audio.currentTime = (progress.value / 100) * audio.duration;
+    });
+
+    // ── Volume ──
+    audio.volume = parseFloat(volSlider.value);
+    volSlider.addEventListener('input', () => { audio.volume = parseFloat(volSlider.value); });
+
+    // ── Auto advance ──
+    audio.addEventListener('ended', () => {
+      setPlayState(false);
+      cancelAnimationFrame(rafId);
+      if (current < TRACKS.length - 1) {
+        loadTrack(current + 1, true);
+      } else {
+        drawIdle();
+      }
+    });
+
+    // ── Time formatter ──
+    function fmtTime(s) {
+      if (!isFinite(s)) return '—';
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60);
+      return `${m}:${sec.toString().padStart(2, '0')}`;
+    }
+
+    // ── Web Audio / Visualizer ──
+    function initAudioContext() {
+      if (audioCtx) return;
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 256;
+      source = audioCtx.createMediaElementSource(audio);
+      source.connect(analyser);
+      analyser.connect(audioCtx.destination);
+      drawActive();
+    }
+
+    function resizeCanvas() {
+      canvas.width  = canvas.offsetWidth  * devicePixelRatio;
+      canvas.height = canvas.offsetHeight * devicePixelRatio;
+    }
+    window.addEventListener('resize', () => { resizeCanvas(); if (!isPlaying) drawIdle(); });
+    resizeCanvas();
+
+    function drawIdle() {
+      cancelAnimationFrame(rafId);
+      const W = canvas.width, H = canvas.height;
+      ctx2d.clearRect(0, 0, W, H);
+      const bars = 48, barW = W / (bars * 1.6), gap = W / bars;
+      const gold = '#7a6030';
+      for (let i = 0; i < bars; i++) {
+        const h = (Math.sin(i * 0.45) * 0.5 + 0.5) * H * 0.25 + H * 0.04;
+        const x = i * gap + (gap - barW) / 2;
+        ctx2d.fillStyle = gold;
+        ctx2d.globalAlpha = 0.4;
+        ctx2d.beginPath();
+        ctx2d.roundRect ? ctx2d.roundRect(x, H / 2 - h / 2, barW, h, 2)
+                        : ctx2d.rect(x, H / 2 - h / 2, barW, h);
+        ctx2d.fill();
+      }
+      ctx2d.globalAlpha = 1;
+    }
+
+    function drawActive() {
+      const W = canvas.width, H = canvas.height;
+      const data = new Uint8Array(analyser.frequencyBinCount);
+      analyser.getByteFrequencyData(data);
+      ctx2d.clearRect(0, 0, W, H);
+
+      const bars = data.length;
+      const barW = W / (bars * 1.5);
+      const gap  = W / bars;
+
+      for (let i = 0; i < bars; i++) {
+        const v = data[i] / 255;
+        const h = v * H * 0.85 + 2;
+        const x = i * gap + (gap - barW) / 2;
+        const alpha = 0.35 + v * 0.65;
+        ctx2d.fillStyle = v > 0.6 ? '#e8c97e' : '#c9a84c';
+        ctx2d.globalAlpha = alpha;
+        ctx2d.beginPath();
+        ctx2d.roundRect ? ctx2d.roundRect(x, H / 2 - h / 2, barW, h, 2)
+                        : ctx2d.rect(x, H / 2 - h / 2, barW, h);
+        ctx2d.fill();
+      }
+      ctx2d.globalAlpha = 1;
+      rafId = requestAnimationFrame(drawActive);
+    }
+
+    // ── Init ──
+    buildTracklist();
+    drawIdle();
+  </script>
+
+</body>
+</html>
