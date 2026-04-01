@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Theologia — Un Centro de Conocimiento Sagrado</title>
+<title>Theologia â Un Centro de Conocimiento Sagrado</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -19,7 +19,7 @@
 html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 16px; line-height: 1.6; min-height: 100vh; }
 
-/* ── NAV ── */
+/* ââ NAV ââ */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(12,11,9,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 60px; }
 .nav-logo { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 300; letter-spacing: 0.12em; color: var(--gold-light); text-decoration: none; }
 .nav-logo span { color: var(--text-muted); font-style: italic; font-size: 1rem; margin-left: 6px; }
@@ -31,7 +31,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba
 .nav-search svg { width: 14px; height: 14px; stroke: var(--text-muted); fill: none; stroke-width: 2; }
 .nav-search span { font-size: 0.8rem; color: var(--text-muted); }
 
-/* ── HERO ── */
+/* ââ HERO ââ */
 .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 6rem 2rem 4rem; position: relative; overflow: hidden; }
 .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(201,168,76,0.08) 0%, transparent 70%); pointer-events: none; }
 .hero-eyebrow { font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; font-weight: 500; }
@@ -51,15 +51,15 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba
 .tag { font-size: 0.75rem; border: 1px solid var(--border); border-radius: 30px; padding: 4px 14px; color: var(--text-muted); cursor: pointer; transition: all 0.2s; background: none; font-family: var(--font-sans); }
 .tag:hover { border-color: var(--gold-dim); color: var(--gold-light); }
 
-/* ── DIVIDER ── */
+/* ââ DIVIDER ââ */
 .divider { border: none; border-top: 1px solid var(--border-soft); margin: 0; }
 
-/* ── SECTION ── */
+/* ââ SECTION ââ */
 section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
 .section-label { font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-dim); font-weight: 500; margin-bottom: 3rem; display: flex; align-items: center; gap: 12px; }
 .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-/* ── TOPICS GRID ── */
+/* ââ TOPICS GRID ââ */
 .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5px; background: var(--border-soft); border: 1px solid var(--border-soft); border-radius: 12px; overflow: hidden; }
 .topic-card { background: var(--bg2); padding: 2rem 1.75rem; cursor: pointer; transition: background 0.25s; text-decoration: none; display: block; }
 .topic-card:hover { background: var(--bg3); }
@@ -68,7 +68,7 @@ section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
 .topic-card p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.25rem; }
 .topic-count { font-size: 0.72rem; letter-spacing: 0.1em; color: var(--gold-dim); text-transform: uppercase; }
 
-/* ── FEATURED CONTENT ── */
+/* ââ FEATURED CONTENT ââ */
 .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border-soft); border: 1px solid var(--border-soft); border-radius: 12px; overflow: hidden; margin-bottom: 1.5px; }
 .content-card { background: var(--bg2); padding: 1.75rem; cursor: pointer; transition: background 0.2s; }
 .content-card:hover { background: var(--bg3); }
@@ -82,7 +82,7 @@ section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
 .content-card p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.6; }
 .content-meta { margin-top: 1rem; display: flex; align-items: center; gap: 12px; font-size: 0.75rem; color: var(--text-dim); }
 
-/* ── VIDEO EMBED ── */
+/* ââ VIDEO EMBED ââ */
 .video-wrapper { border-radius: 10px; overflow: hidden; position: relative; padding-top: 56.25%; background: var(--bg3); margin-top: 0.75rem; }
 .video-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
 .video-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; cursor: pointer; background: var(--bg3); transition: background 0.2s; }
@@ -91,16 +91,16 @@ section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
 .play-btn svg { width: 20px; height: 20px; fill: var(--gold); margin-left: 3px; }
 .video-placeholder span { font-size: 0.8rem; color: var(--text-muted); }
 
-/* ── MIND MAP PREVIEW ── */
+/* ââ MIND MAP PREVIEW ââ */
 .mindmap-preview { background: var(--bg3); border-radius: 10px; padding: 1.5rem; margin-top: 0.75rem; overflow-x: auto; }
 .mindmap-preview svg { display: block; max-width: 100%; height: auto; }
 
-/* ── QUOTE ── */
+/* ââ QUOTE ââ */
 .quote-block { border-left: 3px solid var(--gold-dim); padding: 1.5rem 2rem; margin: 0; background: var(--bg2); border-radius: 0 8px 8px 0; }
 .quote-block blockquote { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 300; font-style: italic; color: var(--text); line-height: 1.65; margin-bottom: 0.75rem; }
 .quote-block cite { font-size: 0.8rem; color: var(--gold-dim); letter-spacing: 0.08em; }
 
-/* ── FOOTER ── */
+/* ââ FOOTER ââ */
 footer { border-top: 1px solid var(--border-soft); padding: 3rem 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; max-width: 1100px; margin: 0 auto; }
 .footer-logo { font-family: var(--font-serif); font-size: 1.1rem; color: var(--gold-dim); font-weight: 300; letter-spacing: 0.1em; }
 .footer-links { display: flex; gap: 2rem; list-style: none; }
@@ -121,34 +121,35 @@ footer { border-top: 1px solid var(--border-soft); padding: 3rem 2.5rem; display
   <a class="nav-logo" href="#">Theologia <span>Perennis</span></a>
   <ul class="nav-links">
     <li><a href="#topics">Temas</a></li>
-    <li><a href="#videos">Enseñanzas</a></li>
+    <li><a href="#videos">EnseÃ±anzas</a></li>
     <li><a href="mapas-mentales.html">Mapas Mentales</a></li>
+    <li><a href="podcast.html">Podcast</a></li>
     <li><a href="#about">Acerca de</a></li>
   </ul>
   <div class="nav-search" onclick="document.getElementById('main-search').focus()">
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
-    <span>Buscar enseñanzas…</span>
+    <span>Buscar enseÃ±anzasâ¦</span>
   </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <p class="hero-eyebrow">Conocimiento Sagrado · Sagrada Tradición</p>
+  <p class="hero-eyebrow">Conocimiento Sagrado Â· Sagrada TradiciÃ³n</p>
   <h1>A la Luz de<br><em>La Verdad Eterna</em></h1>
-  <p class="hero-sub">Una biblioteca viva de enseñanzas teológicas que abarca la gran tradición — desde la metafísica tomista hasta el encuentro místico, desde la apologética hasta las profundidades de la Sagrada Escritura.</p>
+  <p class="hero-sub">Una biblioteca viva de enseÃ±anzas teolÃ³gicas que abarca la gran tradiciÃ³n â desde la metafÃ­sica tomista hasta el encuentro mÃ­stico, desde la apologÃ©tica hasta las profundidades de la Sagrada Escritura.</p>
   <div class="search-bar">
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
-    <input id="main-search" type="text" placeholder="Buscar una enseñanza, tema o pregunta…" />
+    <input id="main-search" type="text" placeholder="Buscar una enseÃ±anza, tema o preguntaâ¦" />
     <button class="search-btn">Buscar</button>
   </div>
   <div class="search-tags">
     <button class="tag">Esse &amp; Essentia</button>
     <button class="tag">Noche Oscura del Alma</button>
-    <button class="tag">Las Cinco Vías</button>
-    <button class="tag">Apologética de la Resurrección</button>
+    <button class="tag">Las Cinco VÃ­as</button>
+    <button class="tag">ApologÃ©tica de la ResurrecciÃ³n</button>
     <button class="tag">El Logos en Juan 1</button>
-    <button class="tag">Participación</button>
-    <button class="tag">Unión mística</button>
+    <button class="tag">ParticipaciÃ³n</button>
+    <button class="tag">UniÃ³n mÃ­stica</button>
   </div>
 </div>
 
@@ -159,34 +160,34 @@ footer { border-top: 1px solid var(--border-soft); padding: 3rem 2.5rem; display
   <div class="section-label">Cinco pilares de estudio</div>
   <div class="topics-grid">
     <a class="topic-card" href="#">
-      <div class="topic-icon">Τ</div>
+      <div class="topic-icon">Î¤</div>
       <h3>Tomismo</h3>
-      <p>La metafísica y teología de Santo Tomás de Aquino — acto y potencia, la distinción real y la analogía del ser.</p>
-      <div class="topic-count">24 enseñanzas</div>
+      <p>La metafÃ­sica y teologÃ­a de Santo TomÃ¡s de Aquino â acto y potencia, la distinciÃ³n real y la analogÃ­a del ser.</p>
+      <div class="topic-count">24 enseÃ±anzas</div>
     </a>
     <a class="topic-card" href="#">
-      <div class="topic-icon">✦</div>
-      <h3>Teología Mística</h3>
-      <p>La vida interior, la contemplación y la unión con Dios a través de los escritos de los grandes místicos y Doctores de la Iglesia.</p>
-      <div class="topic-count">18 enseñanzas</div>
+      <div class="topic-icon">â¦</div>
+      <h3>TeologÃ­a MÃ­stica</h3>
+      <p>La vida interior, la contemplaciÃ³n y la uniÃ³n con Dios a travÃ©s de los escritos de los grandes mÃ­sticos y Doctores de la Iglesia.</p>
+      <div class="topic-count">18 enseÃ±anzas</div>
     </a>
     <a class="topic-card" href="#">
-      <div class="topic-icon">⚖</div>
-      <h3>Apologética</h3>
-      <p>Una defensa razonada de la Fe — respondiendo objeciones, dialogando con la filosofía y demostrando la credibilidad del cristianismo.</p>
-      <div class="topic-count">31 enseñanzas</div>
+      <div class="topic-icon">â</div>
+      <h3>ApologÃ©tica</h3>
+      <p>Una defensa razonada de la Fe â respondiendo objeciones, dialogando con la filosofÃ­a y demostrando la credibilidad del cristianismo.</p>
+      <div class="topic-count">31 enseÃ±anzas</div>
     </a>
     <a class="topic-card" href="#">
-      <div class="topic-icon">✝</div>
-      <h3>Exégesis Bíblica</h3>
-      <p>La Sagrada Escritura leída a través del cuádruple sentido — literal, alegórico, moral y anagógico — en la tradición de los Padres.</p>
-      <div class="topic-count">27 enseñanzas</div>
+      <div class="topic-icon">â</div>
+      <h3>ExÃ©gesis BÃ­blica</h3>
+      <p>La Sagrada Escritura leÃ­da a travÃ©s del cuÃ¡druple sentido â literal, alegÃ³rico, moral y anagÃ³gico â en la tradiciÃ³n de los Padres.</p>
+      <div class="topic-count">27 enseÃ±anzas</div>
     </a>
     <a class="topic-card" href="#">
-      <div class="topic-icon">☩</div>
-      <h3>Patrística</h3>
-      <p>La teología de los Padres de la Iglesia — Agustín, Orígenes, Basilio y otros que dieron forma a la tradición viva del pensamiento doctrinal.</p>
-      <div class="topic-count">15 enseñanzas</div>
+      <div class="topic-icon">â©</div>
+      <h3>PatrÃ­stica</h3>
+      <p>La teologÃ­a de los Padres de la Iglesia â AgustÃ­n, OrÃ­genes, Basilio y otros que dieron forma a la tradiciÃ³n viva del pensamiento doctrinal.</p>
+      <div class="topic-count">15 enseÃ±anzas</div>
     </a>
   </div>
 </section>
@@ -195,26 +196,26 @@ footer { border-top: 1px solid var(--border-soft); padding: 3rem 2.5rem; display
 
 <!-- FEATURED -->
 <section id="videos">
-  <div class="section-label">Enseñanzas destacadas</div>
+  <div class="section-label">EnseÃ±anzas destacadas</div>
   <div class="content-grid">
 
     <!-- Featured video -->
     <div class="content-card content-card-full">
       <div class="content-type"><span class="pill pill-video">Video</span> <span style="color:var(--text-dim);font-size:0.75rem;">Conferencia Destacada</span></div>
-      <h4>La Distinción Real entre Esse y Essentia en Aquino</h4>
-      <p>Una exploración de la lectura de Cornelio Fabro sobre la metafísica tomista — por qué el <em>esse</em> como acto de los actos es la piedra angular de toda ontología participativa.</p>
+      <h4>La DistinciÃ³n Real entre Esse y Essentia en Aquino</h4>
+      <p>Una exploraciÃ³n de la lectura de Cornelio Fabro sobre la metafÃ­sica tomista â por quÃ© el <em>esse</em> como acto de los actos es la piedra angular de toda ontologÃ­a participativa.</p>
       <div class="video-wrapper">
         <!-- Replace VIDEO_ID below with your actual YouTube video ID -->
         <div class="video-placeholder" id="vp1" onclick="loadVideo('vp1','dQw4w9WgXcQ')">
           <div class="play-btn">
             <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
           </div>
-          <span>Haz clic para reproducir · YouTube</span>
+          <span>Haz clic para reproducir Â· YouTube</span>
         </div>
       </div>
       <div class="content-meta">
-        <span>Tomismo · 58 min</span>
-        <span>·</span>
+        <span>Tomismo Â· 58 min</span>
+        <span>Â·</span>
         <span>Avanzado</span>
       </div>
     </div>
@@ -222,8 +223,8 @@ footer { border-top: 1px solid var(--border-soft); padding: 3rem 2.5rem; display
     <!-- Mind map preview -->
     <div class="content-card">
       <div class="content-type"><span class="pill pill-mindmap">Mapa Mental</span></div>
-      <h4>Metafísica Tomista — Visión General</h4>
-      <p>Un mapa visual de los conceptos clave: acto, potencia, esencia, existencia, participación y sus relaciones.</p>
+      <h4>MetafÃ­sica Tomista â VisiÃ³n General</h4>
+      <p>Un mapa visual de los conceptos clave: acto, potencia, esencia, existencia, participaciÃ³n y sus relaciones.</p>
       <div class="mindmap-preview">
         <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" font-family="'Cormorant Garamond', Georgia, serif">
           <rect x="155" y="100" width="90" height="38" rx="5" fill="#c9a84c" opacity="0.9"/>
@@ -236,10 +237,10 @@ footer { border-top: 1px solid var(--border-soft); padding: 3rem 2.5rem; display
           <text x="200" y="47" text-anchor="middle" fill="#c9a84c" font-size="11">Essentia</text>
           <line x1="245" y1="119" x2="310" y2="60" stroke="#7a6030" stroke-width="1" stroke-dasharray="4,3"/>
           <rect x="290" y="38" width="90" height="30" rx="4" fill="#1c1a16" stroke="#7a6030" stroke-width="1"/>
-          <text x="335" y="57" text-anchor="middle" fill="#c9a84c" font-size="11">Participación</text>
+          <text x="335" y="57" text-anchor="middle" fill="#c9a84c" font-size="11">ParticipaciÃ³n</text>
           <line x1="200" y1="138" x2="200" y2="188" stroke="#7a6030" stroke-width="1" stroke-dasharray="4,3"/>
           <rect x="140" y="188" width="120" height="30" rx="4" fill="#1c1a16" stroke="#7a6030" stroke-width="1"/>
-          <text x="200" y="207" text-anchor="middle" fill="#c9a84c" font-size="11">Analogía del Ser</text>
+          <text x="200" y="207" text-anchor="middle" fill="#c9a84c" font-size="11">AnalogÃ­a del Ser</text>
           <line x1="155" y1="133" x2="80" y2="175" stroke="#7a6030" stroke-width="1" stroke-dasharray="4,3"/>
           <rect x="10" y="160" width="80" height="30" rx="4" fill="#1c1a16" stroke="#7a6030" stroke-width="1"/>
           <text x="50" y="179" text-anchor="middle" fill="#c9a84c" font-size="11">Subsistencia</text>
@@ -248,20 +249,20 @@ footer { border-top: 1px solid var(--border-soft); padding: 3rem 2.5rem; display
           <text x="345" y="179" text-anchor="middle" fill="#c9a84c" font-size="11">Causalidad</text>
         </svg>
       </div>
-      <div class="content-meta"><span>Tomismo · Interactivo</span></div>
+      <div class="content-meta"><span>Tomismo Â· Interactivo</span></div>
     </div>
 
     <div class="content-card">
-      <div class="content-type"><span class="pill pill-text">Artículo</span></div>
-      <h4>La Noche Oscura del Alma — San Juan de la Cruz</h4>
-      <p>Una exposición de las dos noches — de los sentidos y del espíritu — como caminos de purificación hacia la unión transformante.</p>
-      <div class="content-meta"><span>Teología Mística · 12 min de lectura</span></div>
+      <div class="content-type"><span class="pill pill-text">ArtÃ­culo</span></div>
+      <h4>La Noche Oscura del Alma â San Juan de la Cruz</h4>
+      <p>Una exposiciÃ³n de las dos noches â de los sentidos y del espÃ­ritu â como caminos de purificaciÃ³n hacia la uniÃ³n transformante.</p>
+      <div class="content-meta"><span>TeologÃ­a MÃ­stica Â· 12 min de lectura</span></div>
     </div>
 
     <div class="content-card content-card-full">
       <div class="quote-block">
-        <blockquote>«El ser es el elemento más íntimo de cada cosa y lo más profundamente presente en todas ellas, pues es la forma de todos los seres existentes.»</blockquote>
-        <cite>— Santo Tomás de Aquino, Suma Teológica I, q. 8, a. 1</cite>
+        <blockquote>Â«El ser es el elemento mÃ¡s Ã­ntimo de cada cosa y lo mÃ¡s profundamente presente en todas ellas, pues es la forma de todos los seres existentes.Â»</blockquote>
+        <cite>â Santo TomÃ¡s de Aquino, Suma TeolÃ³gica I, q. 8, a. 1</cite>
       </div>
     </div>
 
@@ -276,27 +277,27 @@ footer { border-top: 1px solid var(--border-soft); padding: 3rem 2.5rem; display
   <div class="content-grid">
     <div class="content-card">
       <div class="content-type"><span class="pill pill-mindmap">Mapa Mental</span></div>
-      <h4>Las Cinco Vías de Aquino</h4>
-      <p>Visión general de los argumentos cosmológicos de Aquino — movimiento, causalidad, contingencia, grados de perfección y teleología.</p>
-      <div class="content-meta"><span>Tomismo · Apologética</span></div>
+      <h4>Las Cinco VÃ­as de Aquino</h4>
+      <p>VisiÃ³n general de los argumentos cosmolÃ³gicos de Aquino â movimiento, causalidad, contingencia, grados de perfecciÃ³n y teleologÃ­a.</p>
+      <div class="content-meta"><span>Tomismo Â· ApologÃ©tica</span></div>
     </div>
     <div class="content-card">
       <div class="content-type"><span class="pill pill-mindmap">Mapa Mental</span></div>
-      <h4>Teología Mística — Etapas de la Oración</h4>
-      <p>Desde la oración vocal hasta la contemplación infusa — el ascenso del alma en la tradición de Teresa de Ávila y Juan de la Cruz.</p>
-      <div class="content-meta"><span>Teología Mística</span></div>
+      <h4>TeologÃ­a MÃ­stica â Etapas de la OraciÃ³n</h4>
+      <p>Desde la oraciÃ³n vocal hasta la contemplaciÃ³n infusa â el ascenso del alma en la tradiciÃ³n de Teresa de Ãvila y Juan de la Cruz.</p>
+      <div class="content-meta"><span>TeologÃ­a MÃ­stica</span></div>
     </div>
     <div class="content-card">
       <div class="content-type"><span class="pill pill-mindmap">Mapa Mental</span></div>
-      <h4>El Prólogo Joánico — Exégesis</h4>
-      <p>Mapeando la teología del Logos en Juan 1:1–18, rastreando las raíces hebreas y helenísticas e interpretación patrística.</p>
-      <div class="content-meta"><span>Exégesis Bíblica</span></div>
+      <h4>El PrÃ³logo JoÃ¡nico â ExÃ©gesis</h4>
+      <p>Mapeando la teologÃ­a del Logos en Juan 1:1â18, rastreando las raÃ­ces hebreas y helenÃ­sticas e interpretaciÃ³n patrÃ­stica.</p>
+      <div class="content-meta"><span>ExÃ©gesis BÃ­blica</span></div>
     </div>
     <div class="content-card">
       <div class="content-type"><span class="pill pill-mindmap">Mapa Mental</span></div>
-      <h4>Apologética Clásica — Argumentos por Dios</h4>
-      <p>Un mapa estructurado de argumentos cosmológicos, ontológicos, teleológicos y morales con pensadores clave y objeciones.</p>
-      <div class="content-meta"><span>Apologética</span></div>
+      <h4>ApologÃ©tica ClÃ¡sica â Argumentos por Dios</h4>
+      <p>Un mapa estructurado de argumentos cosmolÃ³gicos, ontolÃ³gicos, teleolÃ³gicos y morales con pensadores clave y objeciones.</p>
+      <div class="content-meta"><span>ApologÃ©tica</span></div>
     </div>
   </div>
 </section>
