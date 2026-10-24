@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>¿Por qué no nos entendemos? Las cuatro causas y la justificación</title>
+<meta name="description" content="Las cuatro causas de Aristóteles y santo Tomás, y la causa formal de la justificación según Trento. Por Hugo Delgado.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* palette: dark cosmic, always on */
+:root{
+  --bg:#050a1c; --bg2:#0f1a3d; --ink:#efe8d6; --muted:#a9b0c8; --rule:rgba(217,178,95,.25);
+  --burg:#f3dc9c; --burg-ink:#050a1c; --gold:#d9b25f; --gold-soft:#26284a;
+  --c-mat:#e0a46e; --c-for:#7fb4f0; --c-efi:#f28f84; --c-fin:#c4a6f2;
+  --stone:#7d7668; --wood:#9a6a40; --mortar:#4a4438; --glass:#2c3f6e; --glow:#f3dc9c;
+  --barn:#a8483a; --snow:#efe8d6; --ok:#8fd694; --no:#f28f84;
+  color-scheme:dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 4.25rem);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  background-color:#0a1330;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%,rgba(239,232,214,.55),transparent 60%),
+    radial-gradient(1px 1px at 34% 62%,rgba(239,232,214,.4),transparent 60%),
+    radial-gradient(1.5px 1.5px at 58% 28%,rgba(243,220,156,.5),transparent 60%),
+    radial-gradient(1px 1px at 79% 74%,rgba(239,232,214,.45),transparent 60%),
+    radial-gradient(1px 1px at 91% 12%,rgba(239,232,214,.4),transparent 60%),
+    radial-gradient(ellipse 80% 50% at 15% 0%,rgba(15,26,61,.9),transparent 70%),
+    radial-gradient(ellipse 70% 60% at 85% 100%,rgba(10,19,48,.9),transparent 70%);
+  background-size:260px 260px,340px 340px,420px 420px,300px 300px,380px 380px,auto,auto;
+  background-attachment:scroll,scroll,scroll,scroll,scroll,fixed,fixed;
+  font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;font-weight:500;
+  font-size:1.2rem;line-height:1.62;-webkit-font-smoothing:antialiased;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:#0a1330}
+h1,h2,h3,h4{font-family:Cinzel,"Cormorant Garamond",Georgia,serif;font-weight:600;letter-spacing:.06em;line-height:1.2;margin:0 0 .55em;color:var(--burg)}
+h2{font-size:clamp(1.7rem,5.2vw,2.5rem)}
+h3{font-size:clamp(1.2rem,3.4vw,1.5rem)}
+h4{font-size:1.1rem;color:var(--ink)}
+p{margin:0 0 1em}
+a{color:var(--burg)}
+button{font:inherit;font-family:Inter,system-ui,sans-serif;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+.wrap{max-width:42rem;margin-inline:auto;padding-inline:1.25rem}
+.wide{max-width:62rem;margin-inline:auto;padding-inline:1.25rem}
+section{padding-block:4.5rem;position:relative}
+section:focus{outline:none}
+.orn{display:block;width:8rem;height:14px;margin:0 auto 2.25rem;color:var(--gold)}
+.lead{font-size:1.18rem;color:var(--muted)}
+.muted{color:var(--muted)}
+.small{font-size:.92rem}
+.serif{font-family:"Cormorant Garamond",Georgia,serif}
+
+/* nav */
+.mini{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--bg2) 94%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.mini ol{display:flex;justify-content:safe center;gap:0;overflow-x:auto;list-style:none;margin:0 auto;padding:.45rem .75rem .45rem 8.5rem;max-width:none;scrollbar-width:none}
+.mini ol::-webkit-scrollbar{display:none}
+@media(max-width:700px){.mini ol{justify-content:flex-start;padding-left:9rem}}
+.mini a{display:flex;align-items:center;gap:.35rem;white-space:nowrap;padding:.4rem .5rem;border-radius:999px;color:var(--muted);text-decoration:none;font-family:Cinzel,serif;letter-spacing:.04em;font-size:.72rem;min-height:36px}
+.mini a .n{font-family:Cinzel,serif;font-weight:700;font-size:1.05rem;color:var(--gold)}
+.mini a:hover{color:var(--ink)}
+.mini a[aria-current="true"]{background:rgba(217,178,95,.16);box-shadow:inset 0 0 0 1px var(--gold);color:var(--burg)}
+.mini a[aria-current="true"] .n{color:var(--burg)}
+.back{position:fixed;z-index:55;top:calc(env(safe-area-inset-top,0px) + .85rem);left:.9rem;font-family:Cinzel,serif;font-size:.72rem;letter-spacing:.1em;color:var(--gold);text-decoration:none;white-space:nowrap}
+.back:hover{color:var(--burg)}
+.progress{height:3px}
+.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--burg))}
+
+/* footnotes */
+.fn{font:700 .7em/1 Inter,system-ui,sans-serif;vertical-align:super;color:var(--burg);background:transparent;border:0;padding:.15em .28em;margin-left:.04em;cursor:pointer;border-radius:3px;min-width:1.4em}
+.fn:hover,.fn[aria-expanded="true"]{background:var(--gold-soft)}
+.fn-tip{position:fixed;z-index:80;max-width:min(23rem,calc(100vw - 1.5rem));background:var(--bg2);color:var(--ink);border:1px solid var(--gold);border-radius:6px;padding:.75rem .9rem;font-size:.9rem;line-height:1.45;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.fn-tip b{color:var(--burg)}
+
+/* icons */
+.ico{width:1.4em;height:1.4em;flex:none;color:var(--c,currentColor)}
+
+/* hero */
+.hero{min-height:calc(100svh - 3.5rem);display:grid;place-items:center;text-align:center;padding:2.5rem 1.25rem 4rem}
+.qmarks{width:min(27rem,92vw);height:auto;overflow:visible;display:block;margin:0 auto .5rem}
+.qmarks text{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-weight:600}
+.q-big{font-size:210px;fill:var(--burg);transform-box:fill-box;transform-origin:center;animation:qfade .9s ease 1s both}
+@keyframes qfade{to{opacity:0;transform:scale(.5)}}
+.q,.ql{transform-box:fill-box;transform-origin:center;animation:qsplit 1.1s cubic-bezier(.2,.7,.2,1) 1.45s both}
+.q{font-size:118px}
+.ql{font-size:17px;font-style:normal!important;font-weight:600}
+@keyframes qsplit{from{opacity:0;transform:translateX(var(--from)) scale(.6)}to{opacity:1;transform:none}}
+.brand{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:1.3rem;color:var(--gold);margin:0 0 .4rem}
+.hero h1{font-size:clamp(2.1rem,8vw,4.2rem);margin-bottom:.25em;letter-spacing:.08em}
+.sub{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(1.25rem,3.6vw,1.6rem);font-style:italic;max-width:32rem;margin:0 auto .8rem;line-height:1.3}
+.by{color:var(--muted);margin-bottom:2rem}
+.objection{max-width:34rem;margin:0 auto 1.4rem;padding:1rem 1.25rem;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);font-size:1.05rem}
+.objection p{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.3rem;font-style:italic;line-height:1.35;margin:0 0 .4rem}
+.objection small{color:var(--muted)}
+.start{font-family:Inter,system-ui,sans-serif;display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.6rem;border-radius:999px;background:var(--gold);color:var(--burg-ink);text-decoration:none;font-weight:700;min-height:44px}
+.start svg{width:1rem;height:1rem}
+
+/* question cards */
+.qlist{list-style:none;padding:0;margin:2rem 0;display:grid;gap:.75rem}
+.qcard{display:flex;gap:1rem;align-items:center;padding:1rem 1.15rem;background:var(--bg2);border:1px solid var(--rule);border-left:4px solid var(--c);border-radius:4px}
+.qcard .ico{width:2.1rem;height:2.1rem}
+.cname{display:block;font-family:Cinzel,serif;letter-spacing:.05em;font-weight:600;font-size:1.05rem;color:var(--c);line-height:1.2}
+.cq{display:block;font-size:1.12rem}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;transition-delay:calc(var(--i,0) * 380ms)}
+.reveal.in{opacity:1;transform:none}
+
+/* illuminated callout */
+.defn{margin:2rem 0;padding:1.3rem 1.45rem;background:var(--bg2);border:1px solid var(--rule);border-radius:4px;position:relative}
+.defn::before{content:"";position:absolute;inset:5px;border:1px solid color-mix(in srgb,var(--gold) 50%,transparent);border-radius:2px;pointer-events:none}
+.defn h4{margin-bottom:.4em}
+.defn p:last-child{margin-bottom:0}
+.examples{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:1rem 0}
+.examples div{text-align:center;padding:.65rem .4rem;border:1px solid var(--rule);border-radius:4px;font-size:.95rem;line-height:1.3}
+.examples b{display:block;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.25rem;color:var(--c-for)}
+.examples .key{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 12%,transparent)}
+
+/* house */
+.house-grid{display:grid;gap:1.25rem;margin-block:1.5rem 1rem}
+@media(min-width:760px){.house-grid{grid-template-columns:1fr 15.5rem;align-items:center}}
+.stage{margin:0;background:var(--bg2);border:1px solid var(--rule);border-radius:6px;padding:.5rem}
+.stage svg{display:block;width:100%;height:auto}
+.exemplar{border:2px dashed var(--c-for);border-radius:8px;padding:1rem 1.1rem;background:color-mix(in srgb,var(--c-for) 6%,var(--bg2))}
+.exemplar svg{width:100%;max-width:11rem;display:block;margin:0 auto .6rem}
+.exemplar h3{color:var(--c-for);font-size:1.45rem;margin-bottom:.3em}
+.exemplar p{font-size:.96rem;margin:0 0 .5em}
+.outside{font-family:Inter,system-ui,sans-serif;display:inline-block;font-size:.82rem;font-weight:700;color:var(--c-for);border:1px solid currentColor;border-radius:999px;padding:.05rem .6rem;margin-bottom:.5rem}
+.cbtns{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;margin:1rem 0}
+@media(min-width:560px){.cbtns{grid-template-columns:repeat(4,1fr)}}
+.cbtn{font-family:Inter,system-ui,sans-serif;display:flex;align-items:center;gap:.5rem;justify-content:center;font-weight:700;padding:.65rem .8rem;border-radius:999px;border:1.5px solid var(--c);color:var(--c);background:transparent;cursor:pointer;min-height:46px;transition:background .25s,color .25s}
+.cbtn .ico{width:1.3rem;height:1.3rem;color:currentColor}
+.cbtn:hover{background:color-mix(in srgb,var(--c) 10%,transparent)}
+.cbtn[aria-pressed="true"]{background:var(--c);color:var(--bg2)}
+.panel{min-height:7rem;padding:1rem 1.2rem;border-left:4px solid var(--c,var(--gold));background:var(--bg2);border-radius:0 4px 4px 0}
+.panel h3{color:var(--c,var(--burg));margin-bottom:.2em}
+.panel .pq{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.35rem;font-style:italic;margin-bottom:.3em}
+.panel p:last-child{margin-bottom:0}
+.count{margin-top:.8rem;font-size:.95rem;color:var(--muted)}
+
+#house .pat-stone{fill:var(--stone)}
+#house .pat-wood{fill:var(--wood)}
+#house .pat-line{stroke:var(--mortar);stroke-width:.8;fill:none}
+#house .grid-line{stroke:var(--c-for);stroke-opacity:.2;fill:none}
+#house .stoneF{fill:url(#stone)}
+#house .woodF{fill:url(#wood)}
+#house .glass{fill:var(--glass)}
+#house .edge{stroke:var(--ink);stroke-width:1.2;stroke-linejoin:round}
+#house .mull{fill:none}
+.ground{stroke:var(--ink);stroke-width:1.5;fill:none}
+.hatch{stroke:var(--muted);stroke-width:1;fill:none;opacity:.6}
+.bp{fill:none;stroke:var(--c-for);stroke-width:1.7;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.2s ease,stroke-opacity .6s}
+.for .bp{stroke-dashoffset:0}
+.mat.for .bp{stroke-opacity:.35}
+.grid-bg{fill:url(#grid);opacity:0;transition:opacity .6s}
+.for .grid-bg{opacity:1}
+#h-pile,#h-built,#h-efi,#h-fin,.smoke{transition:opacity .6s ease,transform .6s ease}
+#h-pile{opacity:0;transform:translateY(-26px)}
+.mat:not(.for) #h-pile{opacity:1;transform:none}
+#h-built{opacity:0}
+.mat.for #h-built{opacity:1}
+#h-efi{opacity:0}
+.efi #h-efi{opacity:1}
+.arm{transform-origin:0 0}
+.efi .arm{animation:hammer .5s ease-in-out infinite alternate}
+@keyframes hammer{from{transform:rotate(-30deg)}to{transform:rotate(28deg)}}
+#h-fin{opacity:0}
+.fin #h-fin{opacity:1}
+.fin .fam{animation:walk 1.8s ease both}
+@keyframes walk{from{transform:translateX(-36px);opacity:0}to{transform:none;opacity:1}}
+.win{fill:var(--glass);transition:fill .8s}
+.fin .win{fill:var(--glow)}
+.smoke{opacity:0;fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round}
+.mat.for.fin .smoke{animation:rise 3s ease-in-out infinite}
+@keyframes rise{0%{transform:translateY(4px);opacity:0}30%{opacity:.7}100%{transform:translateY(-14px);opacity:0}}
+.fig{fill:var(--ink)}
+.figl{stroke:var(--ink);stroke-width:3;stroke-linecap:round;fill:none}
+.hammer{fill:var(--c-efi)}
+.ex-paper{fill:color-mix(in srgb,var(--c-for) 14%,var(--bg2));stroke:var(--c-for);stroke-width:1.2}
+.ex-line{fill:none;stroke:var(--c-for);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.ex-grid{fill:none;stroke:var(--c-for);stroke-opacity:.2}
+
+/* barn */
+.barn-stage{max-width:34rem;margin:1.5rem auto 1rem}
+.barnwall{fill:var(--barn);stroke:var(--ink);stroke-width:1.2}
+.boards{stroke:var(--ink);stroke-opacity:.3;stroke-width:1;fill:none}
+.trim{fill:none;stroke:var(--snow);stroke-width:2.5;opacity:.85}
+.barndoor{fill:color-mix(in srgb,var(--barn) 75%,var(--ink));stroke:var(--ink);stroke-width:1.2}
+.roofF{fill:var(--wood);stroke:var(--ink);stroke-width:1.2;stroke-linejoin:round}
+.shing{stroke:var(--ink);stroke-opacity:.35;fill:none}
+.snowcap{fill:var(--snow);stroke:var(--rule);stroke-width:.6}
+.roof{transform-box:fill-box;transform-origin:50% 100%}
+.collapsed .roof{animation:fall 1.5s cubic-bezier(.55,0,.75,.35) .6s forwards}
+@keyframes fall{0%{transform:none}22%{transform:translateY(4px) rotate(-2deg)}42%{transform:translateY(9px) rotate(2.5deg)}100%{transform:translateY(64px) rotate(8deg) scaleY(.82)}}
+.flake{fill:var(--snow);stroke:var(--muted);stroke-width:.4;opacity:0;transform-box:fill-box}
+.collapsed .flake{animation:flake 1.3s linear both;animation-delay:var(--d)}
+@keyframes flake{from{opacity:1;transform:translateY(-30px)}to{opacity:0;transform:translateY(70px)}}
+.dust{opacity:0;fill:var(--muted);transform-box:fill-box;transform-origin:center}
+.collapsed .dust{animation:dust 1.1s ease 1.75s both}
+@keyframes dust{0%{opacity:0;transform:scale(.4)}40%{opacity:.35}100%{opacity:0;transform:scale(1.5)}}
+.center{text-align:center}
+.btn{font-family:Inter,system-ui,sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.7rem 1.4rem;border-radius:999px;border:1.5px solid var(--gold);background:var(--gold);color:var(--burg-ink);font-weight:700;cursor:pointer;min-height:46px}
+.btn.ghost{background:transparent;color:var(--burg)}
+.btn:hover{filter:brightness(1.08)}
+.after{margin-top:2rem}
+.after[hidden]{display:none}
+.tablist{display:grid;grid-template-columns:repeat(2,1fr);gap:.45rem}
+@media(min-width:560px){.tablist{grid-template-columns:repeat(4,1fr)}}
+.tab{font-family:Inter,system-ui,sans-serif;display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.6rem .5rem;border:1.5px solid var(--c);border-radius:6px;background:transparent;color:var(--c);font-weight:700;cursor:pointer;min-height:46px}
+.tab .ico{width:1.2rem;height:1.2rem;color:currentColor}
+.tab[aria-selected="true"]{background:var(--c);color:var(--bg2)}
+.tabpanel{padding:1.1rem 1.25rem;margin-top:.6rem;border:1px solid var(--rule);border-top:3px solid var(--c);background:var(--bg2);border-radius:4px}
+.tabpanel p{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.45rem;line-height:1.3;margin:0}
+.tabpanel small{display:block;margin-top:.4rem;color:var(--c);font-weight:700}
+
+/* sorting */
+.tray{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;min-height:3.4rem;margin:1.5rem 0}
+.chip{font-family:Inter,system-ui,sans-serif;display:inline-flex;align-items:center;gap:.45rem;padding:.55rem 1rem;border-radius:999px;border:1.5px solid var(--c);background:var(--bg2);color:var(--c);font-weight:700;cursor:grab;min-height:46px;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.chip .ico{width:1.2rem;height:1.2rem;color:currentColor}
+.chip[aria-pressed="true"]{background:var(--c);color:var(--bg2);box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 25%,transparent)}
+.chip.placed{cursor:default}
+.chip.shake{animation:shake .45s}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.bins{display:grid;gap:1rem}
+@media(min-width:620px){.bins{grid-template-columns:1fr 1fr}}
+.bin{border:2px dashed var(--rule);border-radius:10px;padding:.5rem;transition:border-color .2s,background .2s;min-height:10rem}
+.bin.over{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 10%,transparent)}
+.bin-target{display:block;width:100%;text-align:left;background:transparent;border:0;border-radius:6px;padding:.6rem .7rem;cursor:pointer}
+.bin-target:hover{background:color-mix(in srgb,var(--gold) 8%,transparent)}
+.bin-target h3{margin:0 0 .1rem;font-size:1.6rem}
+.bin-target span{color:var(--muted)}
+.slot{display:flex;flex-wrap:wrap;gap:.5rem;padding:.3rem .7rem .7rem}
+.feedback{min-height:3.2rem;margin-top:1.2rem;padding:.8rem 1rem;border-radius:4px;background:var(--bg2);border:1px solid var(--rule)}
+.feedback.good{border-color:var(--ok)}
+.feedback.try{border-color:var(--gold)}
+
+/* chain */
+.chain{list-style:none;padding:0;margin:2rem 0 1.5rem;display:flex;flex-direction:column;align-items:center}
+@media(min-width:760px){.chain{flex-direction:row;justify-content:center}}
+.node{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:8.6rem;height:8.6rem;border-radius:50%;border:1.5px solid var(--rule);background:var(--bg2);transition:border-color .5s,box-shadow .5s;flex:none}
+.node .ico{width:2rem;height:2rem;opacity:.45;transition:opacity .5s}
+.node b{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.45rem;line-height:1.1}
+.node small{color:var(--muted);font-size:.82rem}
+.node.lit{border-color:var(--c);box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 22%,transparent),0 0 28px color-mix(in srgb,var(--c) 35%,transparent)}
+.node.lit .ico{opacity:1}
+.arrow{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:.35rem .5rem;color:var(--rule);transition:color .5s;min-width:5.5rem}
+.arrow svg{width:2.4rem;height:1.2rem;transform:rotate(90deg);margin:.25rem 0}
+@media(min-width:760px){.arrow svg{transform:none}}
+.arrow span{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:1.1rem;color:var(--muted)}
+.arrow.lit{color:var(--gold)}
+.arrow.lit span{color:var(--ink)}
+.chain-say{min-height:3rem;text-align:center;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.35rem;font-style:italic}
+
+/* justification */
+.voices{display:grid;gap:1rem;margin:1.5rem 0}
+@media(min-width:640px){.voices{grid-template-columns:1fr 1fr}}
+.voice{margin:0;padding:1rem 1.2rem;background:var(--bg2);border:1px solid var(--rule);border-radius:4px}
+.voice p{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.3rem;font-style:italic;line-height:1.35;margin:0 0 .5rem}
+.voice footer{color:var(--muted);font-size:.92rem}
+.court{background:var(--bg2);border:1px solid var(--rule);border-radius:6px;padding:1rem 1.1rem;margin:1.5rem 0}
+.court svg{display:block;width:100%;max-width:26rem;height:auto;margin:0 auto}
+.person{fill:color-mix(in srgb,var(--ink) 14%,var(--bg2));stroke:var(--ink);stroke-width:1.3}
+.scroll{fill:#0a1330;stroke:var(--ink);stroke-width:1.1;transition:stroke .6s,filter .6s}
+.scroll-t{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-weight:700;font-size:15px;fill:var(--ink)}
+.inner{opacity:0;transition:opacity 1s}
+.revealed .inner{opacity:1}
+.revealed .scroll.ext{stroke:var(--gold);stroke-width:2.5}
+.ring{fill:none;stroke:var(--gold);stroke-width:2;stroke-dasharray:5 5;opacity:0;transition:opacity 1s}
+.revealed .ring{opacity:1}
+.qrows{list-style:none;padding:0;margin:1rem 0;display:grid;gap:.4rem}
+.qrows li{display:grid;grid-template-columns:1fr auto;gap:.5rem;align-items:baseline;padding:.5rem .2rem;border-bottom:1px dotted var(--rule)}
+.same{font-family:Inter,system-ui,sans-serif;font-size:.8rem;font-weight:700;color:var(--ok);border:1px solid currentColor;border-radius:999px;padding:0 .55rem;white-space:nowrap}
+.answer{display:grid;gap:.8rem;margin-top:1rem}
+@media(min-width:600px){.answer{grid-template-columns:1fr 1fr}}
+.answer[hidden]{display:none}
+.answer div{padding:.8rem 1rem;border-radius:4px;border:1px solid var(--rule)}
+.answer b{display:block;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.25rem;color:var(--burg)}
+.big-q{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(1.5rem,4.5vw,2rem);line-height:1.25;text-align:center;color:var(--burg);margin:2.5rem auto;max-width:34rem}
+
+.trent{margin:1.5rem 0;border:1px solid var(--rule);border-radius:8px;overflow:hidden;background:var(--bg2)}
+.thead{display:grid;grid-template-columns:1fr 1fr;background:var(--gold);color:var(--burg-ink)}
+.thead div{font-family:Inter,system-ui,sans-serif;padding:.65rem .85rem;font-weight:700;font-size:.92rem;line-height:1.3}
+.trow{border-top:1px solid var(--rule)}
+.trow .cause{display:flex;align-items:center;gap:.5rem;padding:.7rem .85rem .15rem;font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:1.25rem;color:var(--c)}
+.trow .cause .ico{width:1.2rem;height:1.2rem}
+.trow .cells{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:.2rem .85rem .85rem;font-size:.98rem;line-height:1.45}
+.badge{font-family:Inter,system-ui,sans-serif;display:inline-block;font-size:.76rem;font-weight:700;border:1px solid currentColor;border-radius:999px;padding:0 .5rem;margin-bottom:.3rem}
+.badge.ok{color:var(--ok)}
+.badge.no{color:var(--no)}
+.dash{color:var(--muted)}
+.trow.formal{background:color-mix(in srgb,var(--gold) 9%,var(--bg2));box-shadow:inset 0 0 0 2px var(--gold);animation:glow 2.8s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:inset 0 0 0 3px var(--gold),inset 0 0 30px color-mix(in srgb,var(--gold) 35%,transparent)}}
+.trow.formal .cause{font-size:1.45rem}
+.open-btn{font-family:Inter,system-ui,sans-serif;display:flex;width:calc(100% - 1.7rem);margin:0 .85rem .9rem;align-items:center;justify-content:center;gap:.5rem;padding:.7rem 1rem;border-radius:6px;border:0;background:var(--gold);color:var(--burg-ink);font-weight:700;cursor:pointer;min-height:46px}
+.open-btn svg{width:1rem;height:1rem;transition:transform .3s}
+.open-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.legend{font-size:.9rem;color:var(--muted)}
+.fdetail{border-top:1px solid var(--gold);padding:1.25rem .85rem .5rem}
+.fdetail[hidden]{display:none}
+.fdetail svg{display:block;width:100%;max-width:24rem;height:auto;margin:0 auto 1rem}
+.dlabels{display:grid;grid-template-columns:1fr 1fr;gap:1rem;text-align:center;max-width:24rem;margin:-.6rem auto 1.4rem;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.15rem;line-height:1.2}
+.sides{display:grid;gap:1rem}
+@media(min-width:680px){.sides{grid-template-columns:1fr 1fr}}
+.side{padding:1rem 1.1rem;border:1px solid var(--rule);border-top:4px solid var(--c);border-radius:4px;background:#0a1330}
+.side h4{color:var(--c);font-size:1.4rem}
+.side p{font-size:.98rem}
+.side blockquote{margin:0 0 1em;padding-left:.9rem;border-left:3px solid var(--rule);font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:1.2rem;line-height:1.35}
+.side cite{display:block;font-family:Inter,system-ui,sans-serif;font-style:normal;font-size:.88rem;color:var(--muted);margin-top:.3rem}
+.fair{padding:.6rem .8rem;border-radius:4px;background:color-mix(in srgb,var(--gold) 10%,transparent)}
+.crux{font-size:1.08rem;margin:1.5rem 0}
+
+/* quiz */
+.qitem{margin:0 0 1.5rem;padding:1.1rem 1.2rem;background:var(--bg2);border:1px solid var(--rule);border-radius:6px}
+.qtext{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.35rem;line-height:1.3;margin-bottom:.75rem}
+.qtext .qn{color:var(--gold);font-weight:700;margin-right:.3rem}
+.opts{display:grid;gap:.45rem}
+.opt{font-family:Inter,system-ui,sans-serif;text-align:left;padding:.65rem .9rem;border:1.5px solid var(--rule);border-radius:6px;background:transparent;cursor:pointer;min-height:46px;line-height:1.35}
+.opt:hover:not(:disabled){border-color:var(--gold)}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent)}
+.opt.wrong{border-color:var(--no);background:color-mix(in srgb,var(--no) 8%,transparent)}
+.expl{margin:.75rem 0 0;font-size:.98rem}
+.expl:empty{display:none}
+.score{text-align:center;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.5rem;min-height:2rem}
+.teaser{margin:3rem 0 0;padding:2rem 1.5rem;text-align:center;border:1px solid var(--gold);border-radius:6px;position:relative;background:var(--bg2)}
+.teaser::before{content:"";position:absolute;inset:6px;border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);border-radius:3px;pointer-events:none}
+.teaser h3{margin-bottom:.4em}
+.teaser .pair{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap;margin:1rem 0}
+.teaser .pair span{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.3rem;font-style:italic;padding:.3rem 1rem;border:1px solid var(--rule);border-radius:999px}
+.closing p{font-size:1.08rem}
+.notes{font-size:.88rem;color:var(--muted);padding-left:1.6rem}
+.notes li{margin-bottom:.35rem}
+.notes li::marker{color:var(--gold);font-weight:700}
+footer.site{padding:2.5rem 1.25rem 3rem;text-align:center;border-top:1px solid var(--rule);color:var(--muted)}
+footer.site .brand{margin-bottom:.2rem}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0s!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="back" href="index.html">← Herramientas</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="glowIn" cx="50%" cy="50%" r="50%">
+      <stop offset="0" style="stop-color:var(--glow);stop-opacity:1"/>
+      <stop offset=".55" style="stop-color:var(--glow);stop-opacity:.55"/>
+      <stop offset="1" style="stop-color:var(--glow);stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+  <symbol id="i-mat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="2.5" y="14" width="9" height="6"/><rect x="12.5" y="14" width="9" height="6"/><rect x="7.5" y="7" width="9" height="6"/></g></symbol>
+  <symbol id="i-for" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 2.5v2.5"/><circle cx="12" cy="6.8" r="1.7"/><path d="M11 8.5 5.6 20.5M13 8.5l5.4 12"/><path d="M7.6 15.6a9.5 9.5 0 0 0 8.8 0"/></g></symbol>
+  <symbol id="i-efi" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M4 20.5l9.5-9.5"/><path d="M10.5 7.5l3.5-3.5 6 6-3.5 3.5z"/></g></symbol>
+  <symbol id="i-fin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.6"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.7" fill="currentColor"/></g></symbol>
+  <symbol id="i-mer" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3v18M6 8.5h12"/></g></symbol>
+  <symbol id="i-ins" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3.5c3 4 5.5 6.8 5.5 10a5.5 5.5 0 0 1-11 0c0-3.2 2.5-6 5.5-10z"/></g></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-orn" viewBox="0 0 128 14"><g fill="none" stroke="currentColor" stroke-width="1"><path d="M0 7h52M76 7h52"/><path d="M64 1l6 6-6 6-6-6z" fill="currentColor" fill-opacity=".25"/><circle cx="55" cy="7" r="1.5" fill="currentColor"/><circle cx="73" cy="7" r="1.5" fill="currentColor"/></g></symbol>
+</svg>
+
+<nav class="mini" aria-label="Secciones">
+  <ol>
+    <li><a href="#inicio"><span class="n">1</span>Inicio</a></li>
+    <li><a href="#causas"><span class="n">2</span>Las causas</a></li>
+    <li><a href="#casa"><span class="n">3</span>La casa</a></li>
+    <li><a href="#granero"><span class="n">4</span>El granero</a></li>
+    <li><a href="#dentro"><span class="n">5</span>Dentro y fuera</a></li>
+    <li><a href="#fin"><span class="n">6</span>El fin</a></li>
+    <li><a href="#justificacion"><span class="n">7</span>Justificación</a></li>
+    <li><a href="#repaso"><span class="n">8</span>Repaso</a></li>
+  </ol>
+  <div class="progress" aria-hidden="true"><span></span></div>
+</nav>
+
+<main>
+
+<!-- 1 HERO -->
+<header id="inicio" class="hero" tabindex="-1">
+  <div>
+    <svg class="qmarks" viewBox="0 0 400 230" role="img" aria-label="Un signo de interrogación que se divide en cuatro: causa material, formal, eficiente y final">
+      <text class="q-big" x="200" y="178" text-anchor="middle">?</text>
+      <text class="q" x="65" y="165" text-anchor="middle" style="--from:135px;fill:var(--c-mat)">?</text>
+      <text class="q" x="155" y="165" text-anchor="middle" style="--from:45px;fill:var(--c-for)">?</text>
+      <text class="q" x="245" y="165" text-anchor="middle" style="--from:-45px;fill:var(--c-efi)">?</text>
+      <text class="q" x="335" y="165" text-anchor="middle" style="--from:-135px;fill:var(--c-fin)">?</text>
+      <text class="ql" x="65" y="205" text-anchor="middle" style="--from:135px;fill:var(--c-mat)">material</text>
+      <text class="ql" x="155" y="205" text-anchor="middle" style="--from:45px;fill:var(--c-for)">formal</text>
+      <text class="ql" x="245" y="205" text-anchor="middle" style="--from:-45px;fill:var(--c-efi)">eficiente</text>
+      <text class="ql" x="335" y="205" text-anchor="middle" style="--from:-135px;fill:var(--c-fin)">final</text>
+    </svg>
+    <p class="brand">Hosanna in Excelsis</p>
+    <h1>¿Por qué no nos entendemos?</h1>
+    <p class="sub">La causa formal de la justificación y la diferencia que cambia toda la conversación</p>
+    <p class="by">Por Hugo Delgado</p>
+    <blockquote class="objection">
+      <p>«¿Para qué va usted en contra de su propio Magisterio? Su Iglesia ya firmó la Declaración conjunta. Hoy los católicos aceptan la justificación protestante».</p>
+      <small>La objeción de siempre. Se puede coincidir en mucho y seguir sin responder la pregunta decisiva: ¿qué es lo que nos hace justos ante Dios?</small>
+    </blockquote>
+    <a class="start" href="#causas">Empezar <svg aria-hidden="true"><use href="#i-down"/></svg></a>
+  </div>
+</header>
+
+<!-- 2 CAUSAS -->
+<section id="causas" tabindex="-1" aria-labelledby="t-causas">
+  <svg class="orn" aria-hidden="true"><use href="#i-orn"/></svg>
+  <div class="wrap">
+    <h2 id="t-causas">Conocer algo es conocer sus causas</h2>
+    <p class="lead">Aristóteles abre la <i>Metafísica</i> con una idea sencilla: creemos conocer una cosa cuando conocemos sus causas. Y enseguida añade que la palabra «causa» se dice de cuatro maneras.<button class="fn" data-n="1">1</button></p>
+    <p>Preguntar «¿por qué?» a fondo, entonces, es hacer cuatro preguntas distintas. Quien responde solo una sabe una parte.</p>
+    <ul class="qlist">
+      <li class="qcard reveal" style="--c:var(--c-mat);--i:0"><svg class="ico" aria-hidden="true"><use href="#i-mat"/></svg><div><span class="cname">Causa material</span><span class="cq">¿De qué está hecha?</span></div></li>
+      <li class="qcard reveal" style="--c:var(--c-for);--i:1"><svg class="ico" aria-hidden="true"><use href="#i-for"/></svg><div><span class="cname">Causa formal</span><span class="cq">¿Qué la hace ser lo que es?</span></div></li>
+      <li class="qcard reveal" style="--c:var(--c-efi);--i:2"><svg class="ico" aria-hidden="true"><use href="#i-efi"/></svg><div><span class="cname">Causa eficiente</span><span class="cq">¿Quién la hizo?</span></div></li>
+      <li class="qcard reveal" style="--c:var(--c-fin);--i:3"><svg class="ico" aria-hidden="true"><use href="#i-fin"/></svg><div><span class="cname">Causa final</span><span class="cq">¿Para qué existe?</span></div></li>
+    </ul>
+    <div class="defn">
+      <h4>La causa formal, con más precisión</h4>
+      <p>Es el acto o la perfección interna por la que una cosa es lo que es.</p>
+      <div class="examples">
+        <div><b>El alma</b>hace que un hombre sea hombre</div>
+        <div><b>El color</b>hace que sea blanco</div>
+        <div class="key"><b>La virtud</b>hace que sea bueno</div>
+      </div>
+      <p>Guarde ese último ejemplo, porque ahí vive la justificación.<button class="fn" data-n="3">3</button></p>
+    </div>
+  </div>
+</section>
+
+<!-- 3 CASA -->
+<section id="casa" tabindex="-1" aria-labelledby="t-casa">
+  <svg class="orn" aria-hidden="true"><use href="#i-orn"/></svg>
+  <div class="wrap">
+    <h2 id="t-casa">Pensemos en una casa</h2>
+    <p>Toque cada causa y vea qué responde. Puede activarlas en cualquier orden.</p>
+  </div>
+  <div class="wide house-grid">
+    <figure class="stage">
+      <svg id="house" viewBox="0 0 400 300" role="img" aria-labelledby="hT hD">
+        <title id="hT">La casa y sus cuatro causas</title>
+        <desc id="hD">La ilustración cambia según las causas activadas: materiales en el suelo, el plano trazado, la casa construida, el constructor con su martillo y una familia que entra a vivir.</desc>
+        <defs>
+          <pattern id="stone" width="20" height="10" patternUnits="userSpaceOnUse"><rect class="pat-stone" width="20" height="10"/><path class="pat-line" d="M0 .4H20M0 5H20M10 .4V5M5 5V10M15 5V10"/></pattern>
+          <pattern id="wood" width="10" height="40" patternUnits="userSpaceOnUse"><rect class="pat-wood" width="10" height="40"/><path class="pat-line" d="M.4 0V40"/></pattern>
+          <pattern id="grid" width="16" height="16" patternUnits="userSpaceOnUse"><path class="grid-line" d="M16 0H0V16"/></pattern>
+        </defs>
+        <rect class="grid-bg" x="96" y="66" width="208" height="204"/>
+        <g id="h-pile">
+          <rect class="stoneF edge" x="132" y="252" width="38" height="18"/>
+          <rect class="stoneF edge" x="172" y="252" width="38" height="18"/>
+          <rect class="stoneF edge" x="152" y="234" width="38" height="18"/>
+          <rect class="woodF edge" x="224" y="262" width="92" height="8"/>
+          <rect class="woodF edge" x="228" y="254" width="86" height="8"/>
+          <rect class="woodF edge" x="232" y="246" width="80" height="8"/>
+          <rect class="glass edge" x="104" y="242" width="14" height="28" transform="rotate(-8 111 270)"/>
+        </g>
+        <g id="h-built">
+          <rect class="woodF edge" x="244" y="98" width="16" height="40"/>
+          <rect class="stoneF edge" x="120" y="150" width="160" height="120"/>
+          <polygon class="woodF edge" points="108,152 200,84 292,152"/>
+          <rect class="woodF edge" x="186" y="212" width="28" height="58"/>
+          <rect class="win edge" x="138" y="174" width="30" height="28"/><path class="edge mull" d="M153 174V202M138 188H168"/>
+          <rect class="win edge" x="232" y="174" width="30" height="28"/><path class="edge mull" d="M247 174V202M232 188H262"/>
+        </g>
+        <path class="smoke" d="M252 92c-6-6 6-10 0-16s6-10 0-16"/>
+        <g id="h-form">
+          <path class="bp" pathLength="1" d="M120 270V150H280V270"/>
+          <path class="bp" pathLength="1" d="M108 152L200 84L292 152"/>
+          <path class="bp" pathLength="1" d="M186 270V212H214V270"/>
+          <path class="bp" pathLength="1" d="M138 174H168V202H138Z"/>
+          <path class="bp" pathLength="1" d="M232 174H262V202H232Z"/>
+          <path class="bp" pathLength="1" d="M120 286H280M120 282V290M280 282V290"/>
+        </g>
+        <path class="ground" d="M14 270H386"/>
+        <path class="hatch" d="M30 276l-6 6M60 276l-6 6M330 276l-6 6M360 276l-6 6M90 276l-6 6M300 276l-6 6"/>
+        <g id="h-efi" transform="translate(352 196)">
+          <circle class="fig" cx="0" cy="0" r="8"/>
+          <path class="fig" d="M-9 50V20Q-9 11 0 11Q9 11 9 20V50Z"/>
+          <path class="figl" d="M-5 50L-7 74M5 50L7 74"/>
+          <g transform="translate(-7 18)"><g class="arm">
+            <path class="figl" d="M0 0L-16 10"/>
+            <path class="figl" d="M-16 10L-24 -3" style="stroke-width:2.2"/>
+            <rect class="hammer" x="-31" y="-9" width="13" height="7" rx="1" transform="rotate(-34 -24 -5)"/>
+          </g></g>
+        </g>
+        <g id="h-fin"><g class="fam">
+          <circle class="fig" cx="40" cy="212" r="7"/>
+          <path class="fig" d="M32 250V228Q32 220 40 220Q48 220 48 228V250Z"/>
+          <path class="figl" d="M36 250L35 270M44 250L45 270"/>
+          <circle class="fig" cx="62" cy="207" r="7.5"/>
+          <path class="fig" d="M53 250V225Q53 216 62 216Q71 216 71 225V250Z"/>
+          <path class="figl" d="M58 250L57 270M66 250L67 270"/>
+          <circle class="fig" cx="82" cy="234" r="5.5"/>
+          <path class="fig" d="M77 256V245Q77 240 82 240Q87 240 87 245V256Z"/>
+          <path class="figl" d="M80 256L79 270M84 256L85 270" style="stroke-width:2.4"/>
+        </g></g>
+      </svg>
+    </figure>
+    <aside class="exemplar" aria-labelledby="t-ej">
+      <span class="outside">Fuera de la casa</span>
+      <svg viewBox="0 0 160 110" aria-hidden="true">
+        <rect class="ex-paper" x="8" y="8" width="144" height="94" rx="3"/>
+        <path class="ex-grid" d="M8 24H152M8 40H152M8 56H152M8 72H152M8 88H152M32 8V102M56 8V102M80 8V102M104 8V102M128 8V102"/>
+        <path class="ex-line" d="M48 88V58H112V88M42 59L80 32L118 59M74 88V72H86V88M56 66H68V76H56ZM92 66H104V76H92Z"/>
+        <path class="ex-line" d="M48 95H112M48 92V98M112 92V98"/>
+      </svg>
+      <h3 id="t-ej">Causa ejemplar</h3>
+      <p>El plano del arquitecto es un modelo. Se queda fuera de la casa.</p>
+      <p class="muted">Una cosa es la causa formal intrínseca, que está en el efecto. Otra, la causa ejemplar, el modelo que permanece fuera de él.<button class="fn" data-n="3">3</button></p>
+    </aside>
+  </div>
+  <div class="wrap">
+    <div class="cbtns" role="group" aria-label="Las cuatro causas de la casa">
+      <button class="cbtn" type="button" data-k="mat" aria-pressed="false" style="--c:var(--c-mat)"><svg class="ico" aria-hidden="true"><use href="#i-mat"/></svg>Material</button>
+      <button class="cbtn" type="button" data-k="for" aria-pressed="false" style="--c:var(--c-for)"><svg class="ico" aria-hidden="true"><use href="#i-for"/></svg>Formal</button>
+      <button class="cbtn" type="button" data-k="efi" aria-pressed="false" style="--c:var(--c-efi)"><svg class="ico" aria-hidden="true"><use href="#i-efi"/></svg>Eficiente</button>
+      <button class="cbtn" type="button" data-k="fin" aria-pressed="false" style="--c:var(--c-fin)"><svg class="ico" aria-hidden="true"><use href="#i-fin"/></svg>Final</button>
+    </div>
+    <div class="panel" id="house-panel" aria-live="polite">
+      <p class="muted">Toque una causa para empezar.</p>
+    </div>
+    <p class="count" id="house-count">Preguntas respondidas: 0 de 4</p>
+  </div>
+</section>
+
+<!-- 4 GRANERO -->
+<section id="granero" tabindex="-1" aria-labelledby="t-granero">
+  <svg class="orn" aria-hidden="true"><use href="#i-orn"/></svg>
+  <div class="wrap">
+    <h2 id="t-granero">Un mismo hecho, cuatro respuestas</h2>
+    <p>Imaginemos que se cae el techo de un granero. ¿Por qué se cayó? Hay cuatro respuestas correctas y completamente distintas.<button class="fn" data-n="2">2</button></p>
+    <figure class="stage barn-stage">
+      <svg id="barn" viewBox="0 0 400 290" role="img" aria-labelledby="bT">
+        <title id="bT">Un granero cubierto de nieve cuyo techo se derrumba</title>
+        <g class="barn-body">
+          <rect class="barnwall" x="100" y="140" width="200" height="130"/>
+          <path class="boards" d="M120 140V270M140 140V270M160 140V270M180 140V270M200 140V270M220 140V270M240 140V270M260 140V270M280 140V270"/>
+          <rect class="barndoor" x="168" y="196" width="64" height="74"/>
+          <path class="trim" d="M168 196L232 270M232 196L168 270M168 196H232V270H168Z"/>
+          <rect class="barndoor" x="186" y="152" width="28" height="26"/>
+          <path class="trim" d="M186 152H214V178H186Z"/>
+        </g>
+        <g class="roof">
+          <polygon class="roofF" points="88,142 116,102 200,74 284,102 312,142"/>
+          <path class="shing" d="M102 122H298M95 132H305M111 110H289M146 92H254"/>
+          <path class="snowcap" d="M85 143L113 100L200 69L287 100L315 143L310 145L284 106L200 79L116 106L90 145Z"/>
+        </g>
+        <ellipse class="dust" cx="130" cy="200" rx="34" ry="12"/>
+        <ellipse class="dust" cx="270" cy="200" rx="34" ry="12"/>
+        <ellipse class="dust" cx="200" cy="186" rx="44" ry="14"/>
+        <g>
+          <circle class="flake" cx="70" cy="30" r="3" style="--d:0s"/>
+          <circle class="flake" cx="120" cy="20" r="2.5" style="--d:.15s"/>
+          <circle class="flake" cx="170" cy="36" r="3" style="--d:.3s"/>
+          <circle class="flake" cx="220" cy="18" r="2.5" style="--d:.05s"/>
+          <circle class="flake" cx="265" cy="30" r="3" style="--d:.25s"/>
+          <circle class="flake" cx="310" cy="22" r="2.5" style="--d:.4s"/>
+          <circle class="flake" cx="345" cy="40" r="3" style="--d:.1s"/>
+          <circle class="flake" cx="95" cy="50" r="2" style="--d:.45s"/>
+          <circle class="flake" cx="240" cy="48" r="2" style="--d:.35s"/>
+        </g>
+        <path class="ground" d="M20 270H380"/>
+      </svg>
+    </figure>
+    <p class="center"><button class="btn" type="button" id="barn-btn">Ver el derrumbe</button></p>
+
+    <div class="after" id="barn-after" hidden>
+      <h3>¿Por qué se cayó?</h3>
+      <div class="tablist" role="tablist" aria-label="Cuatro explicaciones del derrumbe">
+        <button class="tab" role="tab" id="tb-mat" aria-controls="tp-mat" aria-selected="true" style="--c:var(--c-mat)"><svg class="ico" aria-hidden="true"><use href="#i-mat"/></svg>Material</button>
+        <button class="tab" role="tab" id="tb-for" aria-controls="tp-for" aria-selected="false" tabindex="-1" style="--c:var(--c-for)"><svg class="ico" aria-hidden="true"><use href="#i-for"/></svg>Formal</button>
+        <button class="tab" role="tab" id="tb-efi" aria-controls="tp-efi" aria-selected="false" tabindex="-1" style="--c:var(--c-efi)"><svg class="ico" aria-hidden="true"><use href="#i-efi"/></svg>Eficiente</button>
+        <button class="tab" role="tab" id="tb-fin" aria-controls="tp-fin" aria-selected="false" tabindex="-1" style="--c:var(--c-fin)"><svg class="ico" aria-hidden="true"><use href="#i-fin"/></svg>Final</button>
+      </div>
+      <div class="tabpanel" role="tabpanel" id="tp-mat" aria-labelledby="tb-mat" tabindex="0" style="--c:var(--c-mat)"><p>La madera era demasiado delgada.</p><small>Causa material</small></div>
+      <div class="tabpanel" role="tabpanel" id="tp-for" aria-labelledby="tb-for" tabindex="0" style="--c:var(--c-for)" hidden><p>El diseño era demasiado ancho para las vigas.</p><small>Causa formal</small></div>
+      <div class="tabpanel" role="tabpanel" id="tp-efi" aria-labelledby="tb-efi" tabindex="0" style="--c:var(--c-efi)" hidden><p>Una tormenta de nieve lo sobrecargó.</p><small>Causa eficiente</small></div>
+      <div class="tabpanel" role="tabpanel" id="tp-fin" aria-labelledby="tb-fin" tabindex="0" style="--c:var(--c-fin)" hidden><p>El granjero lo saboteó para cobrar el seguro.</p><small>Causa final</small></div>
+
+      <div class="defn">
+        <p>Es el mismo hecho, explicado de cuatro maneras. Quien solo hace una pregunta se pierde tres cuartas partes de la realidad. Y el pensamiento moderno suele quedarse justamente con una, la causa eficiente, y olvida las demás.<button class="fn" data-n="2">2</button></p>
+        <p class="muted small">Una aclaración: las cuatro causas explican todo lo que es causado. Dios, que no tiene causa, es la excepción.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 DENTRO Y FUERA -->
+<section id="dentro" tabindex="-1" aria-labelledby="t-dentro">
+  <svg class="orn" aria-hidden="true"><use href="#i-orn"/></svg>
+  <div class="wrap">
+    <h2 id="t-dentro">Dentro y fuera</h2>
+    <p>Algunas causas están dentro de la cosa; otras actúan desde fuera. Lleve cada causa a su lugar.</p>
+    <p class="muted small">Arrastre cada causa, o tóquela y luego toque el grupo donde va.</p>
+    <div class="tray" id="tray" aria-label="Causas por colocar">
+      <button class="chip" type="button" draggable="true" data-k="efi" aria-pressed="false" style="--c:var(--c-efi)"><svg class="ico" aria-hidden="true"><use href="#i-efi"/></svg>Eficiente</button>
+      <button class="chip" type="button" draggable="true" data-k="mat" aria-pressed="false" style="--c:var(--c-mat)"><svg class="ico" aria-hidden="true"><use href="#i-mat"/></svg>Material</button>
+      <button class="chip" type="button" draggable="true" data-k="fin" aria-pressed="false" style="--c:var(--c-fin)"><svg class="ico" aria-hidden="true"><use href="#i-fin"/></svg>Final</button>
+      <button class="chip" type="button" draggable="true" data-k="for" aria-pressed="false" style="--c:var(--c-for)"><svg class="ico" aria-hidden="true"><use href="#i-for"/></svg>Formal</button>
+    </div>
+    <div class="bins">
+      <div class="bin" data-bin="in">
+        <button class="bin-target" type="button"><h3>Intrínsecas</h3><span>Están dentro de la cosa</span></button>
+        <div class="slot" aria-label="Causas intrínsecas colocadas"></div>
+      </div>
+      <div class="bin" data-bin="ex">
+        <button class="bin-target" type="button"><h3>Extrínsecas</h3><span>Actúan desde fuera</span></button>
+        <div class="slot" aria-label="Causas extrínsecas colocadas"></div>
+      </div>
+    </div>
+    <div class="feedback" id="sort-fb" aria-live="polite">Elija una causa para empezar.</div>
+    <p class="center" style="margin-top:1rem"><button class="btn ghost" type="button" id="sort-reset">Empezar de nuevo</button></p>
+  </div>
+</section>
+
+<!-- 6 EL FIN -->
+<section id="fin" tabindex="-1" aria-labelledby="t-fin">
+  <svg class="orn" aria-hidden="true"><use href="#i-orn"/></svg>
+  <div class="wrap">
+    <h2 id="t-fin">El fin, causa de las causas</h2>
+    <p>Las cuatro causas no son una lista suelta, sino que van ordenadas.</p>
+  </div>
+  <div class="wide">
+    <ol class="chain" id="chain" aria-label="Orden de las causas">
+      <li class="node" style="--c:var(--c-fin)"><svg class="ico" aria-hidden="true"><use href="#i-fin"/></svg><b>El fin</b><small>causa final</small></li>
+      <li class="arrow" aria-hidden="true"><svg viewBox="0 0 48 24"><path d="M2 12H42M34 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>mueve</span></li>
+      <li class="node" style="--c:var(--c-efi)"><svg class="ico" aria-hidden="true"><use href="#i-efi"/></svg><b>al agente</b><small>causa eficiente</small></li>
+      <li class="arrow" aria-hidden="true"><svg viewBox="0 0 48 24"><path d="M2 12H42M34 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>produce</span></li>
+      <li class="node" style="--c:var(--c-for)"><svg class="ico" aria-hidden="true"><use href="#i-for"/></svg><b>la forma</b><small>causa formal</small></li>
+      <li class="arrow" aria-hidden="true"><svg viewBox="0 0 48 24"><path d="M2 12H42M34 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>organiza</span></li>
+      <li class="node" style="--c:var(--c-mat)"><svg class="ico" aria-hidden="true"><use href="#i-mat"/></svg><b>la materia</b><small>causa material</small></li>
+    </ol>
+    <p class="center"><button class="btn" type="button" id="chain-btn">Ver el orden</button></p>
+    <p class="chain-say" id="chain-say" aria-live="polite"></p>
+  </div>
+  <div class="wrap">
+    <div class="defn">
+      <p>El fin mueve al agente, el agente produce la forma y la forma organiza la materia. Por eso a la causa final se le llama «causa de las causas».<button class="fn" data-n="5">5</button></p>
+    </div>
+  </div>
+</section>
+
+<!-- 7 JUSTIFICACION -->
+<section id="justificacion" tabindex="-1" aria-labelledby="t-just">
+  <svg class="orn" aria-hidden="true"><use href="#i-orn"/></svg>
+  <div class="wrap">
+    <h2 id="t-just">¿Dónde está la diferencia?</h2>
+    <p>Cuando un católico y un protestante hablan de la justificación, muchas veces terminan con la sensación de que dicen lo mismo.</p>
+    <div class="voices">
+      <blockquote class="voice"><p>«Yo también creo que las obras importan. Una fe verdadera siempre da fruto».</p><footer>El protestante</footer></blockquote>
+      <blockquote class="voice"><p>«Yo también creo que en la justificación Dios perdona los pecados. Hay un aspecto que se parece a un juicio: Dios nos absuelve».</p><footer>El católico</footer></blockquote>
+    </div>
+    <p>Si los dos hablan de perdón y los dos hablan de obras, parece que no hay ninguna diferencia. Pero dos cosas pueden tener casi todo en común y, aun así, ser distintas. Pueden compartir tres causas y diferir en una sola. Esa única diferencia basta.</p>
+
+    <div class="court">
+      <h3>Dos hombres salen del mismo tribunal</h3>
+      <svg id="court-svg" viewBox="0 0 320 200" role="img" aria-labelledby="cT">
+        <title id="cT">Dos hombres con la misma sentencia: no culpable</title>
+        <rect class="scroll" x="44" y="14" width="92" height="30" rx="4"/>
+        <text class="scroll-t" x="90" y="34" text-anchor="middle">No culpable</text>
+        <rect class="scroll ext" x="184" y="14" width="92" height="30" rx="4"/>
+        <text class="scroll-t" x="230" y="34" text-anchor="middle">No culpable</text>
+        <circle class="person" cx="90" cy="80" r="12"/>
+        <path class="person" d="M70 172V125Q70 98 90 98Q110 98 110 125V172Z"/>
+        <circle class="inner" cx="90" cy="132" r="28" fill="url(#glowIn)"/>
+        <circle class="person" cx="230" cy="80" r="12"/>
+        <path class="person" d="M210 172V125Q210 98 230 98Q250 98 250 125V172Z"/>
+        <path class="ground" d="M30 172H290"/>
+        <text class="scroll-t" x="90" y="192" text-anchor="middle" style="font-size:14px">Primer hombre</text>
+        <text class="scroll-t" x="230" y="192" text-anchor="middle" style="font-size:14px">Segundo hombre</text>
+      </svg>
+      <ul class="qrows">
+        <li><span>¿Quién dio la sentencia? <span class="muted">El mismo juez.</span></span><span class="same">Igual</span></li>
+        <li><span>¿Para qué? <span class="muted">Para que queden libres.</span></span><span class="same">Igual</span></li>
+        <li><span>¿Qué dice la sentencia? <span class="muted">«No culpable».</span></span><span class="same">Igual</span></li>
+      </ul>
+      <p class="center"><button class="btn" type="button" id="court-btn" aria-expanded="false" aria-controls="court-answer">Hacer la última pregunta</button></p>
+      <div id="court-answer" hidden>
+        <p class="serif" style="font-size:1.4rem;text-align:center;margin:1rem 0 .4rem">¿Qué hace que cada uno sea «no culpable»?</p>
+        <div class="answer">
+          <div><b>El primer hombre</b>Es realmente inocente. La justicia está en él. El juez solo reconoce lo que ya es verdad.</div>
+          <div><b>El segundo hombre</b>No se volvió inocente. La sentencia lo declara justo, pero esa justicia está en la declaración del juez, fuera de él.</div>
+        </div>
+        <p style="margin-top:1rem">Esta es la causa formal. Desde fuera, los dos casos se ven iguales. Por dentro, son completamente distintos.</p>
+      </div>
+    </div>
+
+    <p class="big-q">La justicia que nos hace justos ante Dios, ¿está fuera de nosotros o dentro de nosotros?</p>
+
+    <h3>Trento habló en este lenguaje</h3>
+    <p>No es un esquema que traigamos de fuera. En la Sesión VI, capítulo 7, el Concilio de Trento nombra cada causa de la justificación.<button class="fn" data-n="6">6</button></p>
+  </div>
+
+  <div class="wrap" style="max-width:48rem">
+    <div class="trent" role="table" aria-label="Las causas de la justificación según Trento, comparadas">
+      <div class="thead" role="row"><div role="columnheader">Concilio de Trento (DH 1529)</div><div role="columnheader">Doctrina luterana y reformada</div></div>
+
+      <div class="trow" role="row" style="--c:var(--c-fin)">
+        <div class="cause"><svg class="ico" aria-hidden="true"><use href="#i-fin"/></svg>Final</div>
+        <div class="cells"><div role="cell">La gloria de Dios y de Cristo, y la vida eterna.</div><div role="cell" class="dash">—</div></div>
+      </div>
+      <div class="trow" role="row" style="--c:var(--c-efi)">
+        <div class="cause"><svg class="ico" aria-hidden="true"><use href="#i-efi"/></svg>Eficiente</div>
+        <div class="cells"><div role="cell">Dios misericordioso.</div><div role="cell"><span class="badge ok">Coincidimos</span><br>Dios es quien justifica.</div></div>
+      </div>
+      <div class="trow" role="row" style="--c:var(--burg)">
+        <div class="cause"><svg class="ico" aria-hidden="true"><use href="#i-mer"/></svg>Meritoria</div>
+        <div class="cells"><div role="cell">Jesucristo, por su pasión.</div><div role="cell"><span class="badge ok">Coincidimos</span><br>Cristo es quien lo mereció.</div></div>
+      </div>
+      <div class="trow" role="row" style="--c:var(--c-mat)">
+        <div class="cause"><svg class="ico" aria-hidden="true"><use href="#i-ins"/></svg>Instrumental</div>
+        <div class="cells"><div role="cell">El bautismo.</div><div role="cell" class="dash">—</div></div>
+      </div>
+      <div class="trow formal" role="row" style="--c:var(--c-for)">
+        <div class="cause"><svg class="ico" aria-hidden="true"><use href="#i-for"/></svg>Formal, la única</div>
+        <div class="cells">
+          <div role="cell">«La justicia de Dios, no aquella por la que Él es justo, sino aquella por la que nos hace justos».</div>
+          <div role="cell"><span class="badge no">Aquí no coincidimos</span><br>La justicia de Cristo, que permanece fuera de nosotros y se nos atribuye.</div>
+        </div>
+        <button class="open-btn" type="button" id="formal-btn" aria-expanded="false" aria-controls="formal-detail">Abrir la diferencia <svg aria-hidden="true"><use href="#i-down"/></svg></button>
+
+        <div class="fdetail" id="formal-detail" hidden>
+          <svg viewBox="0 0 320 190" role="img" aria-label="A la izquierda, una figura con luz dentro: justicia infundida. A la derecha, una figura rodeada de luz por fuera: justicia imputada.">
+            <circle class="person" cx="90" cy="70" r="12"/>
+            <path class="person" d="M70 172V115Q70 88 90 88Q110 88 110 115V172Z"/>
+            <circle cx="90" cy="124" r="30" fill="url(#glowIn)"/>
+            <ellipse class="ring" cx="230" cy="118" rx="50" ry="72" style="opacity:1"/>
+            <circle class="person" cx="230" cy="70" r="12"/>
+            <path class="person" d="M210 172V115Q210 88 230 88Q250 88 250 115V172Z"/>
+            <path class="ground" d="M30 172H290"/>
+          </svg>
+          <div class="dlabels"><span>Justicia infundida: dentro de nosotros</span><span>Justicia imputada: fuera de nosotros, atribuida</span></div>
+
+          <div class="sides">
+            <article class="side" style="--c:var(--burg)">
+              <h4>La fe católica</h4>
+              <p>Dios pone su justicia dentro de nosotros y nos transforma de verdad. La causa formal es la gracia que inhiere en el alma: una participación en la justicia de Dios, merecida por Cristo, que está dentro de nosotros y nos hace justos de verdad.<button class="fn" data-n="19">19</button></p>
+              <p>Por eso el Concilio añade que no solo somos considerados justos, sino que verdaderamente nos llamamos justos y lo somos.<button class="fn" data-n="13">13</button></p>
+              <p>Perdón y renovación no son dos piezas que se suman: esta participación en la justicia de Dios es la única causa formal, tanto del perdón como de la renovación.<button class="fn" data-n="14">14</button></p>
+            </article>
+            <article class="side" style="--c:var(--muted)">
+              <h4>La doctrina luterana y reformada</h4>
+              <p>Lo que fundamenta nuestra aceptación ante Dios es la justicia de Cristo imputada al creyente: una justicia ajena, externa, por la que somos considerados justos. McGrath señala la distinción entre justificación y santificación como uno de los rasgos que separan al protestantismo de la tradición anterior.<button class="fn" data-n="9">9</button></p>
+              <p>La Fórmula de Concordia lo dice sin rodeos: ni la renovación, ni la santificación, ni las virtudes, ni otras buenas obras son nuestra justicia ante Dios, ni deben ponerse como forma, parte o causa de nuestra justificación.<button class="fn" data-n="10">10</button></p>
+              <blockquote>«La justificación trata de que la actitud de Dios hacia mí cambia; la santificación, de que Dios me cambia a mí».<cite>Anthony Lane, teólogo evangélico<button class="fn" data-n="11">11</button></cite></blockquote>
+              <p class="fair">Sin caricaturas: luteranos y reformados no niegan que Dios transforme al cristiano. Distinguen, sin separar, justificación y santificación. Solo la santificación crece; la justificación permanece perfecta y se conserva por la sola fe.<button class="fn" data-n="12">12</button></p>
+            </article>
+          </div>
+
+          <p class="crux">La discusión, entonces, es si esa transformación forma parte de aquello por lo que somos justificados o si es solo su consecuencia. Malloy lo resume: Dios trino es la causa eficiente; Cristo, la meritoria; y la gracia que inhiere en el alma, la formal.<button class="fn" data-n="7">7</button> Lo que no compartimos es «la naturaleza misma del acontecimiento de la justificación, su causa formal».<button class="fn" data-n="8">8</button> Por eso los acuerdos ecuménicos, como la Declaración conjunta de 1999, pueden avanzar mucho sin resolver la cuestión de fondo.</p>
+
+          <div class="defn">
+            <h4>¿Y si la justicia de Cristo fuera una causa formal externa?</h4>
+            <p>Un lector protestante atento podría responder así. Aquí ayuda otra distinción: una cosa es la causa formal intrínseca, que está en el efecto; otra, la causa ejemplar, el modelo que permanece fuera de él.<button class="fn" data-n="3">3</button> Una «forma» que se queda fuera no hace que algo sea lo que es. Solo hace que se le considere así.</p>
+            <p class="muted small">Recuerde el plano del arquitecto: está fuera de la casa.</p>
+          </div>
+
+          <div class="defn">
+            <h4>En nosotros, pero no de nosotros</h4>
+            <p>Lo que recibimos es una participación en la justicia de Dios, merecida por Cristo. No fabricamos una justicia propia, independiente de Él. La fórmula de Trento viene de san Agustín, que la usó precisamente contra los pelagianos.<button class="fn" data-n="15">15</button> Por eso Trento, igual que Lutero, rechaza cualquier forma de pelagianismo.<button class="fn" data-n="16">16</button></p>
+            <p>Un bebé bautizado no ha acumulado ninguna obra meritoria. Aun así, en el bautismo recibe la gracia santificante, «la gracia de la justificación».<button class="fn" data-n="17">17</button> Hablar de justicia interior no es defender una salvación comprada con esfuerzo humano.</p>
+            <p>Como el sarmiento: nunca se sostiene a sí mismo ni se convierte en una vid independiente, pero es bueno en sí y da fruto que permanece en la medida en que vive de la vid.<button class="fn" data-n="18">18</button></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="legend">«Coincidimos» marca lo que el artículo señala como común. El guion indica una causa que el artículo no compara.</p>
+  </div>
+</section>
+
+<!-- 8 REPASO -->
+<section id="repaso" tabindex="-1" aria-labelledby="t-repaso">
+  <svg class="orn" aria-hidden="true"><use href="#i-orn"/></svg>
+  <div class="wrap">
+    <h2 id="t-repaso">Repaso</h2>
+    <p>Cinco preguntas para comprobar que la herramienta ya está en sus manos.</p>
+    <div id="quiz"></div>
+    <p class="score" id="quiz-score" aria-live="polite"></p>
+    <p class="center"><button class="btn ghost" type="button" id="quiz-reset" hidden>Intentarlo otra vez</button></p>
+
+    <div class="closing" style="margin-top:3rem">
+      <h3>Lo que hemos visto, y lo que falta</h3>
+      <p>Aquí no hemos demostrado que la posición católica sea la verdadera ni que la protestante sea falsa. El objetivo era darle una herramienta para ver dónde está la diferencia real.</p>
+      <p>Las dos posiciones se parecen porque comparten varias causas: Dios es quien justifica, Cristo es quien lo mereció y la fe verdadera da fruto. Pero la causa formal es la que hace que algo sea lo que es. Y en la causa formal, las dos posiciones no coinciden.</p>
+      <p>La próxima vez que alguien le diga «Su Iglesia ya firmó la Declaración conjunta, ¿para qué sigue discutiendo?», usted ya tiene la respuesta. Podemos coincidir en mucho. Mientras no coincidamos en la causa formal, la diferencia de fondo sigue ahí. Discutirla no es desobedecer al Magisterio. Es tomarse en serio lo que el Magisterio enseñó en Trento.</p>
+    </div>
+
+    <aside class="teaser" aria-labelledby="t-next">
+      <p class="brand">En el próximo número</p>
+      <h3 id="t-next">El paso siguiente</h3>
+      <div class="pair"><span>justicia infundida</span><span>justicia imputada</span></div>
+      <p>Examinaremos las dos, y mostraremos por qué la Escritura y la Tradición respaldan la posición católica.</p>
+    </aside>
+
+    <h3 style="margin-top:3.5rem">Notas</h3>
+    <ol class="notes" id="notes"></ol>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <p class="brand">Hosanna in Excelsis</p>
+  <p>Texto e idea de Hugo Delgado</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function wait(ms){ return new Promise(function(r){ setTimeout(r, reduce ? 0 : ms); }); }
+
+  /* ---------- notes ---------- */
+  var NOTES = {
+    1:"Aristóteles, <i>Metafísica</i> I (A), 3, 983a24–27; véase Étienne Gilson, <i>Being and Some Philosophers</i>, 2.ª ed. (Toronto: Pontifical Institute of Mediaeval Studies, 1952), cap. 5, «Being and Existence».",
+    2:"Robert C. Koons y Daniel Bonevac, <i>Five Ways to One God</i> (manuscrito, 10 de agosto de 2025), cap. 8, «Aristotle’s Defense of Common Sense», pp. 65–66.",
+    3:"Tomás Alvira, Luis Clavell y Tomás Melendo, <i>Metafísica</i> (Pamplona: EUNSA), pp. 195–196.",
+    4:"Alvira, Clavell y Melendo, <i>Metafísica</i>, p. 228; véase también Jeffrey E. Brower, «First Principles: Hylomorphism and Causation», en Eleonore Stump (ed.), <i>The New Cambridge Companion to Aquinas</i> (Cambridge: Cambridge University Press), pp. 52–53.",
+    5:"Alvira, Clavell y Melendo, <i>Metafísica</i>, p. 228; cf. santo Tomás de Aquino, <i>De principiis naturae</i>, cap. 4.",
+    6:"Concilio de Trento, Sesión VI (1547), <i>Decreto sobre la justificación</i>, cap. 7 (DH 1529).",
+    7:"Christopher J. Malloy, <i>Engrafted into Christ</i>, p. 24.",
+    8:"Malloy, <i>Engrafted into Christ</i>, p. 20.",
+    9:"Alister E. McGrath, <i>Iustitia Dei: A History of the Christian Doctrine of Justification</i>, 4.ª ed. (Cambridge: Cambridge University Press, 2020), p. ___.",
+    10:"Fórmula de Concordia, Declaración Sólida III, § ___, citada en Malloy, p. 38; véase también p. 39.",
+    11:"Anthony N. S. Lane, <i>Justification by Faith in Catholic-Protestant Dialogue</i> (Londres: T&amp;T Clark, 2002), p. 18, citado en Malloy, p. 45.",
+    12:"Malloy, p. 45.",
+    13:"Concilio de Trento, Sesión VI, cap. 7 (DH 1529), citado en Malloy, p. 25.",
+    14:"Malloy, pp. 31–32.",
+    15:"San Agustín, <i>In Ioannis Evangelium tractatus</i> 26; véase Malloy, pp. 25–26.",
+    16:"Malloy, pp. 20, 39.",
+    17:"<i>Catecismo de la Iglesia Católica</i>, n. 1266.",
+    18:"Malloy, p. 28.",
+    19:"Malloy, pp. 24, 31–32."
+  };
+  var notesOl = document.getElementById("notes");
+  Object.keys(NOTES).forEach(function(n){ var li=document.createElement("li"); li.id="nota-"+n; li.innerHTML=NOTES[n]; notesOl.appendChild(li); });
+
+  var tip = document.createElement("div");
+  tip.className="fn-tip"; tip.id="fn-tip"; tip.setAttribute("role","tooltip"); tip.hidden=true;
+  document.body.appendChild(tip);
+  var pinned=null;
+  function placeTip(b){
+    var r=b.getBoundingClientRect(), w=tip.offsetWidth, h=tip.offsetHeight;
+    var left=Math.min(Math.max(10, r.left + r.width/2 - w/2), window.innerWidth - w - 10);
+    var top=r.bottom + 8;
+    if(top + h > window.innerHeight - 10) top = r.top - h - 8;
+    tip.style.left=left+"px"; tip.style.top=Math.max(10,top)+"px";
+  }
+  function showTip(b){
+    var n=b.getAttribute("data-n");
+    tip.innerHTML="<b>Nota "+n+".</b> "+NOTES[n];
+    tip.hidden=false; placeTip(b);
+    b.setAttribute("aria-describedby","fn-tip");
+  }
+  function hideTip(){
+    tip.hidden=true; pinned=null;
+    document.querySelectorAll('.fn[aria-expanded="true"]').forEach(function(x){x.setAttribute("aria-expanded","false");});
+  }
+  function bindFns(root){
+    root.querySelectorAll(".fn:not([data-bound])").forEach(function(b){
+      b.setAttribute("data-bound","1"); b.type="button";
+      b.setAttribute("aria-label","Nota "+b.getAttribute("data-n"));
+      b.setAttribute("aria-expanded","false");
+      b.addEventListener("click",function(e){
+        e.stopPropagation();
+        if(pinned===b){ hideTip(); return; }
+        hideTip(); showTip(b); pinned=b; b.setAttribute("aria-expanded","true");
+      });
+      b.addEventListener("mouseenter",function(){ if(!pinned) showTip(b); });
+      b.addEventListener("mouseleave",function(){ if(!pinned) tip.hidden=true; });
+      b.addEventListener("focus",function(){ if(!pinned) showTip(b); });
+      b.addEventListener("blur",function(){ if(!pinned) tip.hidden=true; });
+    });
+  }
+  bindFns(document);
+  document.addEventListener("click",function(e){ if(!tip.contains(e.target)) hideTip(); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape") hideTip(); });
+
+  /* ---------- progress + nav ---------- */
+  var bar=document.querySelector(".progress span");
+  var ticking=false;
+  function onScroll(){
+    var d=document.documentElement, max=d.scrollHeight-d.clientHeight;
+    bar.style.width=(max>0 ? (d.scrollTop/max*100) : 0)+"%";
+  }
+  window.addEventListener("scroll",function(){
+    if(!tip.hidden && !pinned) tip.hidden=true;
+    if(pinned) placeTip(pinned);
+    if(!ticking){ ticking=true; requestAnimationFrame(function(){ onScroll(); ticking=false; }); }
+  },{passive:true});
+  onScroll();
+
+  var links=[].slice.call(document.querySelectorAll(".mini a"));
+  var navOl=document.querySelector(".mini ol");
+  links.forEach(function(a){
+    a.addEventListener("click",function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute("href").slice(1));
+      t.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"});
+      t.focus({preventScroll:true});
+    });
+  });
+  document.querySelector(".start").addEventListener("click",function(e){
+    e.preventDefault();
+    var t=document.getElementById("causas");
+    t.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"}); t.focus({preventScroll:true});
+  });
+  function setActive(id){
+    links.forEach(function(a){
+      var on=a.getAttribute("href")==="#"+id;
+      a.setAttribute("aria-current", on ? "true" : "false");
+      if(on){ navOl.scrollTo({left:a.offsetLeft - navOl.clientWidth/2 + a.offsetWidth/2, behavior:reduce?"auto":"smooth"}); }
+    });
+  }
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting) setActive(en.target.id); });
+    },{rootMargin:"-45% 0px -50% 0px"});
+    links.forEach(function(a){ var s=document.getElementById(a.getAttribute("href").slice(1)); if(s) io.observe(s); });
+
+    var ro=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add("in"); ro.unobserve(en.target); } });
+    },{threshold:.3});
+    document.querySelectorAll(".reveal").forEach(function(el){ ro.observe(el); });
+  } else {
+    document.querySelectorAll(".reveal").forEach(function(el){ el.classList.add("in"); });
+  }
+  setActive("inicio");
+
+  /* ---------- house ---------- */
+  var house=document.getElementById("house"), hp=document.getElementById("house-panel"), hc=document.getElementById("house-count");
+  var HOUSE={
+    mat:{name:"Causa material",q:"¿De qué está hecha?",a:"De madera, piedra y vidrio.",c:"--c-mat"},
+    "for":{name:"Causa formal",q:"¿Qué la hace ser lo que es?",a:"Su diseño, su estructura.",c:"--c-for"},
+    efi:{name:"Causa eficiente",q:"¿Quién la hizo?",a:"Los constructores.",c:"--c-efi"},
+    fin:{name:"Causa final",q:"¿Para qué existe?",a:"Para ser una vivienda.",c:"--c-fin"}
+  };
+  function houseState(){
+    var m=house.classList.contains("mat"), f=house.classList.contains("for");
+    if(m && f) return "La forma organiza la materia: ahora sí es una casa.";
+    if(m) return "La materia ya está ahí, pero todavía no es una casa.";
+    if(f) return "El diseño ya está trazado, pero todavía no tiene materia.";
+    return "";
+  }
+  document.querySelectorAll(".cbtn").forEach(function(b){
+    b.addEventListener("click",function(){
+      var k=b.getAttribute("data-k"), on=b.getAttribute("aria-pressed")!=="true";
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+      house.classList.toggle(k, on);
+      var d=HOUSE[k], st=houseState();
+      hp.style.setProperty("--c","var("+d.c+")");
+      if(on){
+        hp.innerHTML='<h3>'+d.name+'</h3><p class="pq">'+d.q+'</p><p>'+d.a+'<button class="fn" data-n="2">2</button></p>'+(st?'<p class="muted">'+st+'</p>':'');
+      } else {
+        hp.innerHTML='<p class="muted">Quitó la '+d.name.toLowerCase()+'. '+st+'</p>';
+      }
+      bindFns(hp);
+      var n=document.querySelectorAll('.cbtn[aria-pressed="true"]').length;
+      hc.textContent = n===4 ? "Las cuatro preguntas tienen respuesta. Quien responde solo una sabe una parte." : "Preguntas respondidas: "+n+" de 4";
+    });
+  });
+
+  /* ---------- barn ---------- */
+  var barn=document.getElementById("barn"), bb=document.getElementById("barn-btn"), after=document.getElementById("barn-after");
+  bb.addEventListener("click",function(){
+    if(barn.classList.contains("collapsed")){
+      barn.classList.remove("collapsed");
+      bb.textContent="Ver el derrumbe";
+    } else {
+      barn.classList.remove("collapsed"); void barn.getBoundingClientRect();
+      barn.classList.add("collapsed");
+      bb.textContent="Levantar el techo otra vez";
+      if(after.hidden){ setTimeout(function(){ after.hidden=false; }, reduce?0:2200); }
+    }
+  });
+
+  /* ---------- tabs ---------- */
+  document.querySelectorAll('[role="tablist"]').forEach(function(list){
+    var tabs=[].slice.call(list.querySelectorAll('[role="tab"]'));
+    function sel(t){
+      tabs.forEach(function(x){
+        var s=x===t; x.setAttribute("aria-selected", s ? "true":"false"); x.tabIndex = s ? 0 : -1;
+        document.getElementById(x.getAttribute("aria-controls")).hidden=!s;
+      });
+    }
+    tabs.forEach(function(t,i){
+      t.addEventListener("click",function(){ sel(t); });
+      t.addEventListener("keydown",function(e){
+        var j=null;
+        if(e.key==="ArrowRight") j=(i+1)%tabs.length;
+        if(e.key==="ArrowLeft") j=(i-1+tabs.length)%tabs.length;
+        if(e.key==="Home") j=0;
+        if(e.key==="End") j=tabs.length-1;
+        if(j!==null){ e.preventDefault(); tabs[j].focus(); sel(tabs[j]); }
+      });
+    });
+  });
+
+  /* ---------- sorting ---------- */
+  var tray=document.getElementById("tray"), fb=document.getElementById("sort-fb");
+  var trayHTML=tray.innerHTML;
+  var ANS={mat:"in","for":"in",efi:"ex",fin:"ex"};
+  var GOOD={
+    mat:"Bien: la materia está dentro de la cosa.",
+    "for":"Bien: la forma está dentro de la cosa.",
+    efi:"Bien: el agente actúa desde fuera.",
+    fin:"Bien: el fin actúa desde fuera."
+  };
+  var HINT={
+    mat:"Piénselo otra vez: la madera y la piedra de la casa, ¿están dentro de la casa o fuera?",
+    "for":"Piénselo otra vez: el diseño de la casa está en la casa misma.",
+    efi:"Casi: el constructor no forma parte de la casa. Actúa desde fuera.",
+    fin:"Casi: el fin no está dentro de la casa. Mueve al agente desde fuera."
+  };
+  var selected=null;
+  function chips(){ return [].slice.call(tray.querySelectorAll(".chip")); }
+  function select(c){
+    chips().forEach(function(x){ x.setAttribute("aria-pressed", x===c ? "true":"false"); });
+    selected=c;
+    if(c) fb.className="feedback", fb.textContent="Ahora toque el grupo donde va la causa "+c.textContent.trim().toLowerCase()+".";
+  }
+  function bindChips(){
+    chips().forEach(function(c){
+      c.addEventListener("click",function(){ select(selected===c ? null : c); });
+      c.addEventListener("dragstart",function(e){ e.dataTransfer.setData("text/plain", c.getAttribute("data-k")); e.dataTransfer.effectAllowed="move"; select(c); });
+    });
+  }
+  function place(k, bin){
+    var chip=tray.querySelector('.chip[data-k="'+k+'"]');
+    if(!chip) return;
+    if(ANS[k]===bin.getAttribute("data-bin")){
+      var span=document.createElement("span");
+      span.className="chip placed"; span.setAttribute("style", chip.getAttribute("style"));
+      span.innerHTML=chip.innerHTML;
+      bin.querySelector(".slot").appendChild(span);
+      chip.remove(); selected=null;
+      fb.className="feedback good"; fb.textContent=GOOD[k];
+      if(!chips().length){
+        fb.innerHTML='Materia y forma son causas intrínsecas: están dentro de la cosa. El agente y el fin son extrínsecos: actúan desde fuera.<button class="fn" data-n="4">4</button>';
+        bindFns(fb);
+      } else { var first=chips()[0]; if(first) first.focus(); }
+    } else {
+      chip.classList.remove("shake"); void chip.offsetWidth; chip.classList.add("shake");
+      fb.className="feedback try"; fb.textContent=HINT[k];
+      select(null);
+    }
+  }
+  document.querySelectorAll(".bin").forEach(function(bin){
+    bin.querySelector(".bin-target").addEventListener("click",function(){
+      if(selected) place(selected.getAttribute("data-k"), bin);
+      else { fb.className="feedback"; fb.textContent="Primero elija una causa."; }
+    });
+    bin.addEventListener("dragover",function(e){ e.preventDefault(); bin.classList.add("over"); });
+    bin.addEventListener("dragleave",function(){ bin.classList.remove("over"); });
+    bin.addEventListener("drop",function(e){ e.preventDefault(); bin.classList.remove("over"); place(e.dataTransfer.getData("text/plain"), bin); });
+  });
+  bindChips();
+  document.getElementById("sort-reset").addEventListener("click",function(){
+    tray.innerHTML=trayHTML;
+    document.querySelectorAll(".slot").forEach(function(s){ s.innerHTML=""; });
+    selected=null; bindChips();
+    fb.className="feedback"; fb.textContent="Elija una causa para empezar.";
+  });
+
+  /* ---------- chain ---------- */
+  var chain=document.getElementById("chain"), say=document.getElementById("chain-say"), cbtn=document.getElementById("chain-btn");
+  var running=false;
+  cbtn.addEventListener("click",function(){
+    if(running) return; running=true;
+    var items=[].slice.call(chain.children);
+    items.forEach(function(x){ x.classList.remove("lit"); });
+    say.textContent="";
+    var p=Promise.resolve();
+    items.forEach(function(x){ p=p.then(function(){ return wait(650); }).then(function(){ x.classList.add("lit"); }); });
+    p.then(function(){
+      say.textContent="El fin mueve al agente, el agente produce la forma y la forma organiza la materia.";
+      cbtn.textContent="Verlo otra vez"; running=false;
+    });
+  });
+
+  /* ---------- court ---------- */
+  var courtBtn=document.getElementById("court-btn"), courtAns=document.getElementById("court-answer"), courtSvg=document.getElementById("court-svg");
+  courtBtn.addEventListener("click",function(){
+    var open=courtBtn.getAttribute("aria-expanded")!=="true";
+    courtBtn.setAttribute("aria-expanded", open ? "true":"false");
+    courtAns.hidden=!open;
+    courtSvg.classList.toggle("revealed", open);
+    courtBtn.textContent = open ? "Ocultar la respuesta" : "Hacer la última pregunta";
+  });
+
+  /* ---------- formal row ---------- */
+  var fbtn=document.getElementById("formal-btn"), fdet=document.getElementById("formal-detail");
+  fbtn.addEventListener("click",function(){
+    var open=fbtn.getAttribute("aria-expanded")!=="true";
+    fbtn.setAttribute("aria-expanded", open ? "true":"false");
+    fdet.hidden=!open;
+    fbtn.firstChild.nodeValue = open ? "Cerrar la diferencia " : "Abrir la diferencia ";
+  });
+
+  /* ---------- quiz ---------- */
+  var QUIZ=[
+    {q:"¿Qué pregunta responde la causa formal?",
+     o:["¿De qué está hecha?","¿Qué la hace ser lo que es?","¿Quién la hizo?","¿Para qué existe?"], a:1,
+     e:"Es el acto o la perfección interna por la que una cosa es lo que es: el alma hace que un hombre sea hombre; la virtud, que sea bueno."},
+    {q:"El techo del granero se cayó porque una tormenta de nieve lo sobrecargó. ¿Qué causa es esa?",
+     o:["Material","Formal","Eficiente","Final"], a:2,
+     e:"Es la causa eficiente, justamente aquella con la que suele quedarse el pensamiento moderno, olvidando las demás."},
+    {q:"¿Cuáles son las causas intrínsecas, las que están dentro de la cosa?",
+     o:["Materia y forma","El agente y el fin","La forma y el fin","La materia y el agente"], a:0,
+     e:"Materia y forma están dentro de la cosa. El agente y el fin son extrínsecos: actúan desde fuera."},
+    {q:"¿Por qué se llama al fin «causa de las causas»?",
+     o:["Porque es lo primero que se ve","Porque mueve al agente, que produce la forma, que organiza la materia","Porque es la causa más material","Porque solo existe en Dios"], a:1,
+     e:"Las cuatro causas van ordenadas: el fin mueve al agente, el agente produce la forma y la forma organiza la materia."},
+    {q:"Según Trento y Malloy, ¿en qué causa de la justificación no coinciden católicos y luteranos?",
+     o:["La causa eficiente","La causa meritoria","La causa formal","En ninguna: la Declaración conjunta lo resolvió"], a:2,
+     e:"En la causa formal: ¿justicia infundida, dentro de nosotros, o justicia imputada, fuera de nosotros? Los acuerdos ecuménicos pueden avanzar mucho sin resolver esa cuestión de fondo."}
+  ];
+  var quiz=document.getElementById("quiz"), qs=document.getElementById("quiz-score"), qr=document.getElementById("quiz-reset");
+  var answered=0, score=0;
+  function buildQuiz(){
+    quiz.innerHTML=""; answered=0; score=0; qs.textContent=""; qr.hidden=true;
+    QUIZ.forEach(function(item,i){
+      var box=document.createElement("div"); box.className="qitem";
+      var id="qt"+i;
+      box.innerHTML='<p class="qtext" id="'+id+'"><span class="qn">'+(i+1)+'.</span>'+item.q+'</p><div class="opts" role="group" aria-labelledby="'+id+'"></div><p class="expl" aria-live="polite"></p>';
+      var opts=box.querySelector(".opts"), expl=box.querySelector(".expl");
+      item.o.forEach(function(t,j){
+        var b=document.createElement("button"); b.type="button"; b.className="opt"; b.textContent=t;
+        b.addEventListener("click",function(){
+          var all=opts.querySelectorAll(".opt");
+          all.forEach(function(x){ x.disabled=true; });
+          all[item.a].classList.add("right");
+          var ok=j===item.a;
+          if(!ok) b.classList.add("wrong");
+          expl.textContent=(ok ? "Correcto. " : "No exactamente. ")+item.e;
+          answered++; if(ok) score++;
+          if(answered===QUIZ.length){
+            qs.textContent = score===QUIZ.length ? "5 de 5. Ya tiene la herramienta en la mano." : score+" de 5. Vale la pena repasar las secciones y volver a intentarlo.";
+            qr.hidden=false;
+          }
+        });
+        opts.appendChild(b);
+      });
+      quiz.appendChild(box);
+    });
+  }
+  buildQuiz();
+  qr.addEventListener("click",function(){ buildQuiz(); quiz.querySelector(".opt").focus(); });
+})();
+</script>
+</body>
+</html>
