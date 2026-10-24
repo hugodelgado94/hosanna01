@@ -1,0 +1,11 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nuestra Señora de Las Lajas</title>
+<style>:root{--blue:#1d3b6f;--gold:#c9a24a}html,body{margin:0;height:100%;background:#0d1b33;font-family:Georgia,serif;overflow:hidden}
+header{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;gap:12px;padding:10px 16px;background:linear-gradient(var(--blue),rgba(29,59,111,.85));border-bottom:2px solid var(--gold);color:#fff}
+header a{color:var(--gold);text-decoration:none;font-size:1.4rem}h1{margin:0;font-size:clamp(1.1rem,4vw,1.6rem);color:#fff}h1 span{color:var(--gold);font-size:.7em;display:block}
+#v{position:fixed;top:64px;left:0;right:0;bottom:0}.hint{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);color:#f1dc9f;font-size:.85rem;background:rgba(0,0,0,.4);padding:4px 10px;border-radius:12px;pointer-events:none}</style></head>
+<body><header><a href="../../imagenes.html" aria-label="Volver">←</a><h1>Nuestra Señora de Las Lajas<span>Ipiales, Nariño · Colombia</span></h1></header>
+<div id="v"></div><div class="hint">Pellizca o usa la rueda para acercar · Pinch or scroll to zoom</div>
+<script src="osd/openseadragon.min.js"></script><script>
+OpenSeadragon({id:"v",prefixUrl:"osd/images/",tileSources:"tiles.dzi",showNavigator:true,navigatorPosition:"BOTTOM_RIGHT",maxZoomPixelRatio:2,visibilityRatio:1,constrainDuringPan:true,gestureSettingsTouch:{pinchRotate:false},animationTime:0.8});
+</script></body></html>

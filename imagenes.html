@@ -1,0 +1,89 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Imágenes · Hosanna in Excelsis Academia</title>
+<meta name="description" content="Arte católico por temas, con visor de alta resolución y una breve historia de cada obra.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--night:#050a1c;--navy:#0a1330;--cgold:#d9b25f;--cgold-l:#f3dc9c;--ivory:#efe8d6;--mute:#a9b0c8;--paper:#faf8f3;--ink:#14182b;--ink-soft:#4a4f66;--gold:#a8812c;--line:rgba(20,24,43,.14);--display:'Cinzel',Georgia,serif;--serif:'Cormorant Garamond',serif;--sans:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--paper)}
+a{color:inherit}
+nav{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:22px 5vw;z-index:2}
+nav a{font-family:var(--display);letter-spacing:.18em;font-size:13px;color:var(--ivory);text-decoration:none}
+.hero{position:relative;min-height:72vh;display:grid;place-items:center;text-align:center;color:var(--ivory);overflow:hidden;
+background:radial-gradient(ellipse at 50% 40%,#16224d 0%,var(--navy) 40%,var(--night) 80%)}
+#stars{position:absolute;inset:0;width:100%;height:100%}
+.hero .in{position:relative;padding:120px 6vw 80px;max-width:860px}
+.kicker{font-family:var(--display);letter-spacing:.35em;font-size:12px;color:var(--cgold)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,7vw,84px);letter-spacing:.08em;margin:.3em 0 .2em;color:var(--cgold-l)}
+.latin{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.4vw,28px);color:var(--ivory)}
+.tr{font-family:var(--serif);color:var(--mute);font-size:18px;margin-top:6px}
+.curve{display:block;width:100%;height:80px;margin-top:-79px;position:relative}
+main{max-width:1160px;margin:0 auto;padding:40px 5vw 100px}
+.sec h2{font-family:var(--display);font-weight:400;letter-spacing:.12em;font-size:clamp(26px,3.4vw,40px);margin:0}
+.sec .lead{font-family:var(--serif);font-size:21px;color:var(--ink-soft);max-width:62ch}
+.rule{width:80px;height:1px;background:var(--gold);margin:14px 0 22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:34px;margin-top:36px}
+.card{background:#fff;border:1px solid var(--line);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+.card:hover{transform:translateY(-4px);box-shadow:0 24px 50px -24px rgba(10,19,48,.35)}
+.card .img{display:block;aspect-ratio:4/3;background:var(--night);overflow:hidden;position:relative}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s}
+.card:hover img{transform:scale(1.04)}
+.badge{position:absolute;bottom:12px;left:12px;font-family:var(--display);font-size:11px;letter-spacing:.2em;background:rgba(5,10,28,.75);color:var(--cgold-l);padding:7px 12px;border:1px solid rgba(217,178,95,.5)}
+.body{padding:26px 28px 30px}
+.body h3{font-family:var(--display);font-weight:400;font-size:22px;letter-spacing:.06em;margin:0 0 4px}
+.place{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.body p{font-family:var(--serif);font-size:19px;line-height:1.6;color:var(--ink-soft)}
+.btn{display:inline-block;margin-top:6px;font-family:var(--display);font-size:12px;letter-spacing:.2em;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--gold);padding-bottom:4px}
+.soon{margin-top:70px;padding:28px;border:1px dashed var(--line);font-family:var(--serif);font-size:19px;color:var(--ink-soft);text-align:center}
+footer{background:var(--night);color:var(--mute);text-align:center;padding:40px 5vw;font-size:13px}
+footer a{color:var(--cgold);text-decoration:none;margin:0 10px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.intro{display:grid;grid-template-columns:1fr 1.6fr;gap:48px;align-items:start;margin:10px 0 60px}
+.intro .q{font-family:var(--serif);font-style:italic;font-size:clamp(26px,3vw,36px);line-height:1.3;color:var(--ink);border-left:1px solid var(--gold);padding-left:24px}
+.intro .q small{display:block;font-style:normal;font-family:var(--display);font-size:11px;letter-spacing:.25em;color:var(--gold);margin-top:14px}
+.intro p{font-family:var(--serif);font-size:21px;line-height:1.7;color:var(--ink-soft);margin:0 0 16px}
+.intro p:first-child::first-letter{float:left;font-family:var(--display);font-size:64px;line-height:.9;color:var(--gold);padding:6px 10px 0 0}
+.card .img::after{content:"⤢";position:absolute;top:12px;right:14px;color:var(--cgold-l);font-size:22px;text-shadow:0 2px 8px #000}
+.btn{background:var(--night);color:var(--cgold-l)!important;border:1px solid var(--gold);padding:12px 20px!important}
+.btn:hover{background:var(--navy)}
+@media(max-width:800px){.intro{grid-template-columns:1fr}}
+</style></head><body>
+<nav><a href="index.html">← HOSANNA IN EXCELSIS</a><a href="index.html#recursos">RECURSOS</a></nav>
+<header class="hero"><canvas id="stars" aria-hidden="true"></canvas><div class="in">
+<div class="kicker">ACADEMIA · ARTE SACRO</div><h1>Imágenes</h1>
+<div class="latin">«Pulchritudo splendor veritatis»</div>
+<div class="tr">El arte católico por temas: cada obra con visor de alta resolución y su historia.</div>
+</div></header>
+<svg class="curve" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path d="M0 10 Q50 0 100 10 Z" fill="#faf8f3"/></svg>
+<main>
+<section class="sec" id="virgen-maria">
+<div class="kicker" style="color:var(--gold)">I · TEMA</div>
+<h2>Santísima Virgen María</h2><div class="rule"></div>
+<p class="lead">Imágenes de la Madre de Dios veneradas por el pueblo cristiano. Ábrelas en el visor para acercarte a cada detalle.</p>
+<div class="intro">
+<div class="q">«Bendita tú entre las mujeres»<small>LC 1, 42</small></div>
+<div><p>Entre las imágenes más bellas ligadas a nuestra Santísima Virgen María está la de Nuestra Señora de Las Lajas, unida a una aparición de historia riquísima, nacida en lo profundo de los Andes colombianos.</p>
+<p>Estas dos imágenes muestran su belleza. La primera es la imagen misma de la Virgen, incrustada en la pared de roca dentro del templo. La segunda es el templo: un santuario suspendido sobre el cañón del río Guáitara, en un paisaje andino que deja sin aliento, al que el diario británico <em>The Telegraph</em> nombró en 2015 la iglesia más hermosa del mundo.</p>
+<p>Toca cualquiera de las dos para abrir el visor y acercarte a cada detalle.</p></div>
+</div>
+<div class="grid">
+<article class="card">
+<a class="img" href="imagenes/virgen-las-lajas/index.html"><img src="imagenes/virgen-las-lajas-card.jpg" alt="Imagen de Nuestra Señora del Rosario de Las Lajas pintada sobre la roca" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Ipiales, Nariño · Colombia</div><h3>Nuestra Señora de Las Lajas</h3>
+<p>Según la tradición, en 1754 la indígena María Mueses y su hija Rosa, sordomuda, se refugiaron de una tormenta junto a las rocas del cañón del río Guáitara. Allí la niña habló por primera vez: «la mestiza me llama». En la piedra apareció la imagen de la Virgen del Rosario con el Niño, venerada desde entonces por miles de peregrinos.</p>
+<a class="btn" href="imagenes/virgen-las-lajas/index.html">ABRIR VISOR · ACERCAR →</a></div></article>
+<article class="card">
+<a class="img" href="imagenes/las-lajas/index.html"><img src="imagenes/las-lajas-card.jpg" alt="Basílica de Las Lajas sobre el cañón del río Guáitara" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Cañón del Guáitara · Colombia</div><h3>Santuario de Las Lajas</h3>
+<p>Para honrar la imagen se levantaron varias capillas a lo largo de los años. El templo actual, de estilo neogótico, se construyó entre 1916 y 1949 sobre un puente que cruza el cañón, de modo que la roca con la imagen de la Virgen forma el fondo del altar mayor.</p>
+<a class="btn" href="imagenes/las-lajas/index.html">ABRIR VISOR · ACERCAR →</a></div></article>
+</div></section>
+<div class="soon">Próximamente: más temas de arte sacro — Cristo, los santos, la Creación.</div>
+</main>
+<footer><a href="index.html">Inicio</a><a href="podcast.html">Podcast</a><a href="mapas-mentales.html">Mapas mentales</a><a href="greek-paradigms.html">Paradigmas griegos</a><p>Hosanna in Excelsis Academia</p></footer>
+<script>
+(()=>{const c=document.getElementById('stars'),x=c.getContext('2d');let s=[],w,h;const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function r(){w=c.width=c.offsetWidth*devicePixelRatio;h=c.height=c.offsetHeight*devicePixelRatio;s=Array.from({length:220},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.4*devicePixelRatio,p:Math.random()*6}))}
+function d(t){x.clearRect(0,0,w,h);for(const a of s){x.globalAlpha=.35+.65*Math.abs(Math.sin(a.p+t/1500));x.fillStyle=a.r>1.2?'#f3dc9c':'#fff';x.beginPath();x.arc(a.x,a.y,a.r,0,7);x.fill()}if(!rm)requestAnimationFrame(d)}
+addEventListener('resize',r);r();requestAnimationFrame(d)})();
+</script></body></html>
