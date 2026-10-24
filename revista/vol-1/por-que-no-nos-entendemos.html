@@ -1,0 +1,325 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>¿Por qué no nos entendemos? · Hosanna in Excelsis — Revista · Vol. 1</title>
+<meta name="description" content="La causa formal de la justificación y la diferencia que cambia toda la conversación">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#050a1c; --navy:#0a1330;
+  --cgold:#d9b25f; --cgold-l:#f3dc9c; --cgold-d:#8f7133;
+  --ivory:#efe8d6; --mute:#a9b0c8;
+  --paper:#faf8f3; --paper-2:#f3efe6;
+  --ink:#14182b; --ink-soft:#4a4f66; --line:rgba(20,24,43,.14);
+  --gold:#a8812c; --gold-soft:#c9a650;
+  --display:'Cinzel',Georgia,serif;
+  --serif:'Cormorant Garamond','Times New Roman',serif;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --greek:'Gentium Plus','Cormorant Garamond','Times New Roman',serif;
+  --col:680px; --max:1160px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:var(--sans);font-weight:300;background:var(--paper);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--cgold);outline-offset:4px}
+.gold-text{background:linear-gradient(120deg,var(--cgold-d),var(--cgold-l) 40%,var(--cgold) 60%,var(--cgold-d));-webkit-background-clip:text;background-clip:text;color:transparent}
+.gr{font-family:var(--greek);font-style:normal}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* MASTHEAD + PROGRESS */
+.mast{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem clamp(1rem,4vw,3rem);
+  background:linear-gradient(#050a1cf2,#050a1cc8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #d9b25f33;color:var(--cgold-l)}
+.mast .brand{display:flex;align-items:center;gap:.7rem;font-family:var(--display);letter-spacing:.14em;font-size:.8rem}
+.mast .brand svg{width:30px;height:30px;flex:none}
+.mast .issue{font-family:var(--display);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--mute);text-align:right}
+.mast .issue b{color:var(--cgold);font-weight:400}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:linear-gradient(90deg,var(--cgold-d),var(--cgold-l));transform:scaleX(var(--p,0));transform-origin:left}
+
+/* COVER */
+.cover{position:relative;overflow:hidden;color:var(--ivory);min-height:calc(100vh - 56px);display:grid;place-items:center;text-align:center;padding:5rem 1.2rem 7rem;
+  background:radial-gradient(ellipse at 50% -10%,#1a2a66 0%,transparent 55%),linear-gradient(180deg,#050a1c 0%,#07102a 60%,#0b1536 100%)}
+.cover .art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;z-index:0;
+  -webkit-mask-image:linear-gradient(#000 55%,transparent 98%);mask-image:linear-gradient(#000 55%,transparent 98%)}
+.cover .shade{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at center,rgba(3,6,18,.65) 0%,rgba(3,6,18,.25) 55%,rgba(3,6,18,0) 80%)}
+#stars{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.cover .in{position:relative;z-index:2;max-width:900px}
+.cover .kicker{font-family:var(--display);font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;color:var(--cgold);margin-bottom:2rem}
+.cover .verbum{margin-bottom:2.8rem}
+.verbum h2{font-family:var(--display);font-weight:500;font-size:clamp(1.15rem,3vw,2.1rem);letter-spacing:.07em;line-height:1.3;filter:drop-shadow(0 0 20px rgba(217,178,95,.4))}
+.verbum .ref{display:block;font-family:var(--serif);color:var(--cgold);letter-spacing:.24em;font-size:1.05rem;margin-top:.7rem}
+.verbum .es{font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,2.1vw,1.4rem);color:#c9c8c0;margin-top:1rem;letter-spacing:.03em;text-shadow:0 1px 14px #050a1c}
+.cover h1{font-family:var(--display);font-weight:600;font-size:clamp(2rem,6vw,4.2rem);line-height:1.12;letter-spacing:.04em;text-shadow:0 0 40px #d9b25f40}
+.cover h1 small{display:block;font-size:.4em;letter-spacing:.3em;font-weight:400;margin-top:1rem;color:var(--cgold-l)}
+.cover .sub{font-family:var(--serif);font-style:italic;font-size:clamp(1.25rem,2.6vw,1.7rem);color:#d6d2c6;margin:1.6rem auto 0;max-width:600px;line-height:1.4}
+.cover .by{margin-top:2.2rem;font-family:var(--display);font-size:.74rem;letter-spacing:.34em;text-transform:uppercase;color:var(--cgold)}
+.cover .by span{display:block;margin-top:.4rem;color:var(--mute);letter-spacing:.24em;font-size:.66rem}
+.cue{position:absolute;left:50%;bottom:5.5rem;z-index:3;transform:translateX(-50%);font-family:var(--display);font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--cgold);animation:cuebob 2.4s ease-in-out infinite}
+.cue::after{content:"";display:block;width:1px;height:26px;margin:.5rem auto 0;background:linear-gradient(var(--cgold),transparent)}
+@keyframes cuebob{50%{transform:translateX(-50%) translateY(5px)}}
+.horizon{position:absolute;left:0;right:0;bottom:0;z-index:2;height:clamp(70px,10vw,120px);overflow:hidden}
+.horizon::before{content:"";position:absolute;left:50%;top:clamp(34px,5vw,60px);width:max(180%,1100px);height:620px;transform:translateX(-50%);border-radius:50%;
+  background:var(--paper);border-top:1px solid var(--cgold-l);
+  box-shadow:0 -2px 14px rgba(243,220,156,.8),0 -14px 60px rgba(217,178,95,.5),inset 0 18px 40px -18px rgba(217,178,95,.35)}
+
+/* TOC / EDITORIAL */
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+.eyebrow{font-family:var(--display);font-size:.72rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.rule{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--gold)}
+.rule::before,.rule::after{content:"";width:64px;height:1px;background:var(--line)}
+.rule svg{width:14px;height:14px}
+.intro{padding:clamp(24px,4vw,48px) 0 clamp(56px,8vw,96px)}
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,96px);align-items:start}
+.intro h2{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4vw,3rem);line-height:1.1;margin:14px 0 18px}
+.intro h2 em{font-style:italic;color:var(--gold);font-weight:400}
+.intro p{color:var(--ink-soft);max-width:520px;margin-bottom:16px}
+.toc{list-style:none;border-top:1px solid var(--line);counter-reset:none}
+.toc li{border-bottom:1px solid var(--line)}
+.toc a{display:flex;gap:20px;align-items:baseline;padding:14px 4px;transition:background .4s,padding .4s}
+.toc a:hover{background:#fff;padding-left:14px}
+.toc b{font-family:var(--serif);font-size:1.6rem;font-weight:500;color:var(--gold);min-width:34px}
+.toc span{font-family:var(--serif);font-size:1.3rem;font-weight:600;line-height:1.2}
+.toc small{margin-left:auto;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft);white-space:nowrap}
+
+/* CHAPTERS */
+.chapter{padding:clamp(48px,8vw,96px) 0}
+.opener{text-align:center;max-width:820px;margin:0 auto clamp(36px,5vw,60px);padding:0 24px}
+.opener .num{display:block;font-family:var(--display);font-weight:400;font-size:clamp(4.5rem,13vw,9rem);line-height:1;letter-spacing:.04em;opacity:.9}
+.opener .eyebrow{display:block;margin:.4rem 0 .8rem}
+.opener h2{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,5vw,3.4rem);line-height:1.1}
+.opener .rule{margin-top:26px}
+.prose{max-width:var(--col);margin:0 auto;padding:0 24px;font-family:var(--serif);font-size:clamp(1.2rem,1.9vw,1.38rem);line-height:1.62;font-weight:400;color:#1d2136}
+.prose p{margin-bottom:1.1em;hyphens:auto}
+.prose h3{font-family:var(--serif);font-weight:600;font-size:clamp(1.55rem,3vw,2rem);line-height:1.2;margin:2.2em 0 .7em;display:flex;gap:.7em;align-items:baseline}
+.prose h3 i{font-style:normal;font-family:var(--display);font-size:.5em;letter-spacing:.2em;color:var(--gold);font-weight:400;flex:none}
+.prose .first::first-letter{font-family:var(--display);font-weight:600;float:left;font-size:4.7em;line-height:.8;padding:.08em .1em 0 0;
+  background:linear-gradient(135deg,var(--cgold-d),var(--cgold) 55%,var(--cgold-l));-webkit-background-clip:text;background-clip:text;color:transparent}
+.prose ul,.prose ol{margin:0 0 1.2em 0;padding-left:1.4em}
+.prose li{margin-bottom:.45em;padding-left:.2em}
+.prose ul.not li::marker{color:var(--gold)}
+.prose ol li::marker{font-family:var(--display);font-size:.8em;color:var(--gold)}
+.prose em{font-style:italic}
+.thesis{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.3;font-weight:500;text-align:center;margin:.4em 0 1.1em;padding:1.1rem 0;border-top:1px solid var(--gold-soft);border-bottom:1px solid var(--gold-soft)}
+.greek-block{font-family:var(--greek);font-size:clamp(1.4rem,3vw,1.9rem);line-height:1.5;text-align:center;margin:1.2em 0 1.6em;padding:1.4rem 1rem;background:var(--paper-2);border:1px solid var(--line)}
+.opts{list-style:none;padding:0!important;border-top:1px solid var(--line)}
+.opts li{padding:.7em 0!important;border-bottom:1px solid var(--line)}
+.opts .gr{color:var(--gold);font-size:1.15em;margin-right:.3em}
+.sc{font-family:var(--display);font-size:.7em;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.note-box{border-left:2px solid var(--gold-soft);padding:.2rem 0 .2rem 1.2rem;margin:1.4em 0;color:var(--ink-soft)}
+.note-box b{font-family:var(--display);font-weight:400;font-size:.62em;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.2em}
+
+/* footnote refs */
+sup.fn{font-family:var(--sans);font-size:.62em;line-height:0;vertical-align:super;margin-left:.1em}
+sup.fn a{color:var(--gold);font-weight:600;padding:0 .12em;border-bottom:1px solid transparent}
+sup.fn a:hover{border-color:var(--gold)}
+:target{animation:none}
+li:target,sup:target a{background:rgba(217,178,95,.22)}
+
+/* PULL QUOTES */
+.pull{max-width:960px;margin:clamp(40px,6vw,72px) auto;padding:0 24px;text-align:center}
+.pull .mark{font-family:var(--serif);font-size:5rem;line-height:.5;color:var(--gold-soft);height:36px}
+.pull blockquote{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.6rem,3.6vw,2.6rem);line-height:1.28}
+.pull cite{display:block;margin-top:20px;font-style:normal;font-family:var(--sans);font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.pull.vulg{max-width:none;margin:0;padding:clamp(64px,10vw,120px) 24px;color:var(--ivory);
+  background:radial-gradient(ellipse at 50% 0%,#1a2a66 0%,transparent 60%),linear-gradient(180deg,#0b1536,#050a1c)}
+.pull.vulg .verbum{max-width:900px;margin:0 auto}
+.pull.vulg .verbum h2{font-size:clamp(1.3rem,3.6vw,2.7rem)}
+
+/* SIDEBAR */
+.side{max-width:880px;margin:clamp(36px,5vw,60px) auto;padding:0 24px}
+.side-in{position:relative;background:linear-gradient(180deg,#0a1330,#050a1c);color:var(--ivory);border:1px solid #d9b25f55;padding:clamp(28px,4vw,48px);box-shadow:0 0 40px rgba(217,178,95,.12)}
+.side-in::before{content:"";position:absolute;inset:6px;border:1px solid #d9b25f22;pointer-events:none}
+.side .eyebrow{color:var(--cgold)}
+.side h4{font-family:var(--display);font-weight:500;font-size:clamp(1.2rem,2.6vw,1.7rem);letter-spacing:.06em;margin:.5rem 0 1.6rem}
+.verbs{display:grid;grid-template-columns:1fr 64px 1fr;align-items:stretch;gap:0}
+.vcard{border:1px solid #d9b25f55;padding:1.4rem 1.2rem;text-align:center;background:rgba(255,255,255,.02)}
+.vcard .w{font-family:var(--greek);font-size:clamp(1.8rem,4.2vw,2.8rem);color:var(--cgold-l);line-height:1.1;text-shadow:0 0 20px rgba(217,178,95,.4)}
+.vcard .m{font-family:var(--sans);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cgold);margin:.6rem 0 1rem}
+.vcard dl{font-family:var(--serif);font-size:1.12rem;line-height:1.35;text-align:left}
+.vcard dt{font-family:var(--display);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);margin-top:.8rem}
+.vcard dd{color:#e2ded0}
+.vflow{display:grid;place-items:center;margin-top:1.4rem;font-family:var(--serif);font-style:italic;font-size:1rem;color:#d6d2c6;text-align:center}
+.vflow .chip{display:inline-block;padding:.25rem .7rem;border:1px solid #d9b25f66;border-radius:20px;color:var(--cgold-l);font-style:normal;font-family:var(--greek)}
+.vflow svg{width:100%;height:56px;display:block}
+.verbs .mid{display:grid;place-items:center;color:var(--cgold-d)}
+.verbs .mid span{font-family:var(--display);font-size:1.6rem;opacity:.7}
+.verbs .mid::before{content:"≠";font-family:var(--serif);font-size:2.6rem;color:var(--cgold)}
+.verbs .mid span{display:none}
+.side .cap{font-family:var(--serif);font-size:1.15rem;margin-top:1.6rem;color:#d6d2c6;font-style:italic;text-align:center}
+.side .alts{margin-top:1.6rem;border-top:1px solid #d9b25f33;padding-top:1.1rem;font-family:var(--serif);font-size:1.1rem;color:#d6d2c6;text-align:center}
+.side .alts .sc{display:block;color:var(--mute);margin-bottom:.4rem;font-size:.58rem}
+.side .alts .gr{color:var(--cgold-l);font-size:1.15em;margin:0 .6rem;white-space:nowrap}
+
+/* WRIGHT quote block */
+.cite-block{max-width:var(--col);margin:1.6em auto;padding:1.6rem 24px 1.6rem 28px;border-left:2px solid var(--gold)}
+.cite-block blockquote{font-family:var(--serif);font-size:clamp(1.25rem,2.2vw,1.5rem);font-style:italic;line-height:1.5}
+.cite-block .orig{margin-top:1rem;font-family:var(--sans);font-size:.88rem;line-height:1.6;color:var(--ink-soft);font-weight:300}
+.cite-block .orig b{display:block;font-family:var(--display);font-weight:400;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.cite-block .src{margin-top:.9rem;font-family:var(--sans);font-size:.8rem;color:var(--ink-soft)}
+
+/* STUDIOSOS cards */
+.scholars{max-width:var(--col);margin:0 auto;padding:0 24px}
+.scholar{border-top:1px solid var(--line);padding:1.2rem 0 .4rem}
+.scholar h4{font-family:var(--serif);font-size:1.5rem;font-weight:600;line-height:1.2}
+.scholar h4 span{display:block;font-family:var(--display);font-weight:400;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
+
+/* OBJECTIONS */
+.obj{max-width:var(--col);margin:0 auto;padding:0 24px}
+.obj .q{font-family:var(--serif);font-size:clamp(1.3rem,2.3vw,1.6rem);font-weight:600;font-style:italic;line-height:1.3;margin:2em 0 .5em;padding-top:1.1rem;border-top:1px solid var(--line);position:relative;padding-left:2.2rem}
+.obj .q::before{content:"❝";position:absolute;left:0;top:1rem;color:var(--gold-soft);font-style:normal;font-size:1.3em}
+.obj .q:first-child{margin-top:0}
+.obj p{font-family:var(--serif);font-size:clamp(1.15rem,1.8vw,1.3rem);line-height:1.6;font-weight:400;margin-bottom:1em}
+
+/* CHECKLIST */
+.check{list-style:none;padding:0!important;border-top:1px solid var(--line)}
+.check li{display:grid;grid-template-columns:2rem 1fr;gap:.8rem;padding:1rem 0!important;margin:0!important;border-bottom:1px solid var(--line);font-size:.92em;line-height:1.5}
+.check .box{font-family:var(--sans);font-size:1.15rem;color:var(--gold);line-height:1.4}
+.check .box.open{color:var(--ink-soft)}
+
+/* order list */
+.order{list-style:none;padding:0!important;counter-reset:o;border-top:1px solid var(--line)}
+.order li{counter-increment:o;display:flex;gap:1.1rem;padding:1rem 0!important;margin:0!important;border-bottom:1px solid var(--line)}
+.order li::before{content:counter(o,upper-roman);font-family:var(--display);color:var(--gold);min-width:2.4rem;font-size:.95rem;padding-top:.3rem}
+
+/* FULL BLEED ILLUSTRATIONS */
+.bleed{position:relative;width:100%;margin:clamp(40px,6vw,80px) 0;background:linear-gradient(180deg,#050a1c,#101c44 60%,#3a3f6e);overflow:hidden;min-height:clamp(220px,46vw,560px);display:grid;align-items:end}
+.bleed img{display:block;width:100%;height:clamp(220px,46vw,560px);object-fit:cover}
+.bleed.missing img{display:none}
+.bleed.missing::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 55%,rgba(243,220,156,.35),transparent 70%)}
+.bleed figcaption{position:absolute;left:0;right:0;bottom:0;padding:3rem 24px 1.1rem;text-align:center;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ivory);background:linear-gradient(transparent,rgba(5,10,28,.78))}
+.bleed figcaption b{font-family:var(--display);font-style:normal;font-weight:400;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--cgold);margin-right:.8em}
+
+/* NOTES + FOOTER */
+.notes{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:clamp(56px,8vw,96px) 0}
+.notes h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,4vw,2.6rem);text-align:center;margin:.6rem 0 2rem}
+.notes ol{max-width:820px;margin:0 auto;padding:0 24px 0 56px;font-size:.9rem;line-height:1.6;color:var(--ink-soft)}
+.notes li{margin-bottom:.8rem;padding-left:.4rem}
+.notes li::marker{font-family:var(--display);color:var(--gold);font-size:.85em}
+.notes li .back{margin-left:.4rem;color:var(--gold);font-size:.9em}
+.author{max-width:var(--col);margin:0 auto;padding:clamp(40px,6vw,72px) 24px 0;display:flex;gap:1.4rem;align-items:center}
+.author svg{width:58px;height:58px;flex:none}
+.author p{font-family:var(--serif);font-size:1.15rem;line-height:1.4;color:var(--ink-soft)}
+.author b{display:block;font-family:var(--display);font-weight:400;font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink)}
+footer{background:linear-gradient(180deg,var(--paper) 0%,#a9a8b8 35%,#101c44 75%,#050a1c 100%);color:var(--ivory);text-align:center;padding:clamp(120px,18vw,220px) 24px 56px}
+footer .verbum{margin-bottom:3rem}
+footer .brand{font-family:var(--display);letter-spacing:.3em;font-size:.8rem;color:var(--cgold-l)}
+footer small{display:block;margin-top:.6rem;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.top{display:inline-block;margin-top:1.8rem;font-family:var(--display);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--cgold);border:1px solid #d9b25f66;padding:.8rem 1.5rem;transition:.35s}
+.top:hover{box-shadow:0 0 24px #d9b25f66}
+
+/* REVEAL */
+.js .reveal{opacity:0;transform:translateY(22px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+
+@media(max-width:860px){
+  .intro-grid{grid-template-columns:1fr}
+  .mast .issue{font-size:.58rem;letter-spacing:.14em}
+}
+@media(max-width:720px){
+  .mast .brand span{display:none}
+  .wrap{padding:0 20px}
+  .verbs{grid-template-columns:1fr;gap:.4rem}
+  .verbs .mid{height:44px}
+  .prose .first::first-letter{font-size:4em}
+  .toc small{display:none}
+  .prose h3{flex-direction:column;gap:.2em}
+  .cover{padding-bottom:6rem}
+  .cue{bottom:4.5rem}
+  .notes ol{padding-left:44px}
+  .author{flex-direction:column;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition:none!important}
+  .js .reveal{opacity:1;transform:none}
+  .cue{transform:translateX(-50%)}
+}
+.by span{display:block;margin-top:.6em}.mast nav{display:flex;gap:1.2rem}.mast nav a{font-family:var(--display);font-size:.66rem;letter-spacing:.22em;color:var(--mute)}.mast nav a:hover{color:var(--cgold-l)}
+.viz{max-width:820px;margin:2.4em auto;font-family:var(--sans)}
+.viz svg{width:100%;height:auto;display:block;border-radius:4px}
+.viz figcaption,.plate figcaption{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--ink-soft);text-align:center;margin-top:.8em}
+.prose .viz{margin-left:-6vw;margin-right:-6vw}
+@media(max-width:760px){.prose .viz{margin-left:0;margin-right:0}}
+.tribunal{background:var(--paper-2);border:1px solid var(--line);padding:28px;border-radius:4px}
+.tb-shared ul{list-style:none;padding:0!important;display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 22px!important}
+.tb-shared li{flex:1 1 180px;background:#fff;border:1px solid var(--line);padding:10px 14px!important;font-family:var(--serif);font-size:1.05rem}
+.tb-shared b{display:block;font-family:var(--display);font-weight:400;font-size:.62rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}
+.tb-cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.tb{background:var(--night);color:var(--ivory);padding:22px;border:1px solid #d9b25f55;text-align:center}
+.tb-fig svg{width:96px;margin:0 auto}.tb h4{font-family:var(--display);font-weight:400;letter-spacing:.18em;color:var(--cgold-l);margin:.6em 0 .3em;font-size:.9rem}
+.tb p{font-family:var(--serif);font-size:1.08rem;line-height:1.5;margin:0!important;color:#d6d2c6}.tb b{color:var(--cgold-l);font-weight:500}
+@media(max-width:600px){.tb-cols{grid-template-columns:1fr}}
+.chart{background:radial-gradient(ellipse at 50% 40%,#16224d,#0a1330 50%,#050a1c);padding:28px 20px;border-radius:4px;text-align:center;color:var(--ivory)}
+.chart svg{max-width:560px;margin:0 auto}
+.chart .orb{fill:none;stroke:#d9b25f;stroke-opacity:.22;stroke-dasharray:2 6}.chart .ray{stroke:#d9b25f;stroke-opacity:.5}
+.chart .core{fill:#d9b25f;fill-opacity:.15;stroke:#f3dc9c;filter:drop-shadow(0 0 12px #d9b25f)}.chart .ct{font-family:Cinzel,serif;font-size:13px;fill:#f3dc9c;letter-spacing:2px}
+.chart .node{cursor:pointer;outline:none}.chart .node circle{fill:#0a1330;stroke:#d9b25f;stroke-width:1.5;transition:fill .3s}
+.chart .node text{font-family:Cinzel,serif;font-size:13px;fill:#efe8d6;letter-spacing:2px}
+.chart .node.formal circle{fill:#d9b25f;fill-opacity:.35;stroke:#f3dc9c;stroke-width:2.5;filter:drop-shadow(0 0 10px #f3dc9c)}
+.chart .node:hover circle,.chart .node:focus circle,.chart .node.on circle{fill:#d9b25f}
+.chart-card{max-width:520px;margin:6px auto 14px;min-height:84px;border:1px solid #d9b25f66;padding:14px 18px;background:#050a1ccc}
+.chart-card b{display:block;font-family:var(--display);font-weight:400;letter-spacing:.2em;color:var(--cgold-l);font-size:.8rem}
+.chart-card span{font-family:var(--serif);font-size:1.15rem;color:#d6d2c6}
+.chart-table{width:100%;max-width:560px;margin:0 auto;border-collapse:collapse;font-family:var(--serif);font-size:1rem;text-align:left}
+.chart-table th{font-family:var(--display);font-weight:400;font-size:.7rem;letter-spacing:.16em;color:var(--cgold);padding:6px 10px;border-top:1px solid #d9b25f33;white-space:nowrap}
+.chart-table td{color:#d6d2c6;padding:6px 10px;border-top:1px solid #d9b25f33}.chart-table tr.on td,.chart-table tr.on th{background:#d9b25f22}
+.chart figcaption{color:var(--mute)}
+.vs{width:100%;border-collapse:collapse;font-family:var(--serif);font-size:1.1rem;background:#fff;border:1px solid var(--line)}
+.vs th,.vs td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.vs thead th{background:var(--night);color:var(--cgold-l);font-family:var(--display);font-weight:400;letter-spacing:.14em;font-size:.78rem}
+.vs tbody th{font-family:var(--display);font-weight:400;font-size:.7rem;letter-spacing:.16em;color:var(--gold);text-transform:uppercase;width:22%}
+.plate{margin:0;padding:0}.plate img{display:block;width:100%;max-height:70vh;object-fit:cover}
+.endnotes{max-width:var(--col);margin:0 auto;padding:60px 24px 100px;font-family:var(--serif);font-size:1.05rem;color:var(--ink-soft)}
+.endnotes h2{font-family:var(--display);font-weight:400;letter-spacing:.2em;font-size:1.2rem;color:var(--ink);margin-bottom:1em}
+.endnotes ol{padding-left:1.6em}.endnotes li{margin-bottom:.6em}.endnotes li a{color:var(--gold);margin-left:.3em}
+.endnotes li:target{background:rgba(217,178,95,.22)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity 1s,transform 1s}.reveal.in{opacity:1;transform:none}
+.foot{background:var(--night);color:var(--mute);text-align:center;padding:40px 5vw;font-size:13px;font-family:var(--sans)}.foot a{color:var(--cgold);margin:0 10px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+@media(max-width:640px){.mast .issue{display:none}.mast .brand{font-size:.66rem;white-space:nowrap}.mast nav{gap:.8rem}}
+</style></head><body>
+<header class="mast" role="banner"><a class="brand" href="../../index.html"><svg viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="13" fill="none" stroke="#d9b25f"/><path d="M15 6v18M9 12h12" stroke="#f3dc9c" stroke-width="1.5"/></svg>HOSANNA IN EXCELSIS</a>
+<nav aria-label="Revista"><a href="../index.html">REVISTA</a><a href="../../index.html#recursos">RECURSOS</a></nav>
+<div class="issue">Revista de Apologética · <b>Vol. 1</b></div>
+<div class="progress" id="progress" role="progressbar" aria-label="Progreso de lectura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></header>
+<section class="cover"><img class="art" src="img/cover.jpg" alt="" aria-hidden="true"><div class="shade"></div><canvas id="stars" aria-hidden="true"></canvas>
+<div class="in"><div class="kicker">Hosanna in Excelsis — Revista · Vol. 1 · Apologética</div>
+<div class="verbum"><h2>IUSTITIA DEI · CAUSA FORMALIS</h2><span class="ref">LA JUSTIFICACIÓN</span></div>
+<h1>¿Por qué no nos entendemos?</h1><p class="sub">La causa formal de la justificación y la diferencia que cambia toda la conversación</p><div class="by">Por Hugo Delgado</div></div>
+<div class="cue" aria-hidden="true">Leer</div><div class="horizon" aria-hidden="true"></div></section>
+<section class="intro"><div class="wrap"><div class="intro-grid"><div class="prose" style="padding:0"><p class="first">Cada vez que hago un programa sobre la justificación en mi canal, o cuando debato el tema, aparece la misma objeción. La plantean protestantes y también críticos de la Iglesia: «¿Para qué va usted en contra de su propio Magisterio? Su Iglesia ya firmó la Declaración conjunta. Hoy los católicos aceptan la justificación protestante».</p><p class="">Entiendo por qué suena convincente. Si católicos y luteranos firmaron un documento común sobre la justificación, parece que el debate terminó y que seguir discutiendo es desobedecer al Magisterio.</p><p class="">En este artículo voy a mostrar el problema de esa afirmación. No se trata de negar los acuerdos reales, que los hay. Se trata de señalar lo que la objeción pasa por alto: se puede coincidir en mucho y seguir sin responder la pregunta decisiva.</p><p class="">Esa pregunta es sencilla: ¿qué es lo que nos hace justos ante Dios? En mi experiencia, y en la de muchos teólogos de oficio, la mejor manera de responderla es con una herramienta de la filosofía: la causa formal. No es una elección arbitraria. Es la misma herramienta que usó la Iglesia en el Concilio de Trento al exponer la doctrina católica de la justificación y rechazar la protestante.</p><p class="">Detrás de esa decisión hay una tradición intelectual de siglos, que en santo Tomás de Aquino alcanza una de sus cumbres. Trento encontró en el lenguaje de las causas la forma más precisa de decir qué es la justificación y de mostrar en qué se diferencia una doctrina de la otra. Para entender esa herramienta hay que dar un paso atrás.</p></div>
+<div><div class="eyebrow">En este artículo</div><ol class="toc"><li><a href="#cap-1"><b>I</b><span>Conocer algo es conocer sus causas</span></a></li><li><a href="#cap-2"><b>II</b><span>Un mismo hecho, cuatro respuestas</span></a></li><li><a href="#cap-3"><b>III</b><span>¿Dónde está la diferencia?</span></a></li><li><a href="#cap-4"><b>IV</b><span>Trento habló en este lenguaje</span></a></li><li><a href="#cap-5"><b>V</b><span>La posición luterana y reformada, sin caricaturas</span></a></li><li><a href="#cap-6"><b>VI</b><span>La respuesta de Trento</span></a></li><li><a href="#cap-7"><b>VII</b><span>En nosotros, pero no de nosotros</span></a></li><li><a href="#cap-8"><b>VIII</b><span>El amor es primero un don</span></a></li><li><a href="#cap-9"><b>IX</b><span>De extraños a hijos</span></a></li><li><a href="#cap-10"><b>X</b><span>Las obras no compiten con Cristo</span></a></li><li><a href="#cap-11"><b>XI</b><span>Lo que hemos visto, y lo que falta</span></a></li><li><a href="#notas"><b>✠</b><span>Notas</span></a></li></ol></div></div></div></section>
+<section class="chapter" id="cap-1"><header class="opener reveal"><span class="num gold-text">I</span><h2>Conocer algo es conocer sus causas</h2><div class="rule"><svg viewBox="0 0 14 14"><path d="M7 0v14M0 7h14" stroke="currentColor"/></svg></div></header><div class="prose"><p class="first">Aristóteles abre la Metafísica con una idea sencilla: creemos conocer una cosa cuando conocemos sus causas. Y enseguida añade que la palabra «causa» se dice de cuatro maneras.<sup class="fn" id="ref-1"><a href="#nota-1" aria-label="Nota 1">1</a></sup> Preguntar «¿por qué?» a fondo, entonces, es hacer cuatro preguntas distintas. Quien responde solo una sabe una parte.</p><p>Pensemos en una casa:</p><ul class="not"><li><span class="sc">Causa material</span> ¿de qué está hecha? De madera, piedra y vidrio.</li><li><span class="sc">Causa formal</span> ¿qué la hace ser lo que es? Su diseño, su estructura.</li><li><span class="sc">Causa eficiente</span> ¿quién la hizo? Los constructores.</li><li><span class="sc">Causa final</span> ¿para qué existe? Para ser una vivienda.<sup class="fn" id="ref-2"><a href="#nota-2" aria-label="Nota 2">2</a></sup></li></ul><figure class="viz" aria-labelledby="cap-house"><svg viewBox="0 0 720 420" role="img" aria-labelledby="t-house"><title id="t-house">Las cuatro causas de una casa</title>
+<defs><radialGradient id="gh" cx="50%" cy="45%"><stop offset="0" stop-color="#f3dc9c" stop-opacity=".35"/><stop offset="1" stop-color="#0a1330" stop-opacity="0"/></radialGradient></defs>
+<rect width="720" height="420" fill="#0a1330"/><circle cx="360" cy="215" r="170" fill="url(#gh)"/>
+<g stroke="#d9b25f" fill="none" stroke-width="2"><path d="M290 250 L360 185 L430 250 Z"/><rect x="300" y="250" width="120" height="80"/><rect x="348" y="285" width="24" height="45"/><rect x="314" y="265" width="22" height="20"/><rect x="384" y="265" width="22" height="20"/></g>
+<g stroke="#d9b25f" stroke-opacity=".45" stroke-dasharray="3 5"><line x1="300" y1="250" x2="170" y2="120"/><line x1="420" y1="250" x2="550" y2="120"/><line x1="300" y1="330" x2="170" y2="350"/><line x1="420" y1="330" x2="550" y2="350"/></g>
+<g font-family="Cinzel,serif" fill="#f3dc9c" font-size="15" letter-spacing="2"><text x="40" y="80">CAUSA MATERIAL</text><text x="530" y="80">CAUSA FORMAL</text><text x="40" y="350">CAUSA EFICIENTE</text><text x="530" y="350">CAUSA FINAL</text></g>
+<g font-family="Cormorant Garamond,serif" fill="#efe8d6" font-size="17" font-style="italic"><text x="40" y="104">¿De qué está hecha?</text><text x="40" y="124">madera, piedra y vidrio</text><text x="530" y="104">¿Qué la hace ser lo que es?</text><text x="530" y="124">su diseño, su estructura</text><text x="40" y="374">¿Quién la hizo?</text><text x="40" y="394">los constructores</text><text x="530" y="374">¿Para qué existe?</text><text x="530" y="394">para ser una vivienda</text></g>
+<g font-family="Inter,sans-serif" font-size="11" fill="#a9b0c8" letter-spacing="1.5" text-anchor="middle"><text x="360" y="40">INTRÍNSECAS: MATERIA Y FORMA · EXTRÍNSECAS: AGENTE Y FIN</text></g></svg>
+<figcaption id="cap-house">Las cuatro causas con el ejemplo de la casa, según el texto. Materia y forma están dentro de la cosa; el agente y el fin actúan desde fuera.</figcaption></figure><p>La causa formal merece una definición más precisa. Es el acto o la perfección interna por la que una cosa es lo que es. El alma hace que un hombre sea hombre; el color, que sea blanco; la virtud, que sea bueno.<sup class="fn" id="ref-3"><a href="#nota-3" aria-label="Nota 3">3</a></sup> Guarde ese último ejemplo, porque ahí vive la justificación.</p><p>Materia y forma son causas intrínsecas: están dentro de la cosa. El agente y el fin son extrínsecos: actúan desde fuera.<sup class="fn" id="ref-4"><a href="#nota-4" aria-label="Nota 4">4</a></sup> Y las cuatro no son una lista suelta, sino que van ordenadas. El fin mueve al agente, el agente produce la forma y la forma organiza la materia. Por eso a la causa final se le llama «causa de las causas».<sup class="fn" id="ref-5"><a href="#nota-5" aria-label="Nota 5">5</a></sup></p></div></section><section class="chapter" id="cap-2"><header class="opener reveal"><span class="num gold-text">II</span><h2>Un mismo hecho, cuatro respuestas</h2><div class="rule"><svg viewBox="0 0 14 14"><path d="M7 0v14M0 7h14" stroke="currentColor"/></svg></div></header><div class="prose"><p class="first">Imaginemos que se cae el techo de un granero. ¿Por qué se cayó? Hay cuatro respuestas correctas y completamente distintas:</p><ul class="not"><li>La madera era demasiado delgada (causa material).</li><li>El diseño era demasiado ancho para las vigas (causa formal).</li><li>Una tormenta de nieve lo sobrecargó (causa eficiente).</li><li>El granjero lo saboteó para cobrar el seguro (causa final).<sup class="fn" id="ref-2-1"><a href="#nota-2" aria-label="Nota 2">2</a></sup></li></ul><p>Es el mismo hecho, explicado de cuatro maneras. Quien solo hace una pregunta se pierde tres cuartas partes de la realidad. Y el pensamiento moderno suele quedarse justamente con una, la causa eficiente, y olvida las demás.<sup class="fn" id="ref-2-2"><a href="#nota-2" aria-label="Nota 2">2</a></sup></p><p>Una aclaración: las cuatro causas explican todo lo que es causado. Dios, que no tiene causa, es la excepción.</p></div></section><section class="chapter" id="cap-3"><header class="opener reveal"><span class="num gold-text">III</span><h2>¿Dónde está la diferencia?</h2><div class="rule"><svg viewBox="0 0 14 14"><path d="M7 0v14M0 7h14" stroke="currentColor"/></svg></div></header><div class="prose"><p class="first">Pensemos en una conversación típica. Cuando un católico y un protestante hablan de la justificación, muchas veces terminan con la sensación de que dicen lo mismo.</p><p>El protestante dice: «Yo también creo que las obras importan. Una fe verdadera siempre da fruto».</p><p>El católico dice: «Yo también creo que en la justificación Dios perdona los pecados. Hay un aspecto que se parece a un juicio: Dios nos absuelve».</p><p>Entonces, ¿cuál es la diferencia? Si los dos hablan de perdón y los dos hablan de obras, parece que no hay ninguna. Aquí es donde las cuatro causas nos ayudan.</p><h3><i>PASO 1</i>dos cosas pueden parecerse mucho</h3><p>Dos cosas pueden tener casi todo en común y, aun así, ser distintas. Pueden compartir tres causas y diferir en una sola. Esa única diferencia basta para que sean cosas diferentes.</p><h3><i>PASO 2</i>un ejemplo en un tribunal</h3><p>Imaginemos a dos hombres que salen del mismo tribunal. A los dos el juez les dice: «No culpable». Los dos salen libres.</p><p>Hagamos las preguntas de las causas:</p><ul class="not"><li>¿Quién dio la sentencia? El mismo juez. La causa eficiente es igual.</li><li>¿Para qué? Para que queden libres. La causa final es igual.</li><li>¿Qué dice la sentencia? «No culpable». Las palabras son iguales.</li></ul><p>Hasta aquí no vemos ninguna diferencia. Ahora hagamos la última pregunta.</p><h3><i>PASO 3</i>la pregunta que cambia todo</h3><p>¿Qué hace que cada uno sea «no culpable»?</p><p>El primer hombre es realmente inocente. La justicia está en él. El juez solo reconoce lo que ya es verdad.</p><p>El segundo hombre no se volvió inocente. La sentencia lo declara justo, pero esa justicia está en la declaración del juez, fuera de él.</p><p>Esta es la causa formal. Desde fuera, los dos casos se ven iguales. Por dentro, son completamente distintos.</p><figure class="viz tribunal" aria-labelledby="cap-trib"><div class="tb-shared"><div class="eyebrow">Lo que comparten</div><ul><li><b>Causa eficiente</b> El mismo juez</li><li><b>Causa final</b> Para que queden libres</li><li><b>La sentencia</b> «No culpable»</li></ul></div>
+<div class="tb-cols"><div class="tb"><div class="tb-fig"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="44" fill="none" stroke="#d9b25f" stroke-width="1.5"/><circle cx="60" cy="60" r="20" fill="#d9b25f"/><circle cx="60" cy="60" r="32" fill="#d9b25f" opacity=".25"/></svg></div><h4>Primer hombre</h4><p>Es realmente inocente. <b>La justicia está en él.</b> El juez solo reconoce lo que ya es verdad.</p></div>
+<div class="tb"><div class="tb-fig"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="44" fill="none" stroke="#d9b25f" stroke-width="1.5"/><circle cx="60" cy="60" r="20" fill="none" stroke="#a9b0c8" stroke-dasharray="3 4"/><circle cx="104" cy="22" r="10" fill="#d9b25f"/><path d="M96 30 L74 48" stroke="#d9b25f" stroke-dasharray="2 3"/></svg></div><h4>Segundo hombre</h4><p>No se volvió inocente. La sentencia lo declara justo, pero <b>esa justicia está en la declaración del juez, fuera de él.</b></p></div></div>
+<figcaption id="cap-trib">«Desde fuera, los dos casos se ven iguales. Por dentro, son completamente distintos.» La diferencia es la causa formal.</figcaption></figure><h3><i>PASO 4</i>llevarlo a la justificación</h3><p>Lo mismo pasa entre católicos y protestantes. Los dos decimos que Dios justifica. Los dos decimos que Cristo lo mereció. Los dos decimos que el creyente da buenas obras.</p><p>La diferencia está en una sola pregunta: la justicia que nos hace justos ante Dios, ¿está fuera de nosotros o dentro de nosotros?</p><p>Para la doctrina luterana y reformada, está fuera: es la justicia de Cristo que Dios nos atribuye.</p><p>Para la fe católica, Dios pone su justicia dentro de nosotros y nos transforma de verdad.</p><p>Esa es la causa formal de la justificación. Ahí está la diferencia que en la conversación no aparecía.</p></div></section><section class="chapter" id="cap-4"><header class="opener reveal"><span class="num gold-text">IV</span><h2>Trento habló en este lenguaje</h2><div class="rule"><svg viewBox="0 0 14 14"><path d="M7 0v14M0 7h14" stroke="currentColor"/></svg></div></header><div class="prose"><p class="first">No es un esquema que traigamos de fuera. El Concilio de Trento describió la justificación en estos mismos términos. En la Sesión VI, capítulo 7, nombra cada causa:<sup class="fn" id="ref-6"><a href="#nota-6" aria-label="Nota 6">6</a></sup></p><ul class="not"><li><span class="sc">Final</span> la gloria de Dios y de Cristo, y la vida eterna.</li><li><span class="sc">Eficiente</span> Dios misericordioso.</li><li><span class="sc">Meritoria</span> Jesucristo, por su pasión.</li><li><span class="sc">Instrumental</span> el bautismo.</li><li><span class="sc">Formal, la única</span> «la justicia de Dios, no aquella por la que Él es justo, sino aquella por la que nos hace justos».</li></ul><figure class="viz chart" aria-labelledby="cap-chart"><div class="eyebrow" style="color:var(--cgold)">Concilio de Trento · Sesión VI, cap. 7</div>
+<svg viewBox="0 0 600 560" role="img" aria-labelledby="t-chart"><title id="t-chart">Las causas de la justificación según Trento</title>
+<circle cx="300" cy="270" r="190" class="orb"/><circle cx="300" cy="270" r="120" class="orb"/><circle cx="300" cy="270" r="250" class="orb"/><line x1="300" y1="270" x2="300" y2="80" class="ray"/><g class="node" tabindex="0" role="button" data-k="final" aria-label="Causa Final"><circle cx="300" cy="80" r="24"/><text x="300" y="40" text-anchor="middle">FINAL</text></g><line x1="300" y1="270" x2="481" y2="211" class="ray"/><g class="node" tabindex="0" role="button" data-k="eficiente" aria-label="Causa Eficiente"><circle cx="481" cy="211" r="24"/><text x="481" y="171" text-anchor="middle">EFICIENTE</text></g><line x1="300" y1="270" x2="412" y2="424" class="ray"/><g class="node" tabindex="0" role="button" data-k="meritoria" aria-label="Causa Meritoria"><circle cx="412" cy="424" r="24"/><text x="412" y="476" text-anchor="middle">MERITORIA</text></g><line x1="300" y1="270" x2="188" y2="424" class="ray"/><g class="node" tabindex="0" role="button" data-k="instrumental" aria-label="Causa Instrumental"><circle cx="188" cy="424" r="24"/><text x="188" y="476" text-anchor="middle">INSTRUMENTAL</text></g><line x1="300" y1="270" x2="119" y2="211" class="ray"/><g class="node formal" tabindex="0" role="button" data-k="formal" aria-label="Causa Formal, la única"><circle cx="119" cy="211" r="30"/><text x="119" y="171" text-anchor="middle">FORMAL</text></g>
+<circle cx="300" cy="270" r="54" class="core"/><text x="300" y="265" text-anchor="middle" class="ct">LA</text><text x="300" y="285" text-anchor="middle" class="ct">JUSTIFICACIÓN</text></svg>
+<div class="chart-card" id="chartCard" aria-live="polite"><b>Toque una causa</b><span>Cada nodo muestra lo que el Concilio nombra, con las palabras del texto.</span></div>
+<table class="chart-table"><caption class="visually-hidden">Causas según Trento</caption><tr data-k="final"><th>Final</th><td>la gloria de Dios y de Cristo, y la vida eterna.</td></tr><tr data-k="eficiente"><th>Eficiente</th><td>Dios misericordioso.</td></tr><tr data-k="meritoria"><th>Meritoria</th><td>Jesucristo, por su pasión.</td></tr><tr data-k="instrumental"><th>Instrumental</th><td>el bautismo.</td></tr><tr data-k="formal"><th>Formal, la única</th><td>«la justicia de Dios, no aquella por la que Él es justo, sino aquella por la que nos hace justos».</td></tr></table>
+<figcaption id="cap-chart">Las cinco causas que nombra Trento, tal como las enumera el artículo. La formal, «la única», es donde está la diferencia.</figcaption></figure><aside class="pull"><div class="mark" aria-hidden="true">“</div><blockquote>la justicia de Dios, no aquella por la que Él es justo, sino aquella por la que nos hace justos</blockquote><cite>Concilio de Trento · Sesión VI, cap. 7</cite></aside><p>Christopher Malloy lo resume así: Dios trino es la causa eficiente; Cristo, la meritoria; y la gracia que inhiere en el alma, la formal.<sup class="fn" id="ref-7"><a href="#nota-7" aria-label="Nota 7">7</a></sup> En las primeras, católicos y luteranos coincidimos. Lo que no compartimos, dice Malloy, es «la naturaleza misma del acontecimiento de la justificación, su causa formal».<sup class="fn" id="ref-8"><a href="#nota-8" aria-label="Nota 8">8</a></sup> Por eso los acuerdos ecuménicos, como la Declaración conjunta de 1999, pueden avanzar mucho sin resolver la cuestión de fondo.</p><p>Un lector protestante atento podría responder que la justicia de Cristo es también una causa formal, solo que externa. Aquí ayuda otra distinción. Una cosa es la causa formal intrínseca, que está en el efecto. Otra, la causa ejemplar, el modelo que permanece fuera de él.<sup class="fn" id="ref-3-1"><a href="#nota-3" aria-label="Nota 3">3</a></sup> Una «forma» que se queda fuera no hace que algo sea lo que es. Solo hace que se le considere así.</p><p>Con esto en mente, veamos qué enseñan luteranos y calvinistas.</p></div></section><section class="chapter" id="cap-5"><header class="opener reveal"><span class="num gold-text">V</span><h2>La posición luterana y reformada, sin caricaturas</h2><div class="rule"><svg viewBox="0 0 14 14"><path d="M7 0v14M0 7h14" stroke="currentColor"/></svg></div></header><div class="prose"><p class="first">Para la tradición luterana y la reformada, lo que fundamenta nuestra aceptación ante Dios es la justicia de Cristo imputada al creyente. Es una justicia ajena, externa: por ella somos considerados justos. Alister McGrath, en Iustitia Dei, señala la distinción entre justificación y santificación como uno de los rasgos que separan al protestantismo de la tradición anterior.<sup class="fn" id="ref-9"><a href="#nota-9" aria-label="Nota 9">9</a></sup></p><p>La Fórmula de Concordia, uno de los textos confesionales luteranos, lo dice sin rodeos: ni la renovación, ni la santificación, ni las virtudes, ni otras buenas obras son nuestra justicia ante Dios, ni deben ponerse como forma, parte o causa de nuestra justificación.<sup class="fn" id="ref-10"><a href="#nota-10" aria-label="Nota 10">10</a></sup> Aquí «imputar» significa declarar justo al injusto, no hacerlo justo por dentro.</p><p>Anthony Lane, un teólogo evangélico, lo resume en una frase que vale para ambas tradiciones: «La justificación trata de que la actitud de Dios hacia mí cambia; la santificación, de que Dios me cambia a mí».<sup class="fn" id="ref-11"><a href="#nota-11" aria-label="Nota 11">11</a></sup></p><aside class="pull"><div class="mark" aria-hidden="true">“</div><blockquote>La justificación trata de que la actitud de Dios hacia mí cambia; la santificación, de que Dios me cambia a mí</blockquote><cite>Anthony N. S. Lane</cite></aside><p>Conviene evitar una caricatura común. Luteranos y reformados no niegan que Dios transforme al cristiano. Distinguen, sin separar, justificación y santificación. Solo la santificación crece; la justificación permanece perfecta y se conserva por la sola fe.<sup class="fn" id="ref-12"><a href="#nota-12" aria-label="Nota 12">12</a></sup> La discusión, entonces, es si esa transformación forma parte de aquello por lo que somos justificados o si es solo su consecuencia.</p></div></section><section class="chapter" id="cap-6"><header class="opener reveal"><span class="num gold-text">VI</span><h2>La respuesta de Trento</h2><div class="rule"><svg viewBox="0 0 14 14"><path d="M7 0v14M0 7h14" stroke="currentColor"/></svg></div></header><div class="prose"><p class="first">Para Trento, la justificación incluye el perdón de los pecados y la renovación del hombre interior. Dios no se limita a cambiar nuestra situación ante un tribunal. Nos comunica una justicia que nos transforma: de injustos pasamos a ser justos; de enemigos, amigos.</p><p>Por eso el Concilio, después de nombrar la justicia por la que Dios nos hace justos, añade que no solo somos considerados justos, sino que verdaderamente nos llamamos justos y lo somos.<sup class="fn" id="ref-13"><a href="#nota-13" aria-label="Nota 13">13</a></sup></p><p>Perdón y renovación no son dos piezas que se suman. Como explica Malloy, esta participación en la justicia de Dios, que inhiere en nosotros, es la única causa formal, tanto del perdón como de la renovación.<sup class="fn" id="ref-14"><a href="#nota-14" aria-label="Nota 14">14</a></sup></p></div></section><section class="chapter" id="cap-7"><header class="opener reveal"><span class="num gold-text">VII</span><h2>En nosotros, pero no de nosotros</h2><div class="rule"><svg viewBox="0 0 14 14"><path d="M7 0v14M0 7h14" stroke="currentColor"/></svg></div></header><div class="prose"><p class="first">Aquí hay que hablar con precisión. Lo que recibimos es una participación en la justicia de Dios, merecida por Cristo. No fabricamos una justicia propia, independiente de Él.</p><p>Que la justicia esté en nosotros no significa que venga de nosotros. Confundir ambas cosas explica por qué tantas conversaciones acaban en acusaciones de pelagianismo.</p><aside class="pull"><div class="mark" aria-hidden="true">“</div><blockquote>Que la justicia esté en nosotros no significa que venga de nosotros.</blockquote><cite>Hugo Delgado</cite></aside><p>La ironía es que la fórmula de Trento viene de san Agustín, y Agustín la usó precisamente contra los pelagianos.<sup class="fn" id="ref-15"><a href="#nota-15" aria-label="Nota 15">15</a></sup> No la usó para explicar una justicia meramente declarada. La usó para mostrar que esa justicia se nos da gratuitamente y que Dios es quien actúa. Por eso Trento, igual que Lutero, rechaza cualquier forma de pelagianismo.<sup class="fn" id="ref-16"><a href="#nota-16" aria-label="Nota 16">16</a></sup></p><p>Esto no elimina nuestra respuesta. Trento enseña que el pecador coopera de verdad con la gracia que lo prepara, aunque esa cooperación no merece la justificación. La iniciativa y el don son enteramente de Dios. Nuestro sí también es fruto de su gracia.</p><p>Una analogía ayuda. Cuando Dios dice «Hágase la luz», su palabra produce lo que declara. Su acción justificadora tampoco tiene por qué quedarse en una declaración exterior: Dios puede hacer justo al pecador. El cambio no depende de que el hombre se reconstruya a sí mismo. Depende de la eficacia de la palabra y de la gracia de Dios.</p></div></section><section class="chapter" id="cap-8"><header class="opener reveal"><span class="num gold-text">VIII</span><h2>El amor es primero un don</h2><div class="rule"><svg viewBox="0 0 14 14"><path d="M7 0v14M0 7h14" stroke="currentColor"/></svg></div></header><div class="prose"><p class="first">Por eso no basta con decir: «Nosotros también creemos en el amor y en las buenas obras». Cuando hablo de la caridad en la justificación, no empiezo contando obras. Hablo del amor que el Espíritu Santo derrama en nuestros corazones.</p><p>Al explicar Trento en mi programa sobre Clemente de Roma, subrayé que recibimos fe, esperanza y caridad, y que esa unión nos hace miembros vivos de Cristo. El amor primero transforma. Después se nota en la vida.</p><p>El bautismo de un niño lo muestra con claridad. Un bebé bautizado no ha acumulado ninguna obra meritoria. Aun así, el Catecismo enseña que en el bautismo la Santísima Trinidad da al bautizado la gracia santificante, «la gracia de la justificación».<sup class="fn" id="ref-17"><a href="#nota-17" aria-label="Nota 17">17</a></sup> El niño no presenta una lista de acciones para cobrar una recompensa: recibe una vida que no podía darse a sí mismo. Hablar de justicia interior, entonces, no es defender una salvación comprada con esfuerzo humano.</p></div></section><section class="chapter" id="cap-9"><header class="opener reveal"><span class="num gold-text">IX</span><h2>De extraños a hijos</h2><div class="rule"><svg viewBox="0 0 14 14"><path d="M7 0v14M0 7h14" stroke="currentColor"/></svg></div></header><div class="prose"><p class="first">La filiación divina muestra lo profundo del cambio. No se trata solo de librarnos de un castigo. Pasamos de extraños a hijos, de enemigos a amigos.</p><p>Cuando Pablo habla de una nueva creación y de llegar a ser justicia de Dios en Cristo, veo ese mismo horizonte: algo cambia de verdad en nuestro ser. La salvación nos mete en una relación viva con Dios, sostenida por Cristo presente y actuando en nosotros.</p></div></section><figure class="plate"><img src="img/vid.jpg" alt="Ilustración: una vid con racimos bajo un cielo estrellado" loading="lazy" width="1600" height="900"><figcaption>«La rama da fruto porque sigue unida a la vid.»</figcaption></figure><section class="chapter" id="cap-10"><header class="opener reveal"><span class="num gold-text">X</span><h2>Las obras no compiten con Cristo</h2><div class="rule"><svg viewBox="0 0 14 14"><path d="M7 0v14M0 7h14" stroke="currentColor"/></svg></div></header><div class="prose"><p class="first">Esto cambia también cómo entendemos las obras. Si Cristo vive en nosotros, lo que hacemos en su gracia no compite con Él.</p><p>La imagen de la vid y los sarmientos lo deja claro. La rama da fruto porque sigue unida a la vid; separada, no puede hacer nada. Malloy lo dice así: el sarmiento nunca se sostiene a sí mismo ni se convierte en una vid independiente, pero es bueno en sí y da fruto que permanece en la medida en que vive de la vid.<sup class="fn" id="ref-18"><a href="#nota-18" aria-label="Nota 18">18</a></sup> La necesidad de dar fruto y nuestra dependencia total de Cristo son parte del mismo argumento. No hay que elegir entre una y otra.</p><p>Por eso la causa formal toca toda la vida cristiana. Si la justicia recibida nos renueva, podemos crecer en ella, cooperar con la gracia y vivir una santidad que de verdad agrada a Dios. Al comentar el Catecismo, en el número 2011, insistí en que la caridad de Cristo en nosotros es la fuente de nuestros méritos. Lo que Dios corona no es una independencia ganada frente a Él. Son los frutos de su propia gracia, acogida en nuestra vida.</p></div></section><section class="chapter" id="cap-11"><header class="opener reveal"><span class="num gold-text">XI</span><h2>Lo que hemos visto, y lo que falta</h2><div class="rule"><svg viewBox="0 0 14 14"><path d="M7 0v14M0 7h14" stroke="currentColor"/></svg></div></header><div class="prose"><p class="first">En este artículo no hemos demostrado que la posición católica sea la verdadera ni que la protestante sea falsa. Ese no era el objetivo. El objetivo era darle al lector una herramienta para ver dónde está la diferencia real.</p><p>Si alguien llegó hasta aquí con dudas, vale la pena repetirlo de forma sencilla. Las dos posiciones se parecen porque comparten varias causas: Dios es quien justifica, Cristo es quien lo mereció y la fe verdadera da fruto. Pero la causa formal es la que hace que algo sea lo que es, es decir, la que define su esencia. Y en la causa formal, las dos posiciones no coinciden.</p><p>Para la fe católica, siguiendo a Malloy, la causa formal es la gracia que inhiere en el alma: una participación en la justicia de Dios, merecida por Cristo, que está dentro de nosotros y nos hace justos de verdad.<sup class="fn" id="ref-19"><a href="#nota-19" aria-label="Nota 19">19</a></sup> Es una justicia infundida.</p><p>Para la doctrina luterana y reformada, la causa formal es la justicia de Cristo, que permanece fuera de nosotros y se nos atribuye. Por ella Dios nos considera justos. Es una justicia imputada.</p><figure class="viz"><table class="vs"><thead><tr><th></th><th>Fe católica</th><th>Doctrina luterana y reformada</th></tr></thead><tbody>
+<tr><th>Causa formal</th><td>La gracia que inhiere en el alma: una participación en la justicia de Dios, merecida por Cristo</td><td>La justicia de Cristo, que permanece fuera de nosotros y se nos atribuye</td></tr>
+<tr><th>¿Dónde está?</th><td>Dentro de nosotros</td><td>Fuera de nosotros</td></tr>
+<tr><th>Efecto</th><td>Nos hace justos de verdad</td><td>Por ella Dios nos considera justos</td></tr>
+<tr><th>Nombre</th><td><b>Justicia infundida</b></td><td><b>Justicia imputada</b></td></tr></tbody></table>
+<figcaption>Resumen del artículo, con sus propias palabras.</figcaption></figure><p>Por eso, la próxima vez que alguien le diga «Su Iglesia ya firmó la Declaración conjunta, ¿para qué sigue discutiendo?», usted ya tiene la respuesta. Podemos coincidir en mucho. Mientras no coincidamos en la causa formal, la diferencia de fondo sigue ahí. Discutirla no es desobedecer al Magisterio. Es tomarse en serio lo que el Magisterio enseñó en Trento.</p><p>Hay que decir también una verdad triste. Ni los católicos ni los protestantes vamos a abandonar lo que consideramos el núcleo de nuestra fe, y la causa formal está en ese núcleo. Por eso es muy probable que nunca lleguemos a un acuerdo real y profundo sobre la justificación. Podremos entendernos mejor, respetarnos y reconocer lo que compartimos. Pero no debemos confundir esa cercanía con una unidad que todavía no existe.</p><p>En el próximo número de la revista daremos el paso siguiente. Examinaremos la justicia infundida y la justicia imputada, y mostraremos por qué la Escritura y la Tradición respaldan la posición católica.</p></div></section>
+<section class="endnotes" id="notas"><h2>NOTAS</h2><ol><li id="nota-1">Aristóteles, Metafísica I (A), 3, 983a24–27; véase Étienne Gilson, Being and Some Philosophers, 2.ª ed. (Toronto: Pontifical Institute of Mediaeval Studies, 1952), cap. 5, «Being and Existence». <a href="#ref-1" aria-label="Volver al texto">↩</a></li><li id="nota-2">Robert C. Koons y Daniel Bonevac, Five Ways to One God (manuscrito, 10 de agosto de 2025), cap. 8, «Aristotle's Defense of Common Sense», pp. 65–66. <a href="#ref-2" aria-label="Volver al texto">↩</a> <a href="#ref-2-1" aria-label="Volver al texto">↩</a> <a href="#ref-2-2" aria-label="Volver al texto">↩</a></li><li id="nota-3">Tomás Alvira, Luis Clavell y Tomás Melendo, Metafísica (Pamplona: EUNSA), pp. 195–196. <a href="#ref-3" aria-label="Volver al texto">↩</a> <a href="#ref-3-1" aria-label="Volver al texto">↩</a></li><li id="nota-4">Alvira, Clavell y Melendo, Metafísica, p. 228; véase también Jeffrey E. Brower, «First Principles: Hylomorphism and Causation», en Eleonore Stump (ed.), The New Cambridge Companion to Aquinas (Cambridge: Cambridge University Press), pp. 52–53. <a href="#ref-4" aria-label="Volver al texto">↩</a></li><li id="nota-5">Alvira, Clavell y Melendo, Metafísica, p. 228; cf. santo Tomás de Aquino, De principiis naturae, cap. 4. <a href="#ref-5" aria-label="Volver al texto">↩</a></li><li id="nota-6">Concilio de Trento, Sesión VI (1547), Decreto sobre la justificación, cap. 7 (DH 1529). <a href="#ref-6" aria-label="Volver al texto">↩</a></li><li id="nota-7">Christopher J. Malloy, Engrafted into Christ, p. 24. <a href="#ref-7" aria-label="Volver al texto">↩</a></li><li id="nota-8">Malloy, Engrafted into Christ, p. 20. <a href="#ref-8" aria-label="Volver al texto">↩</a></li><li id="nota-9">Alister E. McGrath, Iustitia Dei: A History of the Christian Doctrine of Justification, 4.ª ed. (Cambridge: Cambridge University Press, 2020), p. ___. <a href="#ref-9" aria-label="Volver al texto">↩</a></li><li id="nota-10">Fórmula de Concordia, Declaración Sólida III, § ___, citada en Malloy, p. 38; véase también p. 39. <a href="#ref-10" aria-label="Volver al texto">↩</a></li><li id="nota-11">Anthony N. S. Lane, Justification by Faith in Catholic-Protestant Dialogue (Londres: T&amp;T Clark, 2002), p. 18, citado en Malloy, p. 45. <a href="#ref-11" aria-label="Volver al texto">↩</a></li><li id="nota-12">Malloy, p. 45. <a href="#ref-12" aria-label="Volver al texto">↩</a></li><li id="nota-13">Concilio de Trento, Sesión VI, cap. 7 (DH 1529), citado en Malloy, p. 25. <a href="#ref-13" aria-label="Volver al texto">↩</a></li><li id="nota-14">Malloy, pp. 31–32. <a href="#ref-14" aria-label="Volver al texto">↩</a></li><li id="nota-15">San Agustín, In Ioannis Evangelium tractatus 26; véase Malloy, pp. 25–26. <a href="#ref-15" aria-label="Volver al texto">↩</a></li><li id="nota-16">Malloy, pp. 20, 39. <a href="#ref-16" aria-label="Volver al texto">↩</a></li><li id="nota-17">Catecismo de la Iglesia Católica, n. 1266. <a href="#ref-17" aria-label="Volver al texto">↩</a></li><li id="nota-18">Malloy, p. 28. <a href="#ref-18" aria-label="Volver al texto">↩</a></li><li id="nota-19">Malloy, pp. 24, 31–32. <a href="#ref-19" aria-label="Volver al texto">↩</a></li></ol></section>
+<footer class="foot"><a href="../../index.html">Inicio</a><a href="../index.html">Revista</a><a href="../../mapas-mentales.html">Mapas mentales</a><a href="../../imagenes.html">Imágenes</a><a href="../../greek-paradigms.html">Paradigmas griegos</a><p>Hosanna in Excelsis Academia</p></footer>
+<script>
+(function(){var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var bar=document.getElementById('progress');function p(){var h=document.documentElement,v=h.scrollTop/(h.scrollHeight-h.clientHeight||1);bar.style.setProperty('--p',v);bar.setAttribute('aria-valuenow',Math.round(v*100))}addEventListener('scroll',p,{passive:true});p();
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});document.querySelectorAll('.reveal').forEach(function(el){rm?el.classList.add('in'):io.observe(el)});
+var c=document.getElementById('stars'),x=c.getContext('2d'),s=[],w,h;function r(){w=c.width=c.offsetWidth*devicePixelRatio;h=c.height=c.offsetHeight*devicePixelRatio;s=[];for(var i=0;i<220;i++)s.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.4*devicePixelRatio,p:Math.random()*6})}
+function d(t){x.clearRect(0,0,w,h);s.forEach(function(a){x.globalAlpha=.35+.65*Math.abs(Math.sin(a.p+t/1500));x.fillStyle=a.r>1.2?'#f3dc9c':'#fff';x.beginPath();x.arc(a.x,a.y,a.r,0,7);x.fill()});if(!rm)requestAnimationFrame(d)}addEventListener('resize',r);r();requestAnimationFrame(d);
+var card=document.getElementById('chartCard');function sel(k){document.querySelectorAll('.chart [data-k]').forEach(function(n){n.classList.toggle('on',n.dataset.k===k)});var row=document.querySelector('.chart-table tr[data-k="'+k+'"]');card.innerHTML='<b>Causa '+row.cells[0].textContent+'</b><span>'+row.cells[1].textContent+'</span>'}
+document.querySelectorAll('.chart .node').forEach(function(n){['mouseenter','focus','click'].forEach(function(ev){n.addEventListener(ev,function(){sel(n.dataset.k)})});n.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();sel(n.dataset.k)}})});
+})();
+</script></body></html>
