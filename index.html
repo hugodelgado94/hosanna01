@@ -220,7 +220,7 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:80px 0
     <li><a href="#recursos">Recursos</a></li>
     <li><a href="revista/">Revista</a></li>
     <li><a href="#mision">Misión</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+    <li><a id="mailc" href="#contacto">hugo.delgado [arroba] mail.grokbot.com</a></li>
   </ul>
 </nav>
 
@@ -415,6 +415,7 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:80px 0
 
 <script>
 document.documentElement.classList.add('js');
+(function(){var a=document.getElementById('mailc');if(a){var e=['hugo.delgado','mail.grokbot.com'].join('@');a.href='mailto:'+e;a.textContent=e;}})();
 
 // Living cosmos: 3 parallax layers of stars and gold spheres (scroll + mouse)
 (function(){
