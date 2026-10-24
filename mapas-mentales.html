@@ -1,358 +1,106 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mapas Mentales — Theologia.net</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mapas mentales · Hosanna in Excelsis Academia</title>
+<meta name="description" content="Mapas mentales de teología católica, organizados por temas, comenzando por el tomismo.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg-deep:    #0d0c0a;
-    --bg-card:    #141210;
-    --bg-overlay: #0a0908ee;
-    --bg3:        #1c1a16;
-    --gold:       #c9a84c;
-    --gold-light: #e8c97a;
-    --gold-dim:   #8a6f30;
-    --cream:      #f0e6cc;
-    --cream-dim:  #b8a88a;
-    --text-muted: #9a9080;
-    --border:     #2a2520;
-    --border-nav: rgba(201,168,76,0.15);
-    --border-gold:#3a2e18;
-    --font-serif: 'Cormorant Garamond', Georgia, serif;
-    --font-sans:  'Figtree', system-ui, sans-serif;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: var(--bg-deep);
-    color: var(--cream);
-    font-family: 'EB Garamond', Georgia, serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-    padding-top: 60px;
-  }
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 0; opacity: 0.35;
-  }
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(12,11,9,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border-nav);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 2.5rem; height: 60px;
-  }
-  .nav-logo {
-    font-family: var(--font-serif); font-size: 1.35rem; font-weight: 300;
-    letter-spacing: 0.12em; color: var(--gold-light); text-decoration: none;
-  }
-  .nav-logo span { color: var(--text-muted); font-style: italic; font-size: 1rem; margin-left: 6px; }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    color: var(--text-muted); text-decoration: none; font-family: var(--font-sans);
-    font-size: 0.83rem; font-weight: 500; letter-spacing: 0.08em;
-    text-transform: uppercase; transition: color 0.2s;
-  }
-  .nav-links a:hover, .nav-links a.nav-active { color: var(--gold-light); }
-  .nav-search {
-    display: flex; align-items: center; gap: 8px; background: var(--bg3);
-    border: 1px solid var(--border-nav); border-radius: 30px;
-    padding: 6px 14px; cursor: pointer; transition: border-color 0.2s;
-  }
-  .nav-search:hover { border-color: var(--gold-dim); }
-  .nav-search svg { width: 14px; height: 14px; stroke: var(--text-muted); fill: none; stroke-width: 2; }
-  .nav-search span { font-family: var(--font-sans); font-size: 0.8rem; color: var(--text-muted); }
-  /* HEADER */
-  header {
-    text-align: center; padding: 3.5rem 1.5rem 2rem;
-    position: relative; border-bottom: 1px solid var(--border-gold);
-  }
-  header::after {
-    content: ''; display: block; width: 80px; height: 1px;
-    background: var(--gold); margin: 1.2rem auto 0; box-shadow: 0 0 12px var(--gold-dim);
-  }
-  .site-label { font-family: 'EB Garamond', serif; font-size: 0.8rem; letter-spacing: 0.35em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 0.6rem; }
-  h1 { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 600; color: var(--gold-light); letter-spacing: 0.05em; text-shadow: 0 0 40px #c9a84c33; }
-  .subtitle { font-size: 1.05rem; color: var(--cream-dim); font-style: italic; margin-top: 0.5rem; }
-  /* FILTERS */
-  .filters-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; padding: 1.8rem 1.5rem 1rem; position: relative; z-index: 1; }
-  .filter-btn { background: transparent; border: 1px solid var(--border-gold); color: var(--cream-dim); font-family: 'EB Garamond', serif; font-size: 0.9rem; letter-spacing: 0.08em; padding: 0.4rem 1.1rem; cursor: pointer; transition: all 0.25s; border-radius: 2px; }
-  .filter-btn:hover { border-color: var(--gold-dim); color: var(--cream); }
-  .filter-btn.active { background: var(--gold); border-color: var(--gold); color: #0d0c0a; font-weight: 600; box-shadow: 0 0 18px #c9a84c44; }
-  /* GRID */
-  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.4rem; padding: 1.5rem 2rem 4rem; position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; }
-  /* CARD */
-  .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; cursor: pointer; transition: transform 0.3s ease, border-color 0.3s, box-shadow 0.3s; animation: fadeUp 0.5s ease both; position: relative; }
-  .card:hover { transform: translateY(-4px); border-color: var(--gold-dim); box-shadow: 0 8px 40px #c9a84c22; }
-  .card.hidden { display: none; }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  .card-thumb { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; filter: brightness(0.9) saturate(0.85); transition: filter 0.3s; }
-  .card:hover .card-thumb { filter: brightness(1) saturate(1); }
-  .card-thumb-placeholder { width: 100%; aspect-ratio: 4/3; background: linear-gradient(135deg, #1a1710 0%, #0f0e0c 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--gold-dim); }
-  .card-body { padding: 1rem 1.1rem 1.2rem; }
-  .card-tag { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.35rem; }
-  .card-title { font-family: 'Cinzel', serif; font-size: 0.95rem; font-weight: 600; color: var(--cream); line-height: 1.35; margin-bottom: 0.4rem; }
-  .card-desc { font-size: 0.85rem; color: var(--cream-dim); font-style: italic; line-height: 1.5; }
-  .card-audio-badge { display: inline-flex; align-items: center; gap: 0.3rem; margin-top: 0.6rem; font-size: 0.75rem; color: var(--gold-dim); letter-spacing: 0.05em; }
-  .card-audio-badge svg { width:13px; height:13px; }
-  /* LIGHTBOX */
-  .lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: var(--bg-overlay); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 1rem; }
-  .lightbox.open { display: flex; }
-  .lb-inner { background: #111009; border: 1px solid var(--border-gold); border-radius: 4px; max-width: 950px; width: 100%; max-height: 92vh; overflow-y: auto; position: relative; box-shadow: 0 0 80px #00000088, 0 0 30px #c9a84c18; animation: lbIn 0.3s ease; }
-  @keyframes lbIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
-  .lb-close { position: absolute; top: 0.9rem; right: 1rem; background: none; border: none; color: var(--gold-dim); font-size: 1.6rem; cursor: pointer; z-index: 10; line-height: 1; transition: color 0.2s; }
-  .lb-close:hover { color: var(--gold-light); }
-  .lb-img-wrap { width: 100%; overflow: hidden; background: #0a0908; position: relative; cursor: zoom-in; }
-  .lb-img-wrap.zoomed { cursor: grab; }
-  .lb-img-wrap.zoomed:active { cursor: grabbing; }
-  #lb-image { width: 100%; display: block; transform-origin: 0 0; transition: transform 0.1s ease; user-select: none; -webkit-user-drag: none; }
-  .lb-zoom-controls { position: absolute; bottom: 0.7rem; right: 0.7rem; display: flex; gap: 0.4rem; }
-  .lb-zoom-btn { background: #0d0c0acc; border: 1px solid var(--border-gold); color: var(--gold); font-size: 1.1rem; width: 32px; height: 32px; border-radius: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
-  .lb-zoom-btn:hover { background: var(--gold); color: #0d0c0a; }
-  .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); background: #0d0c0acc; border: 1px solid var(--border-gold); color: var(--gold); font-size: 1.3rem; width: 38px; height: 50px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: background 0.2s; border-radius: 2px; }
-  .lb-nav:hover { background: var(--gold); color: #0d0c0a; }
-  .lb-prev { left: 0.5rem; }
-  .lb-next { right: 0.5rem; }
-  .lb-meta { padding: 1.2rem 1.5rem 0.5rem; }
-  .lb-tag { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
-  .lb-title { font-family: 'Cinzel', serif; font-size: 1.25rem; color: var(--gold-light); margin-bottom: 0.4rem; }
-  .lb-desc { font-size: 0.95rem; color: var(--cream-dim); font-style: italic; line-height: 1.6; margin-bottom: 1rem; }
-  .lb-audio-wrap { padding: 0 1.5rem 1.5rem; }
-  .audio-player { background: #0d0c0a; border: 1px solid var(--border-gold); border-radius: 3px; padding: 0.9rem 1.1rem; display: flex; align-items: center; gap: 1rem; }
-  .ap-play-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--gold); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.2s, box-shadow 0.2s; }
-  .ap-play-btn:hover { background: var(--gold-light); box-shadow: 0 0 14px #c9a84c55; }
-  .ap-play-btn svg { width:16px; height:16px; fill: #0d0c0a; }
-  .ap-right { flex: 1; min-width: 0; }
-  .ap-label { font-size: 0.78rem; color: var(--gold-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
-  .ap-progress-wrap { width: 100%; height: 4px; background: var(--border); border-radius: 2px; cursor: pointer; position: relative; }
-  .ap-progress-fill { height: 100%; background: var(--gold); border-radius: 2px; width: 0%; transition: width 0.1s linear; }
-  .ap-time { font-size: 0.75rem; color: var(--cream-dim); margin-top: 0.35rem; font-variant-numeric: tabular-nums; }
-  .lb-swipe-hint { text-align: center; font-size: 0.72rem; color: var(--gold-dim); letter-spacing: 0.12em; padding: 0 0 1rem; opacity: 0.7; }
-  .no-results { text-align: center; padding: 4rem 2rem; color: var(--cream-dim); font-style: italic; font-size: 1.05rem; display: none; width: 100%; grid-column: 1/-1; }
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg-deep); }
-  ::-webkit-scrollbar-thumb { background: var(--border-gold); border-radius: 3px; }
-  @media (max-width: 700px) { nav { padding: 0 1.25rem; } .nav-links { display: none; } }
-  @media (max-width: 600px) { .gallery { padding: 1rem 1rem 3rem; gap: 1rem; } header { padding: 2.5rem 1rem 1.5rem; } .lb-nav { display: none; } }
-</style>
-</head>
-<body>
-
-<nav>
-  <a class="nav-logo" href="index.html">Theologia <span>Perennis</span></a>
-  <ul class="nav-links">
-    <li><a href="index.html#topics">Temas</a></li>
-    <li><a href="index.html#videos">Enseñanzas</a></li>
-    <li><a href="mapas-mentales.html" class="nav-active">Mapas Mentales</a></li>
-    <li><a href="index.html#about">Acerca de</a></li>
-  </ul>
-  <div class="nav-search">
-    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
-    <span>Buscar enseñanzas…</span>
-  </div>
-</nav>
-
-<header>
-  <div class="site-label">Theologia.net</div>
-  <h1>Mapas Mentales</h1>
-  <p class="subtitle">Visualizaciones teológicas para el estudio de la fe</p>
-</header>
-
-<div class="filters-bar" id="filtersBar">
-  <button class="filter-btn active" data-cat="all">Todos</button>
-  <button class="filter-btn" data-cat="teologia-biblica">Teología Bíblica</button>
-  <button class="filter-btn" data-cat="apologetica">Apologética</button>
-  <button class="filter-btn" data-cat="cristologia">Cristología</button>
-  <button class="filter-btn" data-cat="soteriologia">Soteriología</button>
-  <button class="filter-btn" data-cat="eclesiologia">Eclesiología</button>
-</div>
-
-<div class="gallery" id="gallery">
-  <div class="no-results" id="noResults">No hay mapas en esta categoría aún.</div>
-</div>
-
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
-  <div class="lb-inner" id="lbInner">
-    <button class="lb-close" id="lbClose" aria-label="Cerrar">&#x2715;</button>
-    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Anterior">&#8249;</button>
-    <button class="lb-nav lb-next" id="lbNext" aria-label="Siguiente">&#8250;</button>
-    <div class="lb-img-wrap" id="lbImgWrap">
-      <img id="lb-image" src="" alt="">
-      <div class="lb-zoom-controls">
-        <button class="lb-zoom-btn" id="zoomIn" title="Acercar">+</button>
-        <button class="lb-zoom-btn" id="zoomOut" title="Alejar">−</button>
-        <button class="lb-zoom-btn" id="zoomReset" title="Restablecer">⊙</button>
-      </div>
-    </div>
-    <div class="lb-meta">
-      <div class="lb-tag" id="lbTag"></div>
-      <div class="lb-title" id="lbTitle"></div>
-      <div class="lb-desc" id="lbDesc"></div>
-    </div>
-    <div class="lb-audio-wrap" id="lbAudioWrap">
-      <div class="audio-player">
-        <button class="ap-play-btn" id="apPlayBtn" aria-label="Reproducir">
-          <svg id="apIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </button>
-        <div class="ap-right">
-          <div class="ap-label" id="apLabel">Audio explicativo</div>
-          <div class="ap-progress-wrap" id="apProgressWrap">
-            <div class="ap-progress-fill" id="apProgressFill"></div>
-          </div>
-          <div class="ap-time" id="apTime">0:00 / 0:00</div>
-        </div>
-      </div>
-    </div>
-    <div class="lb-swipe-hint" id="lbSwipeHint">← desliza para navegar →</div>
-  </div>
-</div>
-
-<audio id="audioEl"></audio>
-
-<script>
-const maps = [
-  { id:1, title:"La Alianza en el Antiguo Testamento", category:"teologia-biblica", categoryLabel:"Teología Bíblica", desc:"Recorrido por los pactos abrahámico, mosaico y davídico y su unidad temática.", img:null, audio:null, audioLabel:"Explicación: 8 min" },
-  { id:2, title:"Justificación y Obras en Pablo", category:"apologetica", categoryLabel:"Apologética", desc:"Análisis de Filipenses 3 y la respuesta católica a los argumentos calvinistas.", img:null, audio:null, audioLabel:"Explicación: 11 min" },
-  { id:3, title:"Las Naturalezas de Cristo", category:"cristologia", categoryLabel:"Cristología", desc:"Definición calcedónica: verdadero Dios y verdadero hombre, unión hipostática.", img:null, audio:null, audioLabel:"Explicación: 9 min" },
-  { id:4, title:"La Gracia y el Libre Albedrío", category:"soteriologia", categoryLabel:"Soteriología", desc:"Perspectiva tomista: la gracia perfecciona la naturaleza, no la destruye.", img:null, audio:null, audioLabel:"Explicación: 14 min" },
-  { id:5, title:"La Iglesia en el Nuevo Testamento", category:"eclesiologia", categoryLabel:"Eclesiología", desc:"Fundación, estructura y misión de la Iglesia según los escritos apostólicos.", img:null, audio:null, audioLabel:"Explicación: 10 min" },
-  { id:6, title:"El Shemá y el Mandamiento del Amor", category:"teologia-biblica", categoryLabel:"Teología Bíblica", desc:"Análisis de Mt 22:37 y la fuente hebrea: διάνοια como traducción de מְאֹד.", img:null, audio:null, audioLabel:"Explicación: 7 min" }
-];
-
-const gallery = document.getElementById('gallery');
-const noResults = document.getElementById('noResults');
-
-function iconSVG() {
-  return `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
-    <circle cx="24" cy="24" r="2" fill="#8a6f30"/><circle cx="14" cy="18" r="2" fill="#8a6f30"/>
-    <circle cx="34" cy="18" r="2" fill="#8a6f30"/><circle cx="10" cy="30" r="2" fill="#8a6f30"/>
-    <circle cx="38" cy="30" r="2" fill="#8a6f30"/>
-    <line x1="24" y1="24" x2="14" y2="18" stroke="#3a2e18" stroke-width="1.5"/>
-    <line x1="24" y1="24" x2="34" y2="18" stroke="#3a2e18" stroke-width="1.5"/>
-    <line x1="14" y1="18" x2="10" y2="30" stroke="#3a2e18" stroke-width="1.5"/>
-    <line x1="34" y1="18" x2="38" y2="30" stroke="#3a2e18" stroke-width="1.5"/>
-  </svg>`;
-}
-
-function buildCards(filter) {
-  gallery.querySelectorAll('.card').forEach(c => c.remove());
-  const filtered = filter === 'all' ? maps : maps.filter(m => m.category === filter);
-  noResults.style.display = filtered.length === 0 ? 'block' : 'none';
-  filtered.forEach((m, i) => {
-    const card = document.createElement('div');
-    card.className = 'card'; card.dataset.id = m.id; card.style.animationDelay = `${i * 0.07}s`;
-    const thumb = m.img ? `<img class="card-thumb" src="${m.img}" alt="${m.title}" loading="lazy">` : `<div class="card-thumb-placeholder">${iconSVG()}</div>`;
-    const audioBadge = m.audio ? `<div class="card-audio-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>${m.audioLabel}</div>` : '';
-    card.innerHTML = `${thumb}<div class="card-body"><div class="card-tag">${m.categoryLabel}</div><div class="card-title">${m.title}</div><div class="card-desc">${m.desc}</div>${audioBadge}</div>`;
-    card.addEventListener('click', () => openLightbox(m.id));
-    gallery.appendChild(card);
-  });
-}
-buildCards('all');
-
-document.getElementById('filtersBar').addEventListener('click', e => {
-  const btn = e.target.closest('.filter-btn');
-  if (!btn) return;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  buildCards(btn.dataset.cat);
-});
-
-const lightbox = document.getElementById('lightbox');
-const lbImage = document.getElementById('lb-image');
-const lbImgWrap = document.getElementById('lbImgWrap');
-const lbTag = document.getElementById('lbTag');
-const lbTitle = document.getElementById('lbTitle');
-const lbDesc = document.getElementById('lbDesc');
-const lbAudioWrap = document.getElementById('lbAudioWrap');
-const audioEl = document.getElementById('audioEl');
-const apPlayBtn = document.getElementById('apPlayBtn');
-const apIcon = document.getElementById('apIcon');
-const apLabel = document.getElementById('apLabel');
-const apProgressFill = document.getElementById('apProgressFill');
-const apTime = document.getElementById('apTime');
-const apProgressWrap = document.getElementById('apProgressWrap');
-let currentId = null, currentFilteredIds = [];
-
-function getFilteredIds() {
-  const active = document.querySelector('.filter-btn.active').dataset.cat;
-  return (active === 'all' ? maps : maps.filter(m => m.category === active)).map(m => m.id);
-}
-
-function openLightbox(id) {
-  const m = maps.find(x => x.id === id);
-  if (!m) return;
-  currentId = id; currentFilteredIds = getFilteredIds();
-  if (m.img) { lbImage.src = m.img; lbImage.alt = m.title; lbImgWrap.style.display = 'block'; }
-  else { lbImage.src = ''; lbImgWrap.style.display = 'none'; }
-  resetZoom();
-  lbTag.textContent = m.categoryLabel; lbTitle.textContent = m.title; lbDesc.textContent = m.desc;
-  audioEl.pause();
-  if (m.audio) {
-    audioEl.src = m.audio; lbAudioWrap.style.display = 'block';
-    apLabel.textContent = m.audioLabel || 'Audio explicativo';
-    apProgressFill.style.width = '0%'; apTime.textContent = '0:00 / 0:00';
-    setPlayIcon(false); audioEl.play().catch(() => {}); setPlayIcon(true);
-  } else { lbAudioWrap.style.display = 'none'; audioEl.src = ''; }
-  lightbox.classList.add('open'); document.body.style.overflow = 'hidden';
-}
-
-function closeLightbox() { lightbox.classList.remove('open'); document.body.style.overflow = ''; audioEl.pause(); currentId = null; }
-document.getElementById('lbClose').addEventListener('click', closeLightbox);
-lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-document.addEventListener('keydown', e => {
-  if (!lightbox.classList.contains('open')) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowRight') navigateLb(1);
-  if (e.key === 'ArrowLeft') navigateLb(-1);
-});
-function navigateLb(dir) { const idx = currentFilteredIds.indexOf(currentId); const next = currentFilteredIds[idx + dir]; if (next !== undefined) openLightbox(next); }
-document.getElementById('lbPrev').addEventListener('click', () => navigateLb(-1));
-document.getElementById('lbNext').addEventListener('click', () => navigateLb(1));
-
-function setPlayIcon(playing) { apIcon.innerHTML = playing ? '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>' : '<path d="M8 5v14l11-7z"/>'; }
-apPlayBtn.addEventListener('click', () => { if (audioEl.paused) { audioEl.play(); setPlayIcon(true); } else { audioEl.pause(); setPlayIcon(false); } });
-audioEl.addEventListener('timeupdate', () => { if (!audioEl.duration) return; const pct = (audioEl.currentTime / audioEl.duration) * 100; apProgressFill.style.width = pct + '%'; apTime.textContent = `${fmt(audioEl.currentTime)} / ${fmt(audioEl.duration)}`; });
-audioEl.addEventListener('ended', () => setPlayIcon(false));
-apProgressWrap.addEventListener('click', e => { const rect = apProgressWrap.getBoundingClientRect(); audioEl.currentTime = ((e.clientX - rect.left) / rect.width) * audioEl.duration; });
-function fmt(s) { const m = Math.floor(s / 60), sec = Math.floor(s % 60); return `${m}:${sec.toString().padStart(2,'0')}`; }
-
-let scale = 1, translateX = 0, translateY = 0;
-let isDragging = false, dragStartX, dragStartY, dragTX, dragTY;
-let pinchStartDist = null, pinchStartScale = 1;
-function applyTransform() { lbImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`; lbImgWrap.classList.toggle('zoomed', scale > 1); }
-function resetZoom() { scale = 1; translateX = 0; translateY = 0; applyTransform(); }
-function clampTranslate() {
-  const ww = lbImgWrap.clientWidth, wh = lbImgWrap.clientHeight;
-  const iw = lbImage.naturalWidth || ww, ih = lbImage.naturalHeight || wh;
-  const rw = ww * scale, rh = (ih / iw) * ww * scale;
-  const maxX = Math.max(0, (rw - ww) / 2), maxY = Math.max(0, (rh - wh) / 2);
-  translateX = Math.max(-maxX, Math.min(maxX, translateX));
-  translateY = Math.max(-maxY, Math.min(maxY, translateY));
-}
-document.getElementById('zoomIn').addEventListener('click', () => { scale = Math.min(scale * 1.4, 5); clampTranslate(); applyTransform(); });
-document.getElementById('zoomOut').addEventListener('click', () => { scale = Math.max(scale / 1.4, 1); clampTranslate(); applyTransform(); });
-document.getElementById('zoomReset').addEventListener('click', resetZoom);
-lbImgWrap.addEventListener('mousedown', e => { if (scale <= 1) return; isDragging = true; dragStartX = e.clientX; dragStartY = e.clientY; dragTX = translateX; dragTY = translateY; e.preventDefault(); });
-window.addEventListener('mousemove', e => { if (!isDragging) return; translateX = dragTX + (e.clientX - dragStartX); translateY = dragTY + (e.clientY - dragStartY); clampTranslate(); applyTransform(); });
-window.addEventListener('mouseup', () => { isDragging = false; });
-lbImgWrap.addEventListener('touchstart', e => {
-  if (e.touches.length === 2) { pinchStartDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY); pinchStartScale = scale; }
-  else if (e.touches.length === 1 && scale > 1) { isDragging = true; dragStartX = e.touches[0].clientX; dragStartY = e.touches[0].clientY; dragTX = translateX; dragTY = translateY; }
-}, { passive: true });
-lbImgWrap.addEventListener('touchmove', e => {
-  if (e.touches.length === 2 && pinchStartDist) { const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY); scale = Math.max(1, Math.min(5, pinchStartScale * (d / pinchStartDist))); clampTranslate(); applyTransform(); e.preventDefault(); }
-  else if (isDragging && e.touches.length === 1) { translateX = dragTX + (e.touches[0].clientX - dragStartX); translateY = dragTY + (e.touches[0].clientY - dragStartY); clampTranslate(); applyTransform(); e.preventDefault(); }
-}, { passive: false });
-lbImgWrap.addEventListener('touchend', () => { isDragging = false; pinchStartDist = null; });
-let swipeStartX = null;
-document.getElementById('lbInner').addEventListener('touchstart', e => { if (scale > 1) return; swipeStartX = e.touches[0].clientX; }, { passive: true });
-document.getElementById('lbInner').addEventListener('touchend', e => { if (swipeStartX === null || scale > 1) return; const dx = e.changedTouches[0].clientX - swipeStartX; if (Math.abs(dx) > 60) navigateLb(dx < 0 ? 1 : -1); swipeStartX = null; }, { passive: true });
-</script>
-</body>
-</html>
+:root{--night:#050a1c;--navy:#0a1330;--cgold:#d9b25f;--cgold-l:#f3dc9c;--ivory:#efe8d6;--mute:#a9b0c8;--paper:#faf8f3;--ink:#14182b;--ink-soft:#4a4f66;--gold:#a8812c;--line:rgba(20,24,43,.14);--display:'Cinzel',Georgia,serif;--serif:'Cormorant Garamond',serif;--sans:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--paper)}
+a{color:inherit}
+nav{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:22px 5vw;z-index:2}
+nav a{font-family:var(--display);letter-spacing:.18em;font-size:13px;color:var(--ivory);text-decoration:none}
+.hero{position:relative;min-height:72vh;display:grid;place-items:center;text-align:center;color:var(--ivory);overflow:hidden;
+background:radial-gradient(ellipse at 50% 40%,#16224d 0%,var(--navy) 40%,var(--night) 80%)}
+#stars{position:absolute;inset:0;width:100%;height:100%}
+.hero .in{position:relative;padding:120px 6vw 80px;max-width:860px}
+.kicker{font-family:var(--display);letter-spacing:.35em;font-size:12px;color:var(--cgold)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,7vw,84px);letter-spacing:.08em;margin:.3em 0 .2em;color:var(--cgold-l)}
+.latin{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.4vw,28px);color:var(--ivory)}
+.tr{font-family:var(--serif);color:var(--mute);font-size:18px;margin-top:6px}
+.curve{display:block;width:100%;height:80px;margin-top:-79px;position:relative}
+main{max-width:1160px;margin:0 auto;padding:40px 5vw 100px}
+.sec h2{font-family:var(--display);font-weight:400;letter-spacing:.12em;font-size:clamp(26px,3.4vw,40px);margin:0}
+.sec .lead{font-family:var(--serif);font-size:21px;color:var(--ink-soft);max-width:62ch}
+.rule{width:80px;height:1px;background:var(--gold);margin:14px 0 22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:34px;margin-top:36px}
+.card{background:#fff;border:1px solid var(--line);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+.card:hover{transform:translateY(-4px);box-shadow:0 24px 50px -24px rgba(10,19,48,.35)}
+.card .img{display:block;aspect-ratio:4/3;background:var(--night);overflow:hidden;position:relative}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s}
+.card:hover img{transform:scale(1.04)}
+.badge{position:absolute;bottom:12px;left:12px;font-family:var(--display);font-size:11px;letter-spacing:.2em;background:rgba(5,10,28,.75);color:var(--cgold-l);padding:7px 12px;border:1px solid rgba(217,178,95,.5)}
+.body{padding:26px 28px 30px}
+.body h3{font-family:var(--display);font-weight:400;font-size:22px;letter-spacing:.06em;margin:0 0 4px}
+.place{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.body p{font-family:var(--serif);font-size:19px;line-height:1.6;color:var(--ink-soft)}
+.btn{display:inline-block;margin-top:6px;font-family:var(--display);font-size:12px;letter-spacing:.2em;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--gold);padding-bottom:4px}
+.soon{margin-top:70px;padding:28px;border:1px dashed var(--line);font-family:var(--serif);font-size:19px;color:var(--ink-soft);text-align:center}
+footer{background:var(--night);color:var(--mute);text-align:center;padding:40px 5vw;font-size:13px}
+footer a{color:var(--cgold);text-decoration:none;margin:0 10px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.intro{display:grid;grid-template-columns:1fr 1.6fr;gap:48px;align-items:start;margin:10px 0 60px}
+.intro .q{font-family:var(--serif);font-style:italic;font-size:clamp(26px,3vw,36px);line-height:1.3;color:var(--ink);border-left:1px solid var(--gold);padding-left:24px}
+.intro .q small{display:block;font-style:normal;font-family:var(--display);font-size:11px;letter-spacing:.25em;color:var(--gold);margin-top:14px}
+.intro p{font-family:var(--serif);font-size:21px;line-height:1.7;color:var(--ink-soft);margin:0 0 16px}
+.intro p:first-child::first-letter{float:left;font-family:var(--display);font-size:64px;line-height:.9;color:var(--gold);padding:6px 10px 0 0}
+.card .img::after{content:"⤢";position:absolute;top:12px;right:14px;color:var(--cgold-l);font-size:22px;text-shadow:0 2px 8px #000}
+.btn{background:var(--night);color:var(--cgold-l)!important;border:1px solid var(--gold);padding:12px 20px!important}
+.btn:hover{background:var(--navy)}
+@media(max-width:800px){.intro{grid-template-columns:1fr}}
+.sec{margin-bottom:80px}.card .img img{object-position:center}.card .mm{display:grid;place-items:center;background:radial-gradient(circle at 50% 50%,#16224d,#050a1c)}.card .mm svg{width:70%}
+.card.ghost{background:transparent;border-style:dashed}.card.ghost h3{color:var(--ink-soft);font-size:18px}
+.card .img::after{content:none}.toc{display:flex;flex-wrap:wrap;gap:10px;margin:-20px 0 60px}.toc a{font-family:var(--display);font-size:11px;letter-spacing:.18em;text-decoration:none;border:1px solid var(--line);padding:8px 14px;color:var(--ink-soft)}.toc a:hover{border-color:var(--gold);color:var(--gold)}.card .img{aspect-ratio:16/9}</style></head><body><nav><a href="index.html">← HOSANNA IN EXCELSIS</a><a href="index.html#recursos">RECURSOS</a></nav>
+<header class="hero"><canvas id="stars" aria-hidden="true"></canvas><div class="in"><div class="kicker">ACADEMIA · ORDO SAPIENTIAE</div><h1>Mapas mentales</h1>
+<div class="latin">«Sapientis est ordinare»</div><div class="tr">Santo Tomás de Aquino, Contra Gentiles I, 1 — «Es propio del sabio ordenar»</div></div></header>
+<svg class="curve" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path d="M0 10 Q50 0 100 10 Z" fill="#faf8f3"/></svg>
+<main><div class="intro"><div class="q">«Es propio del sabio ordenar»<small>SANTO TOMÁS DE AQUINO</small></div>
+<div><p>La fe busca entender, y entender es ver el orden de las cosas: cómo cada verdad se sostiene en otra y todas conducen a Dios.</p>
+<p>Estos mapas mentales presentan de un vistazo los grandes temas de la teología católica. Empezamos por el tomismo, con los fundamentos de la metafísica, y seguimos con la Escritura, Cristo, la apologética y la Iglesia.</p>
+<p>Abre cualquier mapa para verlo a pantalla completa y acercarte a cada detalle.</p><nav class="toc"><a href="#metafisica">Metafísica</a><a href="#dios">Dios y la creación</a><a href="#gracia">Gracia y virtud</a><a href="#mariologia">Mariología</a><a href="#biblica">Teología bíblica</a><a href="#cristologia">Cristología</a><a href="#apologetica">Apologética</a><a href="#eclesiologia">Eclesiología</a><a href="#magisterio">Magisterio</a></nav></div></div>
+<section class="sec" id="metafisica"><div class="kicker" style="color:var(--gold)">I · TEMA</div><h2>Tomismo · Metafísica</h2><div class="rule"></div><p class="lead">Los fundamentos: acto y potencia, materia y forma, esencia y ser, sustancia y accidentes, causas y trascendentales.</p><div class="grid"><article class="card"><a class="img" href="mapa.html?id=002"><img src="mapas/thumbs/002.webp" alt="Mapa mental: Metafísica tomista: conceptos básicos" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Metafísica</div><h3>Metafísica tomista: conceptos básicos</h3><p>Panorama de los conceptos fundamentales de la metafísica de Santo Tomás.</p><a class="btn" href="mapa.html?id=002">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=097"><img src="mapas/thumbs/097.webp" alt="Mapa mental: Conceptos tomistas clave" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Metafísica</div><h3>Conceptos tomistas clave</h3><p>Acto, potencia, esencia y esse: la composición del ser y la participación.</p><a class="btn" href="mapa.html?id=097">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=042"><img src="mapas/thumbs/042.webp" alt="Mapa mental: Conceptos de la filosofía tomista" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Metafísica</div><h3>Conceptos de la filosofía tomista</h3><p>Esse, esencia, composición y causalidad en un solo vistazo.</p><a class="btn" href="mapa.html?id=042">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=026"><img src="mapas/thumbs/026.webp" alt="Mapa mental: Acto y potencia" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Metafísica</div><h3>Acto y potencia</h3><p>La doctrina aristotélica del cambio: lo que puede ser y lo que ya es.</p><a class="btn" href="mapa.html?id=026">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=055"><img src="mapas/thumbs/055.webp" alt="Mapa mental: Materia, forma y esencia" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Metafísica</div><h3>Materia, forma y esencia</h3><p>Cómo la materia y la forma constituyen la esencia de las cosas.</p><a class="btn" href="mapa.html?id=055">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=046"><img src="mapas/thumbs/046.webp" alt="Mapa mental: El hilomorfismo aristotélico" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Metafísica</div><h3>El hilomorfismo aristotélico</h3><p>Materia prima y forma sustancial: definición, ejemplos y vigencia.</p><a class="btn" href="mapa.html?id=046">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=018"><img src="mapas/thumbs/018.webp" alt="Mapa mental: Sustancia y accidentes" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Metafísica</div><h3>Sustancia y accidentes</h3><p>Lo que una cosa es y lo que tiene: las categorías del ser.</p><a class="btn" href="mapa.html?id=018">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=031"><img src="mapas/thumbs/031.webp" alt="Mapa mental: Las cuatro causas de Aristóteles" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Metafísica</div><h3>Las cuatro causas de Aristóteles</h3><p>Causa material, formal, eficiente y final.</p><a class="btn" href="mapa.html?id=031">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=062"><img src="mapas/thumbs/062.webp" alt="Mapa mental: La conexión entre esencia y esse" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Metafísica</div><h3>La conexión entre esencia y esse</h3><p>La distinción real entre lo que una cosa es y su acto de ser.</p><a class="btn" href="mapa.html?id=062">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=007"><img src="mapas/thumbs/007.webp" alt="Mapa mental: Las esencias reciben el esse" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Metafísica</div><h3>Las esencias reciben el esse</h3><p>El esse es la misma agua; la esencia determina la forma en que aparece.</p><a class="btn" href="mapa.html?id=007">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=028"><img src="mapas/thumbs/028.webp" alt="Mapa mental: La metafísica del esse" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Metafísica</div><h3>La metafísica del esse</h3><p>Qué es el esse, por qué importa y cómo se distingue del ente.</p><a class="btn" href="mapa.html?id=028">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=078"><img src="mapas/thumbs/078.webp" alt="Mapa mental: El poder del esse: el acto de ser" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Metafísica</div><h3>El poder del esse: el acto de ser</h3><p>El esse como acto de todos los actos y perfección de todas las perfecciones.</p><a class="btn" href="mapa.html?id=078">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=014"><img src="mapas/thumbs/014.webp" alt="Mapa mental: Dios como Ipsum Esse Subsistens" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Metafísica</div><h3>Dios como Ipsum Esse Subsistens</h3><p>El esse intensivo aplicado a Dios y a las criaturas.</p><a class="btn" href="mapa.html?id=014">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=032"><img src="mapas/thumbs/032.webp" alt="Mapa mental: El esse intensivo según Fabro" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Metafísica</div><h3>El esse intensivo según Fabro</h3><p>La lectura de Cornelio Fabro: participación y acto de ser.</p><a class="btn" href="mapa.html?id=032">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=071"><img src="mapas/thumbs/071.webp" alt="Mapa mental: Metafísica tomista intensiva" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Metafísica</div><h3>Metafísica tomista intensiva</h3><p>El esse en acto, la distinción real y la dependencia de la criatura.</p><a class="btn" href="mapa.html?id=071">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=010"><img src="mapas/thumbs/010.webp" alt="Mapa mental: Ser mediado: sustancia y accidentes" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Metafísica</div><h3>Ser mediado: sustancia y accidentes</h3><p>Sustancia, accidentes y el esse, con su aplicación a la Eucaristía.</p><a class="btn" href="mapa.html?id=010">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=085"><img src="mapas/thumbs/085.webp" alt="Mapa mental: Trascendentales y universales" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Metafísica</div><h3>Trascendentales y universales</h3><p>Verdad, bondad y unidad frente a los conceptos universales.</p><a class="btn" href="mapa.html?id=085">ABRIR MAPA →</a></div></article></div></section><section class="sec" id="dios"><div class="kicker" style="color:var(--gold)">II · TEMA</div><h2>Tomismo · Dios y la creación</h2><div class="rule"></div><p class="lead">Dios, acto puro y ser subsistente, y el acto creador.</p><div class="grid"><article class="card"><a class="img" href="mapa.html?id=019"><img src="mapas/thumbs/019.webp" alt="Mapa mental: Dios, acto puro y primera perfección" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Dios y la creación</div><h3>Dios, acto puro y primera perfección</h3><p>Por qué en Dios se encuentran todas las perfecciones sin límite.</p><a class="btn" href="mapa.html?id=019">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=090"><img src="mapas/thumbs/090.webp" alt="Mapa mental: Dios como acto puro" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Dios y la creación</div><h3>Dios como acto puro</h3><p>Distinciones metafísicas de Santo Tomás: causa, participación y panteísmo.</p><a class="btn" href="mapa.html?id=090">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=038"><img src="mapas/thumbs/038.webp" alt="Mapa mental: Suma Teológica I, q. 3: proemio" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Dios y la creación</div><h3>Suma Teológica I, q. 3: proemio</h3><p>El método de la remoción: conocer a Dios por lo que no es.</p><a class="btn" href="mapa.html?id=038">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=047"><img src="mapas/thumbs/047.webp" alt="Mapa mental: La simplicidad divina" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Dios y la creación</div><h3>La simplicidad divina</h3><p>Los niveles de remoción: Dios no tiene partes ni composición.</p><a class="btn" href="mapa.html?id=047">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=079"><img src="mapas/thumbs/079.webp" alt="Mapa mental: Semejanza con Dios (SCG I, 28)" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Dios y la creación</div><h3>Semejanza con Dios (SCG I, 28)</h3><p>La analogía: las criaturas se parecen a Dios, Dios no a ellas.</p><a class="btn" href="mapa.html?id=079">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=073"><img src="mapas/thumbs/073.webp" alt="Mapa mental: ¿Puede Dios crear? (STh I, q. 45, a. 2)" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Dios y la creación</div><h3>¿Puede Dios crear? (STh I, q. 45, a. 2)</h3><p>La causa universal y la creación de la nada.</p><a class="btn" href="mapa.html?id=073">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=006"><img src="mapas/thumbs/006.webp" alt="Mapa mental: La creación como relación" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Dios y la creación</div><h3>La creación como relación</h3><p>La creación no es un cambio sino una relación real de dependencia.</p><a class="btn" href="mapa.html?id=006">ABRIR MAPA →</a></div></article></div></section><section class="sec" id="gracia"><div class="kicker" style="color:var(--gold)">III · TEMA</div><h2>Tomismo · Gracia y virtud</h2><div class="rule"></div><p class="lead">La gracia como participación de la naturaleza divina, raíz de las virtudes.</p><div class="grid"><article class="card"><a class="img" href="mapa.html?id=061"><img src="mapas/thumbs/061.webp" alt="Mapa mental: La gracia como raíz" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Gracia y virtud</div><h3>La gracia como raíz</h3><p>La primacía del ser: la gracia en la esencia del alma (STh I-II, q. 110, a. 3).</p><a class="btn" href="mapa.html?id=061">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=067"><img src="mapas/thumbs/067.webp" alt="Mapa mental: Gracia: participación intensiva" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Gracia y virtud</div><h3>Gracia: participación intensiva</h3><p>Fundamento, mecanismo y resultado de la gracia como participación.</p><a class="btn" href="mapa.html?id=067">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=074"><img src="mapas/thumbs/074.webp" alt="Mapa mental: Gracia y virtud" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Gracia y virtud</div><h3>Gracia y virtud</h3><p>¿Es la gracia una virtud? La respuesta de Santo Tomás (STh I-II, q. 110, a. 3).</p><a class="btn" href="mapa.html?id=074">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=045"><img src="mapas/thumbs/045.webp" alt="Mapa mental: Virtud y gracia: la distinción metafísica" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Gracia y virtud</div><h3>Virtud y gracia: la distinción metafísica</h3><p>El ad 2 de Santo Tomás y la anterioridad de la gracia.</p><a class="btn" href="mapa.html?id=045">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=049"><img src="mapas/thumbs/049.webp" alt="Mapa mental: Esse y gracia" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Gracia y virtud</div><h3>Esse y gracia</h3><p>La gracia como esse sobrenatural: la lectura del tomismo intensivo.</p><a class="btn" href="mapa.html?id=049">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=099"><img src="mapas/thumbs/099.webp" alt="Mapa mental: La gracia y el libre albedrío" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Gracia y virtud</div><h3>La gracia y el libre albedrío</h3><p>Cómo cooperan la gracia divina y la libertad humana.</p><a class="btn" href="mapa.html?id=099">ABRIR MAPA →</a></div></article></div></section><section class="sec" id="mariologia"><div class="kicker" style="color:var(--gold)">IV · TEMA</div><h2>Mariología</h2><div class="rule"></div><p class="lead">La Madre de Dios en la Escritura y en la fe de la Iglesia.</p><div class="grid"><article class="card"><a class="img" href="mapa.html?id=059"><img src="mapas/thumbs/059.webp" alt="Mapa mental: ¿Por qué «llena de gracia»?" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Mariología</div><h3>¿Por qué «llena de gracia»?</h3><p>Kecharitōmenē (Lc 1, 28): gramática, traducción y significado.</p><a class="btn" href="mapa.html?id=059">ABRIR MAPA →</a></div></article></div></section><section class="sec" id="biblica"><div class="kicker" style="color:var(--gold)">V · TEMA</div><h2>Teología bíblica</h2><div class="rule"></div><p class="lead">La Escritura leída en la unidad de la Revelación.</p><div class="grid"><article class="card"><a class="img" href="mapa.html?id=093"><img src="mapas/thumbs/093.webp" alt="Mapa mental: Las alianzas del Antiguo Testamento" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Teología bíblica</div><h3>Las alianzas del Antiguo Testamento</h3><p>Los pactos abrahámico, mosaico y davídico, cumplidos en Cristo.</p><a class="btn" href="mapa.html?id=093">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=096"><img src="mapas/thumbs/096.webp" alt="Mapa mental: Mateo 22, 37 y el Shemá" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Teología bíblica</div><h3>Mateo 22, 37 y el Shemá</h3><p>El gran mandamiento: contexto del Shemá y aplicación práctica.</p><a class="btn" href="mapa.html?id=096">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=015"><img src="mapas/thumbs/015.webp" alt="Mapa mental: Mateo 28, 19-20: hacer discípulos" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Teología bíblica</div><h3>Mateo 28, 19-20: hacer discípulos</h3><p>El participio circunstancial en el griego de la Gran Comisión.</p><a class="btn" href="mapa.html?id=015">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=076"><img src="mapas/thumbs/076.webp" alt="Mapa mental: Mateo 28, 20: «todos los días»" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Teología bíblica</div><h3>Mateo 28, 20: «todos los días»</h3><p>La presencia de Cristo con su Iglesia hasta el fin del mundo.</p><a class="btn" href="mapa.html?id=076">ABRIR MAPA →</a></div></article></div></section><section class="sec" id="cristologia"><div class="kicker" style="color:var(--gold)">VI · TEMA</div><h2>Cristología</h2><div class="rule"></div><p class="lead">El misterio de Cristo, verdadero Dios y verdadero hombre.</p><div class="grid"><article class="card"><a class="img" href="mapa.html?id=094"><img src="mapas/thumbs/094.webp" alt="Mapa mental: Las dos naturalezas de Cristo" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Cristología</div><h3>Las dos naturalezas de Cristo</h3><p>Divinidad, humanidad y unión hipostática según Calcedonia.</p><a class="btn" href="mapa.html?id=094">ABRIR MAPA →</a></div></article></div></section><section class="sec" id="apologetica"><div class="kicker" style="color:var(--gold)">VII · TEMA</div><h2>Apologética</h2><div class="rule"></div><p class="lead">Razones de nuestra esperanza (1 Pe 3, 15).</p><div class="grid"><article class="card"><a class="img" href="mapa.html?id=098"><img src="mapas/thumbs/098.webp" alt="Mapa mental: Filipenses 3, 9: la justicia por la fe" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Apologética</div><h3>Filipenses 3, 9: la justicia por la fe</h3><p>La justicia que viene de Dios y no de la Ley.</p><a class="btn" href="mapa.html?id=098">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=013"><img src="mapas/thumbs/013.webp" alt="Mapa mental: Razones para convertirse al catolicismo" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Apologética</div><h3>Razones para convertirse al catolicismo</h3><p>Filosofía, verdad y belleza convergen en la Iglesia.</p><a class="btn" href="mapa.html?id=013">ABRIR MAPA →</a></div></article><article class="card"><a class="img" href="mapa.html?id=084"><img src="mapas/thumbs/084.webp" alt="Mapa mental: La triple conversión" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Apologética</div><h3>La triple conversión</h3><p>Una conversión intelectual, moral y espiritual hacia Dios.</p><a class="btn" href="mapa.html?id=084">ABRIR MAPA →</a></div></article></div></section><section class="sec" id="eclesiologia"><div class="kicker" style="color:var(--gold)">VIII · TEMA</div><h2>Eclesiología</h2><div class="rule"></div><p class="lead">La Iglesia, sacramento universal de salvación.</p><div class="grid"><article class="card"><a class="img" href="mapa.html?id=095"><img src="mapas/thumbs/095.webp" alt="Mapa mental: La Iglesia en el Nuevo Testamento" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Eclesiología</div><h3>La Iglesia en el Nuevo Testamento</h3><p>Ekklesía: etimología, imágenes bíblicas y organismo, no organización.</p><a class="btn" href="mapa.html?id=095">ABRIR MAPA →</a></div></article></div></section><section class="sec" id="magisterio"><div class="kicker" style="color:var(--gold)">IX · TEMA</div><h2>Magisterio</h2><div class="rule"></div><p class="lead">Los documentos de la Iglesia explicados.</p><div class="grid"><article class="card"><a class="img" href="mapa.html?id=033"><img src="mapas/thumbs/033.webp" alt="Mapa mental: Mirari Vos (Gregorio XVI, 1832)" loading="lazy"><span class="badge">VISOR · ZOOM</span></a>
+<div class="body"><div class="place">Magisterio</div><h3>Mirari Vos (Gregorio XVI, 1832)</h3><p>Los errores de su tiempo según la encíclica.</p><a class="btn" href="mapa.html?id=033">ABRIR MAPA →</a></div></article></div></section></main><footer><a href="index.html">Inicio</a><a href="podcast.html">Podcast</a><a href="mapas-mentales.html">Mapas mentales</a><a href="greek-paradigms.html">Paradigmas griegos</a><p>Hosanna in Excelsis Academia</p></footer><script>
+(()=>{const c=document.getElementById('stars'),x=c.getContext('2d');let s=[],w,h;const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function r(){w=c.width=c.offsetWidth*devicePixelRatio;h=c.height=c.offsetHeight*devicePixelRatio;s=Array.from({length:220},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.4*devicePixelRatio,p:Math.random()*6}))}
+function d(t){x.clearRect(0,0,w,h);for(const a of s){x.globalAlpha=.35+.65*Math.abs(Math.sin(a.p+t/1500));x.fillStyle=a.r>1.2?'#f3dc9c':'#fff';x.beginPath();x.arc(a.x,a.y,a.r,0,7);x.fill()}if(!rm)requestAnimationFrame(d)}
+addEventListener('resize',r);r();requestAnimationFrame(d)})();
+</script></body></html>
