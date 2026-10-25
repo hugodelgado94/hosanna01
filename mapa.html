@@ -48,19 +48,61 @@ footer a{color:var(--cgold);text-decoration:none;margin:0 10px}
 .btn:hover{background:var(--navy)}
 @media(max-width:800px){.intro{grid-template-columns:1fr}}
 
-body{background:var(--night);color:var(--ivory);height:100vh;display:flex;flex-direction:column;margin:0}
+body{background:var(--night);color:var(--ivory);min-height:100vh;display:flex;flex-direction:column;margin:0}
 .top{display:flex;gap:18px;align-items:center;padding:16px 4vw;border-bottom:1px solid rgba(217,178,95,.3)}.top a{color:var(--cgold);text-decoration:none;font-family:var(--display);letter-spacing:.15em;font-size:13px}
-.top h1{font-size:22px;margin:0;color:var(--cgold-l)}#v{flex:1;overflow:hidden;position:relative;cursor:grab;touch-action:none}#v img{position:absolute;left:50%;top:50%;max-width:96vw;max-height:calc(100vh - 80px);transform-origin:center}
+.top h1{font-size:22px;margin:0;color:var(--cgold-l)}#v{flex:none;height:calc(100vh - 62px);overflow:hidden;position:relative;cursor:grab;touch-action:none}#v img{position:absolute;left:50%;top:50%;max-width:96vw;max-height:calc(100vh - 80px);transform-origin:center}
 .wait{flex:1;display:grid;place-items:center;text-align:center;font-family:var(--serif);font-size:22px;color:var(--mute);padding:20px}#vb{margin-left:auto;font-family:var(--display);font-size:12px;letter-spacing:.2em;background:transparent;color:var(--cgold-l);border:1px solid var(--cgold);padding:9px 16px;cursor:pointer}
 #vp{display:none;position:fixed;right:2vw;bottom:2vw;width:min(520px,94vw);background:var(--night);border:1px solid var(--cgold);padding:8px;z-index:5;box-shadow:0 20px 60px #000}
-#vp.on{display:block}#vp .r{position:relative;aspect-ratio:16/9}#vp iframe{position:absolute;inset:0;width:100%;height:100%;border:0}</style></head><body>
+#vp.on{display:block}#vp .r{position:relative;aspect-ratio:16/9}#vp iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.ex{border-top:1px solid rgba(217,178,95,.3);background:radial-gradient(ellipse at 50% 0%,#101b40 0%,var(--navy) 45%,var(--night) 100%);padding:70px 5vw 90px}
+.ex article{max-width:760px;margin:0 auto;font-family:var(--serif);font-size:21px;line-height:1.7;color:var(--ivory)}
+.ex .kicker{text-align:center;display:block}.ex .rl{width:80px;height:1px;background:var(--cgold);margin:14px auto 34px}
+.ex h2{font-family:var(--display);font-weight:400;letter-spacing:.08em;font-size:24px;color:var(--cgold-l);margin:46px 0 10px}
+.ex h2 small{display:block;font-family:var(--serif);font-style:italic;letter-spacing:0;font-size:20px;color:var(--cgold);margin-top:4px}
+.ex h2.key{text-align:center;font-size:28px;margin-top:64px;padding-top:40px;border-top:1px solid rgba(217,178,95,.3)}
+.ex p{margin:0 0 18px}.ex ul{margin:0 0 22px;padding-left:0;list-style:none}
+.ex li{position:relative;padding-left:26px;margin:0 0 10px;color:#e3dccb}.ex li::before{content:"✦";position:absolute;left:0;top:1px;font-size:13px;color:var(--cgold)}
+.ex b{color:var(--cgold-l);font-weight:600}.ex .sum{border-left:1px solid var(--cgold);padding-left:24px;margin-top:40px;font-style:italic}
+.ex .lead{font-size:23px}
+</style></head><body>
 <div class="top"><a href="mapas-mentales.html">← MAPAS</a><h1 id="t"></h1><button id="vb" hidden>VER EXPLICACIÓN</button></div><div id="vp"><div class="r"></div></div><div id="v"></div>
+<section class="ex" id="ex" hidden><article><span class="kicker">EXPLICACIÓN DEL MAPA</span><div class="rl"></div><div id="exb"></div></article></section>
+<template id="txt-1">
+<p class="lead">Para empezar a entender este mapa mental, debemos partir de la idea principal que está en la parte superior: "Conocer algo es conocer sus causas". Según Aristóteles, cuando preguntamos el "por qué" de algo, en realidad estamos haciendo cuatro preguntas distintas. Si solo respondemos una, nos perdemos gran parte de la realidad.</p>
+<p>Para explicarlo de forma sencilla, el mapa utiliza el ejemplo de una casa. Vamos a recorrer cada una de las causas:</p>
+<h2>1. La Causa Material <small>(¿De qué está hecho?)</small></h2>
+<ul><li><b>¿Qué significa?</b> Se refiere a la materia, a los componentes físicos o los ingredientes que forman algo.</li>
+<li><b>Ejemplo:</b> En el caso de una casa, la causa material sería la madera, la piedra, el ladrillo o el vidrio.</li>
+<li><b>Ubicación:</b> Es una causa intrínseca, lo que significa que está dentro de la cosa misma.</li></ul>
+<h2>2. La Causa Eficiente <small>(¿Quién lo hizo?)</small></h2>
+<ul><li><b>¿Qué significa?</b> Es el agente, la fuerza o el productor que lleva a cabo la acción para que algo exista. Es quien transforma la materia.</li>
+<li><b>Ejemplo:</b> Para nuestra casa, la causa eficiente son los constructores, los albañiles o los carpinteros.</li>
+<li><b>Ubicación:</b> Es una causa extrínseca, es decir, actúa desde fuera de la cosa.</li></ul>
+<h2>3. La Causa Final <small>(¿Para qué existe?)</small></h2>
+<ul><li><b>¿Qué significa?</b> Es el propósito, el fin o el objetivo por el cual algo fue creado. De hecho, en filosofía se le llama la "Causa de las causas", porque es el fin (el deseo de tener donde vivir) lo que mueve al agente (el constructor) a trabajar.</li>
+<li><b>Ejemplo:</b> La causa final de la casa es servir como vivienda o dar refugio a una familia.</li>
+<li><b>Ubicación:</b> También es una causa extrínseca (viene de una intención desde fuera).</li></ul>
+<h2>4. La Causa Formal <small>(¿Qué lo hace ser lo que es?)</small></h2>
+<ul><li><b>¿Qué significa?</b> Esta es la causa más importante para nuestro debate. Es el diseño, la estructura o la esencia de algo. Es el acto o la perfección interna que organiza la materia.</li>
+<li><b>Ejemplo:</b> Un montón de ladrillos y madera (materia) no son una casa hasta que se les da el diseño y la estructura arquitectónica de una casa. Esa es su forma.</li>
+<li><b>Ubicación:</b> Es una causa intrínseca, está en el interior, dándole identidad a la cosa.</li></ul>
+<h2 class="key">El punto clave: La aplicación a la Justificación</h2>
+<p>El mapa mental hace un énfasis especial (con una flecha directa) en cómo la Causa Formal es el punto que cambia toda la conversación entre católicos y protestantes sobre cómo somos salvados (justificados) ante Dios.</p>
+<p>Si católicos y protestantes hablan de la justificación usando las otras causas, parecen estar de acuerdo:</p>
+<ul><li><b>Causa Eficiente:</b> Ambos creen que es Dios quien nos justifica (es el juez).</li>
+<li><b>Causa Final:</b> Ambos creen que es para la gloria de Dios y nuestra libertad/salvación.</li></ul>
+<p><b>¿Dónde está la diferencia? ¡En la Causa Formal!</b> (¿Qué es lo que nos hace "justos"?):</p>
+<ul><li><b>Para la visión Protestante (Justicia Imputada / Externa):</b> La causa formal es extrínseca. Es la justicia de Cristo que se nos atribuye o declara desde fuera. Como un juez que dice "no culpable" a alguien; la sentencia lo libera, pero la justicia está en la declaración del juez, fuera de la persona.</li>
+<li><b>Para la visión Católica (Justicia Infundida / Interna):</b> La causa formal es intrínseca. Dios pone su gracia y su justicia dentro de nosotros (en nuestra alma). No solo nos declara justos desde fuera, sino que nos transforma verdaderamente por dentro, pasando de enemigos a hijos adoptivos.</li></ul>
+<p class="sum"><b>En resumen:</b> El mapa mental te ayuda a ver que dos cosas (la doctrina católica y la protestante) pueden parecer idénticas desde fuera porque comparten tres de las cuatro causas. Pero al llegar a la causa formal (lo que ocurre en el interior), nos damos cuenta de que son comprensiones completamente distintas de cómo actúa la gracia de Dios en el ser humano.</p>
+</template>
 <script>
-const M={"1": {"t": "Las cuatro causas de Aristóteles (y la justificación)", "d": "Material, formal, eficiente y final, y cómo la causa formal explica la diferencia en la justificación.", "img": "mapas/001.webp", "video": ""}};const id=new URLSearchParams(location.search).get('id');let k=String(parseInt(id,10));if(!M[k]){k='1';if(id!==null)history.replaceState(null,'','?id=1')}const m=M[k];const v=document.getElementById('v');
+const M={"1": {"t": "Las cuatro causas de Aristóteles (y la justificación)", "d": "Material, formal, eficiente y final, y cómo la causa formal explica la diferencia en la justificación.", "img": "mapas/001.webp", "video": "", "txt": "txt-1"}};const id=new URLSearchParams(location.search).get('id');let k=String(parseInt(id,10));if(!M[k]){k='1';if(id!==null)history.replaceState(null,'','?id=1')}const m=M[k];const v=document.getElementById('v');
 document.getElementById('t').textContent=m?m.t:'Mapa no encontrado';if(m)document.title=m.t+' · Mapas mentales';
 if(!m||!m.img){v.outerHTML='<div class="wait"><div>'+(m?m.d:'')+'<br><br><span style="font-family:Cinzel;letter-spacing:.2em;font-size:13px;color:#d9b25f">MAPA EN PREPARACIÓN</span></div></div>'}
 else{const i=new Image();i.src=m.img;i.alt=m.t;v.appendChild(i);let s=1,x=0,y=0,d=null;const a=()=>i.style.transform=`translate(calc(-50% + ${x}px),calc(-50% + ${y}px)) scale(${s})`;a();
 v.onwheel=e=>{e.preventDefault();s=Math.min(8,Math.max(1,s*(e.deltaY<0?1.15:.87)));a()};v.onpointerdown=e=>{d=[e.clientX-x,e.clientY-y];v.setPointerCapture(e.pointerId)};v.onpointermove=e=>{if(d){x=e.clientX-d[0];y=e.clientY-d[1];a()}};v.onpointerup=()=>d=null;v.ondblclick=()=>{s=1;x=y=0;a()}}
 
 if(m&&m.video){const b=document.getElementById('vb'),p=document.getElementById('vp');b.hidden=false;b.onclick=()=>{if(!p.querySelector('iframe'))p.firstChild.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(m.video)+'" title="Explicación del mapa" allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';p.classList.toggle('on');b.textContent=p.classList.contains('on')?'CERRAR VIDEO':'VER EXPLICACIÓN'}}
+if(m&&m.txt){const t=document.getElementById(m.txt);if(t){document.getElementById('exb').appendChild(t.content.cloneNode(true));document.getElementById('ex').hidden=false}}
 </script></body></html>
