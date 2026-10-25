@@ -205,6 +205,25 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:80px 0
   .js .creation .dawn,.js .creation .glow{opacity:0}
   .js .creation .fiat{opacity:1;transform:none}
 }
+
+/* ÚLTIMOS VIDEOS */
+#videos{padding-top:0}
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.vcard{display:flex;flex-direction:column;background:var(--paper);box-shadow:inset 0 0 0 1px rgba(168,129,44,.38);transition:background .5s,box-shadow .5s}
+.vcard:hover,.vcard:focus-visible{background:#fff;box-shadow:inset 0 0 0 1px var(--gold),0 0 22px rgba(201,166,80,.22);z-index:1}
+.vcard .th{position:relative;aspect-ratio:16/9;overflow:hidden;background:#0b1026}
+.vcard .th img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.vcard:hover .th img{transform:scale(1.04)}
+.vcard .th::after{content:"";position:absolute;right:10px;bottom:10px;width:30px;height:30px;border-radius:50%;border:1px solid var(--gold);background:rgba(11,16,38,.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 7l8 5-8 5z' fill='%23c9a650'/%3E%3C/svg%3E") center/14px no-repeat}
+.vcard .tx{padding:22px 24px 26px}
+.vcard time{font-family:var(--display);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.vcard h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;line-height:1.2;margin-top:8px;color:var(--ink)}
+.vmore{text-align:center;margin-top:44px}
+.vmore .btn{color:var(--gold);border-color:var(--gold)}
+.vmore small{display:block;margin-top:16px;color:var(--ink-soft);font-size:.9rem}
+.vmore small a{color:var(--gold)}
+@media(max-width:900px){.vgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.vgrid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -341,6 +360,29 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:80px 0
       </div>
     </div>
   </section>
+
+  <section id="videos">
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow">YouTube</p>
+        <h2>Últimos videos</h2>
+        <p>Lo más reciente de nuestro canal, Hosanna in Excelsis.</p>
+        <div class="rule"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor"><path d="M7 0v14M2 5h10"/></svg></div>
+      </div>
+      <div class="vgrid reveal" id="vgrid"></div>
+      <div class="vmore reveal">
+        <a class="btn" href="https://www.youtube.com/@HosannaInExcelsis" target="_blank" rel="noopener">Ver canal</a>
+        <small>Síganos también en X: <a href="https://x.com/hugdel" target="_blank" rel="noopener">@hugdel</a></small>
+      </div>
+    </div>
+  </section>
+  <script>
+  fetch('data/videos.json',{cache:'no-cache'}).then(r=>r.json()).then(d=>{
+    const g=document.getElementById('vgrid'),e=t=>t.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    const vs=(d.videos||[]).slice(0,6);if(!vs.length){document.getElementById('videos').style.display='none';return}
+    g.innerHTML=vs.map(v=>`<a class="vcard" href="${e(v.url)}" target="_blank" rel="noopener"><span class="th"><img src="${e(v.thumb)}" alt="" loading="lazy"></span><span class="tx"><time datetime="${e(v.published)}">${new Date(v.published).toLocaleDateString('es',{day:'numeric',month:'long',year:'numeric'})}</time><h3>${e(v.title)}</h3></span></a>`).join('');
+  }).catch(()=>{document.getElementById('videos').style.display='none'});
+  </script>
 
   <div class="mission-wrap" id="mision">
     <svg class="bg" viewBox="0 0 600 600" fill="none" stroke="#c9a650" aria-hidden="true">
