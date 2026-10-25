@@ -436,7 +436,7 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:80px 0
         <h5>Academia</h5>
         <ul>
           <li><a href="#mision">Nuestra misión</a></li>
-          <li><a href="#contacto">Contacto</a></li>
+          <li><a class="mailf" href="#contacto">Contacto</a></li>
           <li><a href="#inicio">Volver arriba</a></li>
         </ul>
       </div>
@@ -457,7 +457,7 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:80px 0
 
 <script>
 document.documentElement.classList.add('js');
-(function(){var a=document.getElementById('mailc');if(a){var e=['hugo.delgado','mail.grokbot.com'].join('@');a.href='mailto:'+e;a.textContent=e;}})();
+(function(){var a=document.getElementById('mailc');if(a){var e=['hugo.delgado','mail.grokbot.com'].join('@');a.href='mailto:'+e;a.textContent=e;}document.querySelectorAll('.mailf').forEach(function(f){f.href='mailto:'+e;});})();
 
 // Living cosmos: 3 parallax layers of stars and gold spheres (scroll + mouse)
 (function(){
